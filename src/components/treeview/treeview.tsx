@@ -24,7 +24,7 @@ export class TreeView extends Component<TreeViewProps, TreeViewState> {
 	constructor(props?: any) {
 		super(props);
 		this.state = {
-		}
+		};
 	}
 	render() {
 		const { entry, children } = this.props;
