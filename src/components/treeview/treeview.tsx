@@ -20,7 +20,7 @@ export interface TreeViewProps {
 export interface TreeViewState {
 }
 
-export default class TreeView extends Component<TreeViewProps, TreeViewState> {
+export default class TreeView extends React.Component<TreeViewProps, TreeViewState> {
 	constructor(props?: any) {
 		super(props);
 		this.state = {

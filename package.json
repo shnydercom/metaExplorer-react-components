@@ -5,7 +5,8 @@
   "main": "main.js",
   "scripts": {
     "test": "test",
-    "start": "start-storybook -p 2018"
+    "start": "start-storybook -p 2018",
+    "createlib" : "tsc"
   },
   "repository": {
     "type": "git",
