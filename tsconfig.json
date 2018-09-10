@@ -1,0 +1,51 @@
+{
+  "compilerOptions": {  
+    "baseUrl": "src",
+    "jsx": "react", 
+    "strict": false,
+
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "module": "commonjs",
+    "target": "es2017",
+    "sourceRoot": "src",
+    "moduleResolution": "node",
+
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "types": ["node"],
+    "typeRoots": ["./node_modules/@types"],
+    "suppressExcessPropertyErrors": true,
+    "declaration": true,
+    "strictNullChecks": false,
+    "skipLibCheck": true,
+    "paths": {
+      "react": ["node_modules/@types/react"]
+    },
+    "lib": [
+      "dom",
+      "es2017"
+    ]
+  },
+  "exclude": [
+    "doc",
+    "node_modules",
+    "src/examples",
+    "dist",
+    "scripts",
+    "tooling"
+  ],
+  "awesomeTypescriptLoaderOptions": {
+    "compilerOptions": {
+      "declaration": false,
+      "types": ["node", "gapi", "gapi.auth2"],
+    },
+    "exclude": [
+      "node_modules",
+      "public/js",
+      "scripts",
+      "tooling"
+    ]
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "name": "metaexplorer-react-components",
+  "version": "0.0.1",
+  "description": "components for the metaExplorer project",
+  "main": "main.js",
+  "scripts": {
+    "test": "test",
+    "start": "start-storybook -p 2018"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aJonathanSchneider/metaExplorer-react-components.git"
+  },
+  "author": "Jonathan Schneider (shnyder.com)",
+  "bugs": {
+    "url": "https://github.com/aJonathanSchneider/metaExplorer-react-components/issues"
+  },
+  "homepage": "https://github.com/aJonathanSchneider/metaExplorer-react-components#readme",
+  "dependencies": {
+    "react": "^16.5.0",
+    "react-accessible-accordion": "^2.4.4",
+    "react-dom": "^16.2.0",
+    "storybook": "^1.0.0"
+  },
+  "devDependencies": {
+    "@storybook/addon-knobs": "^3.3.14",
+    "@storybook/addons": "^3.4.10",
+    "@storybook/react": "^3.3.14",
+    "@types/react": "^16.4.13",
+    "@types/react-dom": "^16.0.4",
+    "@types/storybook__addon-knobs": "^3.2.3",
+    "@types/storybook__react": "^3.0.7",
+    "awesome-typescript-loader": "^3.5.0",
+    "babel-core": "^6.26.3",
+    "babel-runtime": "^6.26.0",
+    "css-loader": "^1.0.0",
+    "file-loader": "^2.0.0",
+    "node-sass": "^4.9.3",
+    "sass-loader": "^7.1.0",
+    "source-map-loader": "^0.2.4",
+    "style-loader": "^0.23.0",
+    "typescript": "^2.7.2",
+    "webpack": "^4.17.2"
+  }
+}
