@@ -6,7 +6,6 @@ import {
 	AccordionItemTitle,
 	AccordionItemBody,
 } from 'react-accessible-accordion';
-import './treeview.scss';
 
 export interface TreeEntry {
 	subEntries: TreeEntry[];

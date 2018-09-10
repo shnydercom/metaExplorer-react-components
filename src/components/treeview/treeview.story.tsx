@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { TreeView, TreeEntry } from './treeview';
+import TreeView, { TreeEntry } from './treeview';
 import { withKnobs, select, boolean, text, number } from '@storybook/addon-knobs';
-
+import './treeview.scss';
 
 const stories = storiesOf('plain components', module);
 stories.addDecorator(withKnobs);

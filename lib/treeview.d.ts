@@ -1,5 +1,4 @@
 import * as React from 'react';
-import './treeview.scss';
 export interface TreeEntry {
     subEntries: TreeEntry[];
     label: string;
