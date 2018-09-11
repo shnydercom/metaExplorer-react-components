@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Component } from "react";
 import {
 	Accordion,
 	AccordionItem,
@@ -30,7 +29,7 @@ export default class TreeView extends React.Component<TreeViewProps, TreeViewSta
 		let subTrees = [];
 		for (let idx = 0; idx < entry.subEntries.length; idx++) {
 			const elem = entry.subEntries[idx];
-			subTrees.push(<TreeView entry={elem} />);
+			subTrees.push(<TreeView key={idx} entry={elem} />);
 		}
 		return <Accordion accordion={false}>
 			<AccordionItem>
@@ -47,15 +46,5 @@ export default class TreeView extends React.Component<TreeViewProps, TreeViewSta
 				</AccordionItemBody>
 			</AccordionItem>
 		</Accordion>;
-		/*return <>
-			<button onClick={() => {
-				this.setState({ isOpen: !this.state.isOpen });
-			}} className={buttonStyles}>{entry.label}</button>
-			<div className="treeview-panel" style={isOpen ? { maxHeight: entryHeight + "px" } : null}>
-				{subTrees.length > 0 ? <p>{subTrees}</p> : null}
-				<div>{entry.flatContent}</div>
-				<div>{children}</div>
-			</div>
-		</>;*/
 	}
 }
