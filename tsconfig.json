@@ -5,11 +5,10 @@
     "strict": false,
 
     "outDir": "./lib/",
-    "sourceMap": true,
+    "sourceMap": false,
     "noImplicitAny": false,
     "module": "commonjs",
     "target": "es2017",
-    "sourceRoot": "src",
     "moduleResolution": "node",
 
     "experimentalDecorators": true,
