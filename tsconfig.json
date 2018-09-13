@@ -5,7 +5,7 @@
     "strict": false,
 
     "outDir": "./lib/",
-    "sourceMap": false,
+    "sourceMap": true,
     "noImplicitAny": false,
     "module": "commonjs",
     "target": "es2017",

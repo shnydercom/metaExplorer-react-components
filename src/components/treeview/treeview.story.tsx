@@ -59,7 +59,7 @@ const multiTreeItem: TreeEntry = {
 const itptItmStyles = {
 	color: "#fff",
 	border: "solid 1px",
-	"border-radius": "5px",
+	"borderRadius": "5px",
 	"padding": "5px",
 	"marginBottom": "3px"
 }

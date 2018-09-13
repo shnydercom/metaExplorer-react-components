@@ -27,9 +27,14 @@ export default class TreeView extends React.Component<TreeViewProps, TreeViewSta
 	render() {
 		const { entry, children } = this.props;
 		let subTrees = [];
+		let flatContents = [];
 		for (let idx = 0; idx < entry.subEntries.length; idx++) {
 			const elem = entry.subEntries[idx];
 			subTrees.push(<TreeView key={idx} entry={elem} />);
+		}
+		for (let idx = 0; idx < entry.flatContent.length; idx++) {
+			const fc = entry.flatContent[idx];
+			flatContents.push(<div className="treeview-flatcontent-item" key={idx}>{fc}</div>);
 		}
 		return <Accordion accordion={false}>
 			<AccordionItem>
@@ -42,7 +47,7 @@ export default class TreeView extends React.Component<TreeViewProps, TreeViewSta
 				<AccordionItemBody>
 					<div className="treeview-content treeview-top">{children}</div>
 					{subTrees.length > 0 ? <div className="treeview-content">{subTrees}</div> : null}
-					<div className="treeview-content">{entry.flatContent}</div>
+					<div className="treeview-content">{flatContents}</div>
 				</AccordionItemBody>
 			</AccordionItem>
 		</Accordion>;
