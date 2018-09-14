@@ -38,7 +38,7 @@ export default class CircleView extends React.Component<CircleViewProps, CircleV
 			width: isWider ? this.state.height : this.state.width,
 			overflow: "hidden"
 		}
-		return <div className={"circle" + className ? " "+ className : ""}
+		return <div className={className ? "circle " + className : "circle"}
 			ref={(divElement) => this.divElement = divElement}
 		>
 			<div style={innerCircleStyle}>
