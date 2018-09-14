@@ -6,7 +6,7 @@
   "scripts": {
     "test": "test",
     "start": "start-storybook -p 2018",
-    "createlib" : "tsc"
+    "lib" : "tsc"
   },
   "repository": {
     "type": "git",
