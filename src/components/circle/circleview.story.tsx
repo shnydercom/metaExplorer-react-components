@@ -40,7 +40,7 @@ const containerUnevenWMargin = {
 	margin: "20px"
 }
 const redStyle = {
-	backgroundColor: "#ff00dd65",
+	backgroundColor: "red",
 	flex: 1,
 	width: "100%",
 	height: "100%",
