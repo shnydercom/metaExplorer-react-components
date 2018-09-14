@@ -1,5 +1,6 @@
 import * as React from 'react';
 export interface CircleViewProps {
+	className?: string;
 }
 export interface CircleViewState {
 	height: number;
@@ -28,7 +29,7 @@ export default class CircleView extends React.Component<CircleViewProps, CircleV
 		}
 	}
 	render() {
-		const { children } = this.props;
+		const { children, className } = this.props;
 		console.dir(this.state);
 		const isWider = this.state.width > this.state.height;
 		const innerCircleStyle = {
@@ -37,7 +38,7 @@ export default class CircleView extends React.Component<CircleViewProps, CircleV
 			width: isWider ? this.state.height : this.state.width,
 			overflow: "hidden"
 		}
-		return <div className="circle"
+		return <div className={"circle" + className ? " "+ className : ""}
 			ref={(divElement) => this.divElement = divElement}
 		>
 			<div style={innerCircleStyle}>

@@ -1,5 +1,6 @@
 import * as React from 'react';
 export interface CircleViewProps {
+    className?: string;
 }
 export interface CircleViewState {
     height: number;
