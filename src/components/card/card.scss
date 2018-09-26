@@ -1,16 +1,21 @@
 @import "../../../node_modules/@material/card/dist/mdc.card.css";
 //@import "@material/card/mdc-card";
 .card {
+	width: 100%;
+	height: 100%;
 	flex-direction: row;
+	flex: 1;
 	.front {
-
+		flex: 1;
 	}
 
 	.middle {
 		padding: 8px;
 		align-items: center;
-		flex: 1;
+		flex: 2;
 	}
 
-	.last {}
+	.last {
+		flex: 1;
+	}
 }
