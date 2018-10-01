@@ -5,6 +5,7 @@ export interface ThreePartCardViewProps {
     frontContent: JSX.Element;
     middleContent: JSX.Element;
     lastContent: JSX.Element;
+    onMiddleContentClick: React.MouseEventHandler;
 }
 export interface ThreePartCardViewState {
 }

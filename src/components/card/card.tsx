@@ -5,6 +5,7 @@ export interface ThreePartCardViewProps {
 	frontContent: JSX.Element;
 	middleContent: JSX.Element;
 	lastContent: JSX.Element;
+	onMiddleContentClick: React.MouseEventHandler;
 }
 export interface ThreePartCardViewState {
 }
@@ -16,7 +17,7 @@ export default class ThreePartCardView extends React.Component<ThreePartCardView
 		};
 	}
 	render() {
-		const { children, className, frontContent, middleContent, lastContent, style } = this.props;
+		const { children, className, frontContent, middleContent, lastContent, style, onMiddleContentClick } = this.props;
 		return <div style={style} className={className ? className : null}>
 			<div className={"mdc-card card"}>
 				{frontContent ?
@@ -25,7 +26,7 @@ export default class ThreePartCardView extends React.Component<ThreePartCardView
 					</div>
 					: null}
 				{middleContent ?
-					<div className="mdc-card__primary-action middle">
+					<div className="mdc-card__primary-action middle" onClick={onMiddleContentClick}>
 						{middleContent}
 						{children}
 					</div>
