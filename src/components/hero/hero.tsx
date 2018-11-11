@@ -1,4 +1,5 @@
 import * as React from 'react';
+import AspectContainer from './aspect-container';
 
 export interface HeroGalleryProps {
 	backgroundComp: JSX.Element;
@@ -17,15 +18,15 @@ export default class HeroGallery extends React.Component<HeroGalleryProps, HeroG
 		};
 	}
 	render() {
-		const {backgroundComp, foregroundComp} = this.props;
-		const {leftBtnLabel, rightBtnLabel, subHeader} = this.props;
+		const { backgroundComp, foregroundComp } = this.props;
+		const { leftBtnLabel, rightBtnLabel, subHeader } = this.props;
 		return <div className="hero-gallery">
 			<div className="bg-container">
 				{backgroundComp}
 			</div>
 			<div className="hero-front-outer overlay-gradient">
-				<div className="hero-front-inner" ref="innerDiv">
-					<div>
+				<AspectContainer ratioA={16} ratioB={9}>
+					<div className="hero-front-inner">
 						<div className="fg-container">
 							{foregroundComp}
 						</div>
@@ -42,7 +43,7 @@ export default class HeroGallery extends React.Component<HeroGalleryProps, HeroG
 							</div>
 						</div>
 					</div>
-				</div>
+				</AspectContainer>
 			</div>
 			<div className="hero-text">
 				<h4>{subHeader}</h4>

@@ -2,6 +2,7 @@ $bright-text-color: #ffffffaa;
 $gallery-itm-bg-color: #121212;
 $gallery-bg-color: #010f27;
 $gallery-height: 66%;
+$port-height-width: 40px;
 
 .hero-gallery {
 	color: $bright-text-color;
@@ -31,46 +32,7 @@ $gallery-height: 66%;
 		//margin-left: auto;
 		//margin-right: auto;
 
-		.hero-front-inner {
-			//margin: $gallery-height*0.16;
 
-			//flex-direction: column;
-			//display: flex;
-			//flex: 1;
-
-			.fg-container {
-				//flex: 4;
-				border: solid 1px;
-				border-radius: 20px;
-				background-color: $gallery-itm-bg-color;
-			}
-
-			.btns {
-				//flex: 1;
-				display: flex;
-				flex-direction: row;
-
-				.prev {
-					flex: 1;
-
-					.start {}
-
-					.mid {}
-
-					.end {}
-				}
-
-				.nxt {
-					flex: 1;
-
-					.start {}
-
-					.mid {}
-
-					.end {}
-				}
-			}
-		}
 	}
 
 	.hero-text {
@@ -81,6 +43,65 @@ $gallery-height: 66%;
 		text-align: center;
 	}
 
+}
+
+.hero-front-inner {
+	//margin: $gallery-height*0.16;
+
+	flex-direction: column;
+	//display: flex;
+	//flex: 1;
+	height: 100%;
+	border: solid 1px;
+	border-radius: 20px;
+	background-color: $gallery-itm-bg-color;
+	display: flex;
+
+	.fg-container {
+		flex: 4;
+
+	}
+
+	.btns {
+		flex: 1;
+		display: flex;
+		flex-direction: row;
+
+		.prev {
+			flex: 1;
+			display: flex;
+
+			.start {
+				height: $port-height-width;
+				width: $port-height-width;
+				background-color: $bright-text-color;
+			}
+
+			.mid {
+				flex: 1;
+			}
+
+			.end {}
+		}
+
+		.nxt {
+			flex: 1;
+			display: flex;
+
+			.start {}
+
+			.mid {
+				text-align: end;
+				flex: 1;
+			}
+
+			.end {
+				background-color: $bright-text-color;
+				width: $port-height-width;
+				height: $port-height-width;
+			}
+		}
+	}
 }
 
 //aspect ratio boxes explanation: https://css-tricks.com/aspect-ratio-boxes/

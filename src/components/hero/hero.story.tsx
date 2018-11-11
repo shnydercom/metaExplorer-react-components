@@ -54,9 +54,18 @@ stories.add('hero/smallersqaure', () => {
 					</div>
 				</div>
 			</div>
-		</div >
+		</div>
 	)
 });
+
+stories.add('hero/singleGalleryTest', () => (
+	<>
+		<div style={{height: "66vh", width: "66vw" }}>
+			<HeroGallery {...basicGalleryProps}>
+
+			</HeroGallery>
+		</div></>
+));
 
 stories.add('hero/microview', () => (
 	<>
