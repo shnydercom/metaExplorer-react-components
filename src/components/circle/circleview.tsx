@@ -30,7 +30,6 @@ export default class CircleView extends React.Component<CircleViewProps, CircleV
 	}
 	render() {
 		const { children, className } = this.props;
-		console.dir(this.state);
 		const isWider = this.state.width > this.state.height;
 		const innerCircleStyle = {
 			borderRadius: "50%",

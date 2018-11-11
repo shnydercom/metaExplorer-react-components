@@ -6,7 +6,8 @@
   "scripts": {
     "test": "test",
     "start": "start-storybook -p 2018",
-    "lib": "tsc"
+    "lib": "tsc",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -19,29 +20,47 @@
   "homepage": "https://github.com/aJonathanSchneider/metaExplorer-react-components#readme",
   "dependencies": {
     "@material/card": "^0.39.3",
+    "babel-loader": "^8.0.4",
+    "lodash": "^4.17.11",
+    "lodash.camelcase": "^4.3.0",
     "react": "^16.5.0",
     "react-accessible-accordion": "^2.4.4",
     "react-dom": "^16.2.0",
     "storybook": "^1.0.0"
   },
   "devDependencies": {
-    "@storybook/addon-knobs": "^3.3.14",
-    "@storybook/addons": "^3.4.10",
-    "@storybook/react": "^3.3.14",
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "@storybook/addon-knobs": "^4.0.4",
+    "@storybook/addons": "^4.0.4",
+    "@storybook/react": "^4.0.4",
     "@types/react": "^16.4.13",
     "@types/react-dom": "^16.0.4",
-    "@types/storybook__addon-knobs": "^3.2.3",
-    "@types/storybook__react": "^3.0.7",
-    "awesome-typescript-loader": "^3.5.0",
+    "@types/storybook__addon-knobs": "^3.4.1",
+    "@types/storybook__react": "^4.0.0",
+    "awesome-typescript-loader": "^5.2.1",
     "babel-core": "^6.26.3",
+    "babel-preset-minify": "^0.5.0",
     "babel-runtime": "^6.26.0",
+    "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^1.0.0",
     "file-loader": "^2.0.0",
+    "mini-css-extract-plugin": "^0.4.4",
     "node-sass": "^4.9.3",
+    "postcss-camel-case": "^1.0.1",
+    "postcss-cssnext": "^3.1.0",
+    "postcss-each": "^0.10.0",
+    "postcss-import": "^12.0.0",
+    "postcss-loader": "^3.0.0",
+    "postcss-mixins": "^6.2.0",
+    "postcss-sorting": "^4.0.0",
     "sass-loader": "^7.1.0",
     "source-map-loader": "^0.2.4",
     "style-loader": "^0.23.0",
     "typescript": "^2.7.2",
-    "webpack": "^4.17.2"
+    "typings-for-css-modules-loader": "^1.7.0",
+    "webpack": "^4.17.2",
+    "webpack-cli": "^3.1.2"
   }
 }
