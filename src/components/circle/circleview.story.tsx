@@ -5,42 +5,49 @@ import './circleview.scss';
 
 const stories = storiesOf('plain components', module);
 
-const container50pxStyle = {
+export const container50pxStyle = {
 	height: "50px",
 	width: "50px",
 	display: "flex"
 }
-const container100pxStyle = {
+export const container100pxStyle = {
 	height: "100px",
 	width: "100px",
 	display: "flex"
 }
-const containerH50pxW100pxStyle = {
+export const containerH50pxW100pxStyle = {
 	height: "50px",
 	width: "100px",
 	display: "block",
 	backgroundColor: "grey"
 }
-const containerH100pxW50pxStyle = {
+export const containerH100pxW50pxStyle = {
 	height: "100px",
 	width: "50px",
 	display: "block",
 	backgroundColor: "grey"
 }
-const containerUnevenWPadding = {
+export const containerUnevenWPadding = {
 	height: "50px",
 	width: "100px",
 	display: "flex",
 	padding: "20px"
 }
-const containerUnevenWMargin = {
+export const containerUnevenWMargin = {
 	height: "50px",
 	width: "100px",
 	display: "flex",
 	margin: "20px"
 }
-const redStyle = {
+export const redStyle = {
 	backgroundColor: "red",
+	flex: 1,
+	width: "100%",
+	height: "100%",
+}
+
+export const blueStyle = {
+	backgroundColor: "blue",
 	flex: 1,
 	width: "100%",
 	height: "100%",

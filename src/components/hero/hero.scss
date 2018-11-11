@@ -83,6 +83,8 @@ $gallery-height: 66%;
 
 }
 
+//aspect ratio boxes explanation: https://css-tricks.com/aspect-ratio-boxes/
+
 [style*="--aspect-ratio"]> :first-child {
 	width: 100%;
 }
@@ -107,5 +109,49 @@ $gallery-height: 66%;
 		top: 0;
 		left: 0;
 		height: 100%;
+	}
+}
+
+.hero-h-square {
+	height: 100%;
+	width: min-content;
+	position: relative;
+	margin-right: auto;
+	margin-left: auto;
+	max-width: 100%;
+
+	>svg {
+		height: 100%;
+		width: auto;
+	}
+
+	.hero-h-inner {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		display: flex;
+	}
+}
+
+.hero-v-square {
+	width: 100%;
+	height: min-content;
+	position: relative;
+	margin-top: auto;
+	margin-bottom: auto;
+
+	>svg {
+		height: auto;
+		width: 100%;
+	}
+
+	.hero-v-inner {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
 	}
 }
