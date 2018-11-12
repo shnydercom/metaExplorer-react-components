@@ -1,4 +1,4 @@
-$bright-text-color: #ffffffaa;
+$bright-text-color: rgba(#ffffff, .8);
 $gallery-itm-bg-color: #121212;
 $gallery-bg-color: #010f27;
 $gallery-height: 66%;
@@ -61,8 +61,9 @@ $port-selected-color: rgba(87, 161, 245, .9);
 	//display: flex;
 	//flex: 1;
 	height: 100%;
-	border: solid 2px rgba(180, 180, 180, .3);
+	//border: solid 2px rgba(180, 180, 180, .3);
 	border-radius: 1em;
+	overflow: hidden;
 	background-image: linear-gradient(to top, $gallery-itm-bg-color, rgba($gallery-itm-bg-color, 0.2));
 	display: flex;
 
