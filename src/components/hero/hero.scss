@@ -63,7 +63,7 @@ $port-selected-color: rgba(87, 161, 245, .9);
 	height: 100%;
 	border: solid 2px rgba(180, 180, 180, .3);
 	border-radius: 1em;
-	background-color: $gallery-itm-bg-color;
+	background-image: linear-gradient(to top, $gallery-itm-bg-color, rgba($gallery-itm-bg-color, 0.2));
 	display: flex;
 
 	.fg-container {
