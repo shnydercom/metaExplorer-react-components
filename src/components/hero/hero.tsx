@@ -27,7 +27,8 @@ export default class HeroGallery extends React.Component<HeroGalleryProps, HeroG
 			<div className="bg-container">
 				{backgroundComp}
 			</div>
-			<div className="hero-front-outer overlay-gradient">
+			<div className="overlay-gradient"></div>
+			<div className="hero-front-outer">
 				<AspectContainer ratioA={16} ratioB={9}
 					topTitle={
 						<div className="hero-text">

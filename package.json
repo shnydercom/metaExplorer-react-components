@@ -23,7 +23,7 @@
     "babel-loader": "^8.0.4",
     "lodash": "^4.17.11",
     "lodash.camelcase": "^4.3.0",
-    "react": "^16.5.0",
+    "react": "^16.6.1",
     "react-accessible-accordion": "^2.4.4",
     "react-dom": "^16.2.0",
     "storybook": "^1.0.0"
@@ -35,7 +35,7 @@
     "@storybook/addon-knobs": "^4.0.4",
     "@storybook/addons": "^4.0.4",
     "@storybook/react": "^4.0.4",
-    "@types/react": "^16.4.13",
+    "@types/react": "^16.7.3",
     "@types/react-dom": "^16.0.4",
     "@types/storybook__addon-knobs": "^3.4.1",
     "@types/storybook__react": "^4.0.0",
