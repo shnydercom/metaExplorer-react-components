@@ -4,6 +4,7 @@ export interface HeroGalleryProps {
     foregroundComp: JSX.Element;
     leftBtnLabel: string;
     rightBtnLabel: string;
+    topHeader: string;
     subHeader: string;
 }
 export interface HeroGalleryState {

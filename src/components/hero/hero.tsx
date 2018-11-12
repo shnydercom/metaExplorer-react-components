@@ -6,6 +6,7 @@ export interface HeroGalleryProps {
 	foregroundComp: JSX.Element;
 	leftBtnLabel: string;
 	rightBtnLabel: string;
+	topHeader: string;
 	subHeader: string;
 }
 export interface HeroGalleryState {
@@ -19,7 +20,7 @@ export default class HeroGallery extends React.Component<HeroGalleryProps, HeroG
 	}
 	render() {
 		const { backgroundComp, foregroundComp } = this.props;
-		const { leftBtnLabel, rightBtnLabel, subHeader } = this.props;
+		const { leftBtnLabel, rightBtnLabel, topHeader, subHeader } = this.props;
 		return <div className="hero-gallery">
 			<div className="bg-container">
 				{backgroundComp}
@@ -28,7 +29,7 @@ export default class HeroGallery extends React.Component<HeroGalleryProps, HeroG
 				<AspectContainer ratioA={16} ratioB={9}
 					topTitle={
 						<div className="hero-text">
-							<h4>{subHeader}</h4>
+							<h4>{topHeader}</h4>
 						</div>
 					}
 					subTitle={
