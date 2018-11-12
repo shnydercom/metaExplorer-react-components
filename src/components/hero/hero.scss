@@ -2,7 +2,7 @@ $bright-text-color: #ffffffaa;
 $gallery-itm-bg-color: #121212;
 $gallery-bg-color: #010f27;
 $gallery-height: 66%;
-$port-height-width: 40px;
+$port-height-width: 1em;
 
 .hero-gallery {
 	color: $bright-text-color;
@@ -36,11 +36,18 @@ $port-height-width: 40px;
 	}
 
 	.hero-text {
-		left: 0;
+		/*left: 0;
 		right: 0;
 		position: absolute;
-		bottom: 1em;
+		bottom: 1em;*/
 		text-align: center;
+		margin-top: auto;
+		margin-bottom: auto;
+		width: 100%;
+
+		h4 {
+			margin: 0;
+		}
 	}
 
 }
@@ -53,7 +60,7 @@ $port-height-width: 40px;
 	//flex: 1;
 	height: 100%;
 	border: solid 1px;
-	border-radius: 20px;
+	border-radius: 1em;
 	background-color: $gallery-itm-bg-color;
 	display: flex;
 
@@ -63,13 +70,15 @@ $port-height-width: 40px;
 	}
 
 	.btns {
-		flex: 1;
 		display: flex;
 		flex-direction: row;
+		padding-bottom: 1em;
 
 		.prev {
 			flex: 1;
 			display: flex;
+			min-height: 1em;
+			text-overflow: ellipsis;
 
 			.start {
 				height: $port-height-width;
@@ -79,20 +88,33 @@ $port-height-width: 40px;
 
 			.mid {
 				flex: 1;
+				white-space: nowrap;
+			}
+
+			.mid:before {
+				content: "\00a0 ";
 			}
 
 			.end {}
 		}
 
 		.nxt {
+
 			flex: 1;
 			display: flex;
+			min-height: 1em;
+			text-overflow: ellipsis;
 
 			.start {}
 
 			.mid {
 				text-align: end;
 				flex: 1;
+				white-space: nowrap
+			}
+
+			.mid:after {
+				content: "\00a0 ";
 			}
 
 			.end {
@@ -153,6 +175,12 @@ $port-height-width: 40px;
 		right: 0;
 		bottom: 0;
 		display: flex;
+		flex-direction: column;
+
+		.titles {
+			flex: 1;
+			display: flex;
+		}
 	}
 }
 

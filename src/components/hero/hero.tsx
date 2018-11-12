@@ -25,29 +25,38 @@ export default class HeroGallery extends React.Component<HeroGalleryProps, HeroG
 				{backgroundComp}
 			</div>
 			<div className="hero-front-outer overlay-gradient">
-				<AspectContainer ratioA={16} ratioB={9}>
+				<AspectContainer ratioA={16} ratioB={9}
+					topTitle={
+						<div className="hero-text">
+							<h4>{subHeader}</h4>
+						</div>
+					}
+					subTitle={
+						<div className="hero-text">
+							<h4>{subHeader}</h4>
+						</div>
+					}
+				>
 					<div className="hero-front-inner">
 						<div className="fg-container">
 							{foregroundComp}
 						</div>
 						<div className="btns">
 							<div className="prev">
-								<div className="start"></div>
-								<div className="mid">{leftBtnLabel}</div>
-								<div className="end"></div>
+								<span className="start"></span>
+								<span className="mid">{leftBtnLabel}</span>
+								<span className="end"></span>
 							</div>
 							<div className="nxt">
-								<div className="start"></div>
-								<div className="mid">{rightBtnLabel}</div>
-								<div className="end"></div>
+								<span className="start"></span>
+								<span className="mid">{rightBtnLabel}</span>
+								<span className="end"></span>
 							</div>
 						</div>
 					</div>
 				</AspectContainer>
 			</div>
-			<div className="hero-text">
-				<h4>{subHeader}</h4>
-			</div>
+
 		</div>;
 	}
 }
