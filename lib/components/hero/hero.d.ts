@@ -6,6 +6,8 @@ export interface HeroGalleryProps {
     rightBtnLabel: string;
     topHeader: string;
     subHeader: string;
+    onLeftBtnClick: () => void;
+    onRightBtnClick: () => void;
 }
 export interface HeroGalleryState {
 }

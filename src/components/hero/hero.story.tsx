@@ -13,7 +13,11 @@ const basicGalleryProps: HeroGalleryProps = {
 	foregroundComp: <div style={{ color: "blue" }}>this is text inside a div in the foreground</div>,
 	leftBtnLabel: "left label",
 	rightBtnLabel: "right label",
-	subHeader: "sub header"
+	subHeader: "sub header",
+	topHeader: "top header",
+	onLeftBtnClick: () => { console.log("left clicked") },
+	onRightBtnClick: () => { console.log("right clicked")}
+
 }
 
 
@@ -60,7 +64,7 @@ stories.add('hero/smallersqaure', () => {
 
 stories.add('hero/singleGalleryTest', () => (
 	<>
-		<div style={{height: "66vh", width: "66vw" }}>
+		<div style={{ height: "66vh", width: "66vw" }}>
 			<HeroGallery {...basicGalleryProps}>
 
 			</HeroGallery>

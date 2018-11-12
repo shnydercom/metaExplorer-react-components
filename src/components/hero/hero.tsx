@@ -8,6 +8,8 @@ export interface HeroGalleryProps {
 	rightBtnLabel: string;
 	topHeader: string;
 	subHeader: string;
+	onLeftBtnClick: () => void;
+	onRightBtnClick: () => void;
 }
 export interface HeroGalleryState {
 }
@@ -43,15 +45,25 @@ export default class HeroGallery extends React.Component<HeroGalleryProps, HeroG
 							{foregroundComp}
 						</div>
 						<div className="btns">
-							<div className="prev">
-								<span className="start"></span>
+							<div className="prev hero-btn" onClick={() => this.props.onLeftBtnClick()}>
+								<span className="start">
+									<svg xmlns="http://www.w3.org/2000/svg" width="200%" height="100%" viewBox="-12 0 24 24">
+										<path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" className="chevron-left" />
+										<path d="M0 0h24v24H0z" fill="none" />
+									</svg>
+								</span>
 								<span className="mid">{leftBtnLabel}</span>
 								<span className="end"></span>
 							</div>
-							<div className="nxt">
+							<div className="nxt hero-btn" onClick={() => this.props.onRightBtnClick()}>
 								<span className="start"></span>
 								<span className="mid">{rightBtnLabel}</span>
-								<span className="end"></span>
+								<span className="end">
+									<svg xmlns="http://www.w3.org/2000/svg" width="200%" height="100%" viewBox="0 0 48 24">
+										<path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" className="chevron-right" />
+										<path d="M0 0h24v24H0z" fill="none" />
+									</svg>
+								</span>
 							</div>
 						</div>
 					</div>

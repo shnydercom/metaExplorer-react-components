@@ -3,6 +3,8 @@ $gallery-itm-bg-color: #121212;
 $gallery-bg-color: #010f27;
 $gallery-height: 66%;
 $port-height-width: 1em;
+$port-color:rgba(180, 180, 180, .3);
+$port-selected-color: rgba(87, 161, 245, .9);
 
 .hero-gallery {
 	color: $bright-text-color;
@@ -59,7 +61,7 @@ $port-height-width: 1em;
 	//display: flex;
 	//flex: 1;
 	height: 100%;
-	border: solid 1px;
+	border: solid 2px rgba(180, 180, 180, .3);
 	border-radius: 1em;
 	background-color: $gallery-itm-bg-color;
 	display: flex;
@@ -83,7 +85,14 @@ $port-height-width: 1em;
 			.start {
 				height: $port-height-width;
 				width: $port-height-width;
-				background-color: $bright-text-color;
+				background-color: $port-color;
+				svg {
+					margin-left: -100%;
+				}
+				.chevron-left {
+					fill: $bright-text-color;
+					transition: all 0.5s ease-out;
+				}
 			}
 
 			.mid {
@@ -118,11 +127,49 @@ $port-height-width: 1em;
 			}
 
 			.end {
-				background-color: $bright-text-color;
+				background-color: $port-color;
 				width: $port-height-width;
 				height: $port-height-width;
+
+				.chevron-right {
+					fill: $bright-text-color;
+					transition: all 0.5s ease-out;
+				}
 			}
 		}
+	}
+}
+
+.hero-btn {
+	transition: all 0.5s ease-out;
+	user-select: none;
+	touch-action: manipulation;
+	cursor: pointer;
+	background-color: #ffffff00;
+}
+
+.hero-btn:hover {
+	user-select: none;
+	touch-action: manipulation;
+	cursor: pointer;
+	color: white;
+
+	.end {
+		.chevron-right {
+			transform: translate(2em);
+			fill: $port-selected-color !important;
+		}
+
+		background-color: $port-selected-color !important;
+	}
+
+	.start {
+		.chevron-left {
+			transform: translate(-2em);
+			fill: $port-selected-color !important;
+		}
+
+		background-color: $port-selected-color !important;
 	}
 }
 
