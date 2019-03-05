@@ -14,7 +14,7 @@
 	position: relative;
 }
 .accordion {
-	background: #010f27;
+	background: #001e34;
 	color: rgba(255, 255, 255, 0.80);
 	font-family: Roboto, Arial;
 }
@@ -34,7 +34,7 @@
 
 .accordion__title {
 	color: #fff;
-	background: #010f27;
+	background: #001e34;
 	cursor: pointer;
 	padding: 5px;
 	/*border: solid 1px;
@@ -48,7 +48,7 @@
 }
 
 .accordion__body {
-	background-color: #0c1e3a;//rgba(255, 255, 255, 0.10);
+	background-color: #002d4e;//rgba(255, 255, 255, 0.10);
 	padding: 10px 0px 10px 10px;
 	display: block;
 	animation: fadein 0.35s ease-in;
