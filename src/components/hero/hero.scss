@@ -11,8 +11,16 @@ $port-selected-color: rgba(87, 161, 245, .9);
 	min-height: $gallery-height;
 	display: flex;
 	position: relative;
+	height: 100%;
 
 	.bg-container {
+		position: absolute;
+		//max-width: 760px;
+		//display: flex;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
 		flex: 1;
 		background-color: $gallery-bg-color;
 	}
@@ -25,13 +33,16 @@ $port-selected-color: rgba(87, 161, 245, .9);
 	}*/
 
 	.hero-front-outer {
-		position: absolute;
+		position: relative;
 		//max-width: 760px;
 		//display: flex;
-		top: 0;
+		/*top: 0;
 		bottom: 0;
 		left: 0;
-		right: 0;
+		right: 0;*/
+		height: 100%;
+		width: 100%;
+		
 		//margin-left: auto;
 		//margin-right: auto;
 
@@ -215,6 +226,7 @@ $port-selected-color: rgba(87, 161, 245, .9);
 .hero-h-square {
 	height: 100%;
 	width: min-content;
+	width: -moz-min-content;
 	position: relative;
 	margin-right: auto;
 	margin-left: auto;
@@ -244,6 +256,7 @@ $port-selected-color: rgba(87, 161, 245, .9);
 
 .hero-v-square {
 	width: 100%;
+	height: -moz-min-content;
 	height: min-content;
 	position: relative;
 	margin-top: auto;
