@@ -24,7 +24,7 @@
     "lodash": "^4.17.11",
     "lodash.camelcase": "^4.3.0",
     "react": "^16.6.1",
-    "react-accessible-accordion": "^2.4.4",
+    "react-accessible-accordion": "^3.0.0",
     "react-dom": "^16.2.0",
     "storybook": "^1.0.0"
   },

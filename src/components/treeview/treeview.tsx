@@ -2,8 +2,9 @@ import * as React from 'react';
 import {
 	Accordion,
 	AccordionItem,
-	AccordionItemTitle,
-	AccordionItemBody,
+	AccordionItemHeading,
+	AccordionItemPanel,
+	AccordionItemButton
 } from 'react-accessible-accordion';
 
 export interface TreeEntry {
@@ -41,22 +42,23 @@ export default class TreeView extends React.Component<TreeViewProps, TreeViewSta
 				flatContents.push(<div className="treeview-flatcontent-item" key={idx}>{fc}</div>);
 			}
 		}
-		return <Accordion accordion={false} onChange={(ev) => {
-			this.setState({ isOpen: ev[0] })
-		}}>
-			<AccordionItem expanded={isOpen}>
-				<AccordionItemTitle>
-					<div className="u-position-relative">
-						{entry.label}
-						<div className="accordion__arrow" role="presentation" />
-					</div>
-				</AccordionItemTitle>
-				{isOpen ? <AccordionItemBody>
+		return <Accordion allowMultipleExpanded={true}
+			allowZeroExpanded={true}
+		>
+			<AccordionItem>
+				<AccordionItemHeading>
+					<AccordionItemButton>
+						<div className="u-position-relative">
+							{entry.label}
+							<div className="accordion__arrow" role="presentation" />
+						</div>
+					</AccordionItemButton>
+				</AccordionItemHeading>
+				<AccordionItemPanel>
 					<div className="treeview-content treeview-top">{children}</div>
 					{subTrees.length > 0 ? <div className="treeview-content">{subTrees}</div> : null}
 					<div className="treeview-content">{flatContents}</div>
-				</AccordionItemBody>
-					: null}
+				</AccordionItemPanel>
 			</AccordionItem>
 		</Accordion >;
 	}

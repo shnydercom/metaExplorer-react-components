@@ -32,7 +32,7 @@
 	position: relative;
 }
 
-.accordion__title {
+.accordion__heading {
 	color: #fff;
 	background: #001e34;
 	cursor: pointer;
@@ -43,25 +43,19 @@
 	text-align: left;
 }
 
-.accordion__title:hover {
+.accordion__heading:hover {
 	background-color: rgba(255, 255, 255, 0.2);
 }
 
-.accordion__body {
+.accordion__panel {
 	background-color: #002d4e;//rgba(255, 255, 255, 0.10);
 	padding: 10px 0px 10px 10px;
-	display: block;
+	//display: block;
 	animation: fadein 0.35s ease-in;
 }
 
-.accordion__body--hidden {
-	display: none;
-	opacity: 0;
-	animation: fadein 0.35s ease-in;
-}
-
-.accordion__title > *:last-child,
-.accordion__body > *:last-child {
+.accordion__heading > *:last-child,
+.accordion__panel > *:last-child {
 	margin-bottom: 0;
 }
 
@@ -160,12 +154,12 @@
 	}
 }
 
-.accordion__title--animated:hover .accordion__arrow {
+.accordion__heading--animated:hover .accordion__arrow {
 	animation-name: move-down;
 	animation-duration: 1.5s;
 }
 
-.accordion__title--animated[aria-expanded='true']:hover .accordion__arrow {
+.accordion__heading--animated[aria-expanded='true']:hover .accordion__arrow {
 	animation-name: move-up;
 	animation-duration: 1.5s;
 }

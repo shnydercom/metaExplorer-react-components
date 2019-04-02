@@ -113,6 +113,14 @@ const itptDesignerTreeItem2: TreeEntry = {
 					]
 				}
 			]
+		},
+		{
+			label: 'shnyder-website',
+			flatContent: [
+				<div style={itptItmStyles}>this is used to separate shnyder and shnyder-website</div>
+			],
+			subEntries: [
+			]
 		}
 	]
 }
