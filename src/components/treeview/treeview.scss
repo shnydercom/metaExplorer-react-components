@@ -36,11 +36,12 @@
 	color: #fff;
 	background: #001e34;
 	cursor: pointer;
-	padding: 5px;
-	/*border: solid 1px;
-	border-radius: 5px;*/
-	margin-bottom: 2px;
 	text-align: left;
+}
+
+.accordion__button {
+	padding: 5px;
+	margin-bottom: 2px;
 }
 
 .accordion__heading:hover {
@@ -87,7 +88,7 @@
 }
 
 [aria-expanded='true'] .accordion__arrow::before, [aria-selected='true'] .accordion__arrow::before {
-	transform: rotate(-45deg);
+	transform: rotate(0deg) translateY(4px);
 }
 
 .accordion__arrow::after {
@@ -96,7 +97,7 @@
 }
 
 [aria-expanded='true'] .accordion__arrow::after, [aria-selected='true'] .accordion__arrow::after {
-	transform: rotate(45deg);
+	transform: rotate(0deg) translateY(4px);
 }
 
 .accordion__arrow::before,

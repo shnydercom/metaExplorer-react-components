@@ -8,7 +8,6 @@ export interface TreeViewProps {
     entry: TreeEntry;
 }
 export interface TreeViewState {
-    isOpen: boolean;
 }
 export default class TreeView extends React.Component<TreeViewProps, TreeViewState> {
     constructor(props?: any);
