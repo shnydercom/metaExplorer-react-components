@@ -17,30 +17,25 @@ export interface TreeViewProps {
 	entry: TreeEntry;
 }
 export interface TreeViewState {
-	isOpen: boolean;
 }
 
 export default class TreeView extends React.Component<TreeViewProps, TreeViewState> {
 	constructor(props?: any) {
 		super(props);
 		this.state = {
-			isOpen: false
 		};
 	}
 	render() {
 		const { entry, children } = this.props;
-		const { isOpen } = this.state;
 		let subTrees = [];
 		let flatContents = [];
-		if (isOpen) {
-			for (let idx = 0; idx < entry.subEntries.length; idx++) {
-				const elem = entry.subEntries[idx];
-				subTrees.push(<TreeView key={idx} entry={elem} />);
-			}
-			for (let idx = 0; idx < entry.flatContent.length; idx++) {
-				const fc = entry.flatContent[idx];
-				flatContents.push(<div className="treeview-flatcontent-item" key={idx}>{fc}</div>);
-			}
+		for (let idx = 0; idx < entry.subEntries.length; idx++) {
+			const elem = entry.subEntries[idx];
+			subTrees.push(<TreeView key={idx} entry={elem} />);
+		}
+		for (let idx = 0; idx < entry.flatContent.length; idx++) {
+			const fc = entry.flatContent[idx];
+			flatContents.push(<div className="treeview-flatcontent-item" key={idx}>{fc}</div>);
 		}
 		return <Accordion allowMultipleExpanded={true}
 			allowZeroExpanded={true}
