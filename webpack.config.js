@@ -94,7 +94,7 @@ module.exports = {
       "Quagga": "quagga"
     }),
     new MiniCssExtractPlugin({
-      filename: 'style.[contenthash].css',
+      filename: 'metaexplorer-react-style.css',
     }),
   ]
 }
