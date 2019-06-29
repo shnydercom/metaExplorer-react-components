@@ -2,21 +2,27 @@ const webpack = require('webpack')
 const path = require('path')
 
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 //TODO: this file has simply been copied. Make it an actual library-bundle!
 module.exports = {
   mode: 'production',
   entry: {
     main: "./src/index"
   },
-	output: {
+  output: {
     filename: '[name].js',
     path: 'lib',
     libraryTarget: 'umd',
     path: path.resolve('dist')
   },
-  resolve: {extensions: ['.json', '.css', '.scss', '.ts', '.tsx', '.js'],
-		modules: ['src', 'node_modules'],
+  resolve: {
+    extensions: ['.json', '.css', '.scss', '.ts', '.tsx', '.js'],
+    modules: ['src', 'node_modules'],
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all'
+    }
   },
 
   module: {
@@ -25,7 +31,7 @@ module.exports = {
         enforce: 'pre',
         test: /\.js$/,
         loader: "source-map-loader"
-      },{
+      }, {
         test: /\.tsx?$/,
         use: [{
           loader: "awesome-typescript-loader",
@@ -37,44 +43,29 @@ module.exports = {
         }]
       },
       {
-        test: /\.css$/,
+        test: /\.(sa|sc|c)ss$/,
         use: [
-          "style-loader",
+          MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
-              camelcase: true,
-              namedExport: true,
-              modules: true,
-              sourceMap: true,
-              importLoaders: 1,
-              localIdentName: "[name]_[local]"//_[hash:base64:8]" // '[local]' // "[name]--[local]--[hash:base64:8]"
-            }
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              sourceMap: true
-            }
-          }, // has separate config, see postcss.config.js nearby
-        ]
-      },
-      {
-        test: /\.scss$/,
-        use: [MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              camelcase: true,
-              namedExport: true,
-              modules: true,
-              sourceMap: true,
+              // camelcase: true,
+              // namedExport: true,
+              // modules: true,
+              // sourceMap: true,
               importLoaders: 2,
-              localIdentName: "[name]_[local]"//_[hash:base64:8]" // '[local]' // "[name]--[local]--[hash:base64:8]"
+              // localIdentName: "[name]_[local]"//_[hash:base64:8]" // '[local]' // "[name]--[local]--[hash:base64:8]"
             }
           },
-          "postcss-loader",
-          'sass-loader'
+          // "postcss-loader",
+          {
+            loader: 'sass-loader',
+            options: {
+              "includePaths": [
+                require('path').resolve(__dirname, 'node_modules')
+              ]
+            }
+          }
         ]
       },
     ]
@@ -82,7 +73,7 @@ module.exports = {
   externals: {
   },
   plugins: [
-    new CleanWebpackPlugin('dist', {} ),
+    new CleanWebpackPlugin({}),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': '"production"'
     }),
