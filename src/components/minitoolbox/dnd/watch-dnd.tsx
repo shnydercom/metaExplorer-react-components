@@ -2,11 +2,11 @@ import * as React from 'react'
 import { useDrag, DragPreviewImage, useDragLayer } from 'react-dnd'
 import ItemTypes from './ItemTypes'
 import { MiniButtonProps } from '../opened-menus/mini-button';
-import { Phone } from '../opened-menus/phone';
-import PhoneDragLayer from './phone-draglayer';
+import WatchDragLayer from './watch-draglayer';
+import { Watch } from '../opened-menus/watch';
 
 
-const phoneBtnProps: MiniButtonProps[] =
+const watchBtnProps: MiniButtonProps[] =
 	[
 		{
 			iconSrc: "/static/move.svg",
@@ -45,7 +45,7 @@ const handleStyle: React.CSSProperties = {
 	cursor: 'move',
 }
 
-export const PhoneDND: React.FC = () => {
+export const WatchDND: React.FC = () => {
 	const [{ opacity, height }, drag, preview] = useDrag({
 		item: { type: ItemTypes.MiniToolBox },
 		collect: monitor => ({
@@ -54,17 +54,17 @@ export const PhoneDND: React.FC = () => {
 		}),
 	})
 
-	phoneBtnProps[0].btnRef = drag;
-	//phoneBtnProps[0].btnStyle = { opacity, height };
+	watchBtnProps[0].btnRef = drag;
+	//watchBtnProps[0].btnStyle = { opacity, height };
 	return (
 		//<div  style={{ ...style, opacity }}>
 		/*<div ref={drag} style={handleStyle} />*/
 		<>
-			<PhoneDragLayer />
+			<WatchDragLayer />
 			<div ref={preview} style={{ height: 0, width: 0 }}></div>
-			<Phone phoneStyle={{ opacity, height }} btnProps={phoneBtnProps} />
+			<Watch watchStyle={{ opacity, height }} btnProps={watchBtnProps} />
 		</>
 		//	</div>
 	)
 }
-export default PhoneDND;
+export default WatchDND;

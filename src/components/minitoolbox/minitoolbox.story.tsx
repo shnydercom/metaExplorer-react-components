@@ -6,6 +6,7 @@ import { Watch } from "./opened-menus/watch";
 import { MiniButtonProps } from './opened-menus/mini-button';
 import { MiniToolBox } from './minitoolbox';
 import { PhoneDND } from './dnd/phone-dnd';
+import { WatchDND } from './dnd/watch-dnd';
 import { DndProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend'
 
@@ -56,6 +57,14 @@ stories.add('phonednd', () => (
 	<DndProvider backend={HTML5Backend}>
 		<div style={{ backgroundColor: "#001e34" }}>
 			<PhoneDND></PhoneDND>
+		</div>
+	</DndProvider>
+));
+
+stories.add('watchdnd', () => (
+	<DndProvider backend={HTML5Backend}>
+		<div style={{ backgroundColor: "#001e34" }}>
+			<WatchDND></WatchDND>
 		</div>
 	</DndProvider>
 ));
