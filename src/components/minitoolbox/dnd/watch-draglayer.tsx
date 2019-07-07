@@ -7,13 +7,6 @@ import { Watch } from '../opened-menus/watch';
 const watchBtnProps: MiniButtonProps[] =
 	[
 		{
-			iconSrc: "/static/move.svg",
-			onClick: () => { },
-			btnStyle: {
-				backgroundColor: "#57a1f5c8"
-			}
-		},
-		{
 			iconSrc: "/static/minimize.svg",
 			onClick: () => { }
 		},

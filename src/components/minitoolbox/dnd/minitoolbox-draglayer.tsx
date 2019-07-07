@@ -1,24 +1,6 @@
 import * as React from 'react'
 import { XYCoord, useDragLayer } from 'react-dnd'
 import ItemTypes from './ItemTypes'
-import { Phone } from '../opened-menus/phone';
-import { MiniButtonProps } from '../opened-menus/mini-button';
-
-const phoneBtnProps: MiniButtonProps[] =
-	[
-		{
-			iconSrc: "/static/minimize.svg",
-			onClick: () => { }
-		},
-		{
-			iconSrc: "/static/maximize.svg",
-			onClick: () => { }
-		},
-		{
-			iconSrc: "/static/up.svg",
-			onClick: () => { }
-		}
-	];
 
 const layerStyles: React.CSSProperties = {
 	position: 'fixed',
@@ -53,10 +35,10 @@ function getItemStyles(
 	}
 }
 
-export interface PhoneDragLayerProps {
+export interface MiniToolBoxDragLayerProps {
 }
 
-export const PhoneDragLayer: React.FC<PhoneDragLayerProps> = props => {
+export const MiniToolBoxDragLayer: React.FC<MiniToolBoxDragLayerProps> = props => {
 	const {
 		itemType,
 		isDragging,
@@ -79,7 +61,7 @@ export const PhoneDragLayer: React.FC<PhoneDragLayerProps> = props => {
 	function renderItem() {
 		switch (itemType) {
 			case ItemTypes.MiniToolBox:
-				return <Phone btnProps={phoneBtnProps} />
+				if (props.children) return <>{props.children}</>;
 			default:
 				return null
 		}
@@ -98,4 +80,4 @@ export const PhoneDragLayer: React.FC<PhoneDragLayerProps> = props => {
 		</div>
 	)
 }
-export default PhoneDragLayer
+export default MiniToolBoxDragLayer

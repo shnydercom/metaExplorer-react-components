@@ -9,10 +9,6 @@ import { Watch } from '../opened-menus/watch';
 const watchBtnProps: MiniButtonProps[] =
 	[
 		{
-			iconSrc: "/static/move.svg",
-			onClick: () => { }
-		},
-		{
 			iconSrc: "/static/minimize.svg",
 			onClick: () => { }
 		},
@@ -47,7 +43,7 @@ const handleStyle: React.CSSProperties = {
 
 export const WatchDND: React.FC = () => {
 	const [{ opacity, height }, drag, preview] = useDrag({
-		item: { type: ItemTypes.MiniToolBox },
+		item: { type: ItemTypes.MiniToolBox},
 		collect: monitor => ({
 			opacity: monitor.isDragging() ? 0 : 1,
 			height: monitor.isDragging() ? 0 : '',

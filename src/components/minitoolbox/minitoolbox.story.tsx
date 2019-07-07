@@ -16,10 +16,6 @@ const areaTestingStyle = { backgroundColor: "#FF0000aa", height: "100%", width: 
 const btnProps: MiniButtonProps[] =
 	[
 		{
-			iconSrc: "/static/move.svg",
-			onClick: () => { }
-		},
-		{
 			iconSrc: "/static/minimize.svg",
 			onClick: () => { }
 		},
@@ -48,9 +44,9 @@ stories.add('opened-menus/watch', () => (
 ));
 
 stories.add('minitoolbox', () => (
-	<div style={{ backgroundColor: "#001e34" }}>
+	<DndProvider backend={HTML5Backend}>
 		<MiniToolBox><div style={areaTestingStyle} /></MiniToolBox>
-	</div>
+	</DndProvider >
 ));
 
 stories.add('phonednd', () => (

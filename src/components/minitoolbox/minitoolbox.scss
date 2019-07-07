@@ -4,9 +4,6 @@
 
 .minitoolbox-watchmenu {
 	position: relative;
-	min-width: 371px;
-	width: 371px;
-	height: 349px;
 	background-image: url('/static/watch-preview.png');
 	padding: 87px 75px 95px 129px;
 	box-sizing: border-box;
@@ -15,6 +12,25 @@
 	overflow: visible;
 	margin: auto;
 	display: block;
+	
+	transition: all 250ms;
+
+	&.minitoolbox-mini {
+		height: $miniEditorSize;
+		width: $miniEditorSize;
+		background-size: $miniEditorSize $miniEditorSize;
+		padding: 0;
+		>* {
+			display: none;
+		}
+	}
+
+	&.minitoolbox-max {
+		width: 371px;
+		height: 349px;
+		background-size: 371px 349px;
+	}
+
 	&-preview {
 		height: 100%;
 		width: 100%;
@@ -28,61 +44,136 @@
 	}
 
 	&-btn-0 {
-		left: 315px;
-    top: 16px;
+		right: 93px;
+		top: 43px;
 	}
+
 	&-btn-1 {
-		left: 241px;
-    top: 43px;
+		right: 140px;
+		top: 33px;
 	}
+
 	&-btn-2 {
-		left: 195px;
-    top: 33px;
-	}
-	&-btn-3 {
-		left: 149px;
-    top: 45px;
+		right: 189px;
+		top: 45px;
 	}
 }
 
 .minitoolbox-phonemenu {
 	position: relative;
-	min-width: 420px;
-	width: 420px;
-	height: 746px;
 	background-image: url('/static/phone-preview.png');
 	padding: 69px 58px 80px 58px;
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	font-family: Roboto, Arial;
 	text-overflow: ellipsis;
-	min-width: 420px;
 	overflow-y: hidden;
 	margin: auto;
 	display: block;
+
+	transition: all 250ms;
+
+	&.minitoolbox-mini {
+		height: $miniEditorSize;
+		width: $miniEditorSize;
+		background-size: $miniEditorSize $miniEditorSize;
+		padding: 0;
+		>* {
+			display: none;
+		}
+	}
+
+	&.minitoolbox-max {
+		width: 420px;
+		height: 746px;
+		
+		background-size: 420px 746px;
+	}
+
 	&-preview {
 		height: 100%;
 		width: 100%;
 		overflow: hidden;
 	}
+
 	.minitoolbox-minibutton {
 		position: absolute;
 	}
 
 	&-btn-0 {
-		left: 359px;
-    top: 10px;
+		right: 147px;
+		top: 28px;
 	}
+
 	&-btn-1 {
-		left: 236px;
-    top: 28px;
+		right: 192px;
+		top: 28px;
 	}
+
 	&-btn-2 {
-		left: 192px;
-    top: 28px;
+		right: 236px;
+		top: 28px;
 	}
-	&-btn-3 {
-		left: 147px;
-    top: 28px;
+}
+
+.minitoolbox-dndhandle {
+	top: 10px;
+	right: 53px;
+	position: absolute;
+}
+
+.minitoolbox-enclosing {
+	position: relative;
+	height: 300px;
+	width: 420px;
+}
+
+.minitoolbox-phonecontainer {
+	position: absolute;
+	opacity: 0.5;
+	top: 0px;
+	right: -33px;
+
+	transition: all 250ms;
+
+	&-mini {
+		height: $miniEditorSize;
+		width: $miniEditorSize;
+		top: 26px;
+    right: 111px;
 	}
+
+	&-max {
+		width: 420px;
+		height: 746px;
+	}
+
+	&-inactive {}
+
+	&-active {}
+}
+
+.minitoolbox-watchcontainer {
+	position: absolute;
+	opacity: 0.5;
+	top: -15px;
+	right: 21px;
+	
+	transition: all 250ms;
+
+	&-mini {
+		height: $miniEditorSize;
+		width: $miniEditorSize;
+		top: 26px;
+    right: 111px;
+	}
+
+	&-max {
+		width: 371px;
+		height: 349px;
+	}
+
+	&-inactive {}
+
+	&-active {}
 }

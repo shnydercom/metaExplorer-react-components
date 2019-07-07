@@ -9,10 +9,6 @@ import PhoneDragLayer from './phone-draglayer';
 const phoneBtnProps: MiniButtonProps[] =
 	[
 		{
-			iconSrc: "/static/move.svg",
-			onClick: () => { }
-		},
-		{
 			iconSrc: "/static/minimize.svg",
 			onClick: () => { }
 		},
