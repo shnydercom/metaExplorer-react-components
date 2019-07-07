@@ -43,31 +43,23 @@ module.exports = {
         }]
       },
       {
-        test: /\.(sa|sc|c)ss$/,
+        test: /\.(s?)css$/,
         use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              // camelcase: true,
-              // namedExport: true,
-              // modules: true,
-              // sourceMap: true,
-              importLoaders: 2,
-              // localIdentName: "[name]_[local]"//_[hash:base64:8]" // '[local]' // "[name]--[local]--[hash:base64:8]"
-            }
-          },
-          // "postcss-loader",
-          {
-            loader: 'sass-loader',
-            options: {
-              "includePaths": [
-                require('path').resolve(__dirname, 'node_modules')
-              ]
-            }
-          }
+          // fallback to style-loader in development
+          // MiniCssExtractPlugin.loader,
+          process.env.NODE_ENV !== 'production' ? 'style-loader' : MiniCssExtractPlugin.loader,
+          "css-loader",
+          "sass-loader"
         ]
       },
+      {
+        test: /\.png$/,
+        use: 'file-loader'
+      },
+      {
+        test: /\.jpg$/,
+        use: 'file-loader'
+      }
     ]
   },
   externals: {

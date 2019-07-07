@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "test": "test",
-    "start": "start-storybook -p 2018",
+    "start": "start-storybook -s ./assets -p 2018",
     "lib": "tsc",
     "build": "webpack"
   },
@@ -19,13 +19,15 @@
   },
   "homepage": "https://github.com/aJonathanSchneider/metaExplorer-react-components#readme",
   "dependencies": {
-    "@material/card": "^0.39.3",
-    "babel-loader": "^8.0.4",
+    "@material/card": "^3.0.0",
+    "babel-loader": "^8.0.6",
     "lodash": "^4.17.11",
     "lodash.camelcase": "^4.3.0",
-    "react": "^16.6.1",
+    "react": "^16.8.6",
     "react-accessible-accordion": "^3.0.0",
-    "react-dom": "^16.2.0",
+    "react-dnd": "^9.0.1",
+    "react-dnd-html5-backend": "^9.0.0",
+    "react-dom": "^16.8.6",
     "storybook": "^1.0.0"
   },
   "devDependencies": {
@@ -36,8 +38,8 @@
     "@storybook/addons": "^4.0.4",
     "@storybook/react": "^4.0.4",
     "@types/node": "^11.10.4",
-    "@types/react": "^16.8.3",
-    "@types/react-dom": "^16.8.1",
+    "@types/react": "^16.8.23",
+    "@types/react-dom": "^16.8.4",
     "@types/storybook__addon-knobs": "^3.4.1",
     "@types/storybook__react": "^4.0.0",
     "awesome-typescript-loader": "^5.2.1",
@@ -61,10 +63,12 @@
     "style-loader": "^0.23.1",
     "typescript": "^3.5.2",
     "typings-for-css-modules-loader": "^1.7.0",
-    "webpack": "^4.35.0",
+    "webpack": "^4.35.2",
     "webpack-cli": "^3.3.5"
   },
   "sass": {
-    "includePaths": ["./node_modules"]
+    "includePaths": [
+      "./node_modules"
+    ]
   }
 }

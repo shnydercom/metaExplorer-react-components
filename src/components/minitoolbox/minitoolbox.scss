@@ -1,0 +1,88 @@
+@import "colors";
+@import "sizes";
+@import "minibutton";
+
+.minitoolbox-watchmenu {
+	position: relative;
+	min-width: 371px;
+	width: 371px;
+	height: 349px;
+	background-image: url('/static/watch-preview.png');
+	padding: 87px 75px 95px 129px;
+	box-sizing: border-box;
+	font-family: Roboto, Arial;
+	text-overflow: ellipsis;
+	overflow: visible;
+	margin: auto;
+	display: block;
+	&-preview {
+		height: 100%;
+		width: 100%;
+		border: solid 0px;
+		border-radius: 50%;
+		overflow: hidden;
+	}
+
+	.minitoolbox-minibutton {
+		position: absolute;
+	}
+
+	&-btn-0 {
+		left: 315px;
+    top: 16px;
+	}
+	&-btn-1 {
+		left: 241px;
+    top: 43px;
+	}
+	&-btn-2 {
+		left: 195px;
+    top: 33px;
+	}
+	&-btn-3 {
+		left: 149px;
+    top: 45px;
+	}
+}
+
+.minitoolbox-phonemenu {
+	position: relative;
+	min-width: 420px;
+	width: 420px;
+	height: 746px;
+	background-image: url('/static/phone-preview.png');
+	padding: 69px 58px 80px 58px;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	font-family: Roboto, Arial;
+	text-overflow: ellipsis;
+	min-width: 420px;
+	overflow-y: hidden;
+	margin: auto;
+	display: block;
+	&-preview {
+		height: 100%;
+		width: 100%;
+		overflow: hidden;
+	}
+	.minitoolbox-minibutton {
+		position: absolute;
+	}
+
+	&-btn-0 {
+		left: 359px;
+    top: 10px;
+	}
+	&-btn-1 {
+		left: 236px;
+    top: 28px;
+	}
+	&-btn-2 {
+		left: 192px;
+    top: 28px;
+	}
+	&-btn-3 {
+		left: 147px;
+    top: 28px;
+	}
+}
