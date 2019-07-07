@@ -12,14 +12,15 @@
 	overflow: visible;
 	margin: auto;
 	display: block;
-	
+
 	transition: all 250ms;
 
 	&.minitoolbox-mini {
-		height: $miniEditorSize;
-		width: $miniEditorSize;
-		background-size: $miniEditorSize $miniEditorSize;
+		height: 63px;
+		width: 68px;
+		background-size: 68px 63px;
 		padding: 0;
+
 		>* {
 			display: none;
 		}
@@ -74,10 +75,11 @@
 	transition: all 250ms;
 
 	&.minitoolbox-mini {
-		height: $miniEditorSize;
+		height: 75px;
 		width: $miniEditorSize;
-		background-size: $miniEditorSize $miniEditorSize;
+		background-size: $miniEditorSize 75px;
 		padding: 0;
+
 		>* {
 			display: none;
 		}
@@ -86,7 +88,6 @@
 	&.minitoolbox-max {
 		width: 420px;
 		height: 746px;
-		
 		background-size: 420px 746px;
 	}
 
@@ -137,20 +138,47 @@
 	transition: all 250ms;
 
 	&-mini {
-		height: $miniEditorSize;
+		height: 75px;
 		width: $miniEditorSize;
-		top: 26px;
-    right: 111px;
+		top: 11px;
+		right: 111px;
 	}
 
 	&-max {
 		width: 420px;
 		height: 746px;
+
+		&.minitoolbox-phonecontainer-inactive {
+			visibility: hidden;
+			height: 75px;
+			width: $miniEditorSize;
+			top: 11px;
+			right: 111px;
+
+			>* {
+				height: 75px;
+				width: $miniEditorSize;
+				background-size: $miniEditorSize 75px;
+				padding: 0;
+
+				>* {
+					display: none;
+				}
+			}
+		}
 	}
 
-	&-inactive {}
+	&-inactive {
+		opacity: 0;
+	}
 
-	&-active {}
+	&-active {
+		opacity: 1;
+
+		&.mini-closed {
+			opacity: 1;
+		}
+	}
 }
 
 .minitoolbox-watchcontainer {
@@ -158,22 +186,59 @@
 	opacity: 0.5;
 	top: -15px;
 	right: 21px;
-	
+
 	transition: all 250ms;
 
 	&-mini {
-		height: $miniEditorSize;
-		width: $miniEditorSize;
-		top: 26px;
-    right: 111px;
+		height: 63px;
+		width: 68px;
+		top: 18px;
+		right: 103px;
 	}
 
 	&-max {
 		width: 371px;
 		height: 349px;
+
+		&.minitoolbox-watchcontainer-inactive {
+			visibility: hidden;
+			height: 63px;
+			width: 68px;
+			top: 18px;
+			right: 103px;
+
+			>* {
+				height: 63px;
+				width: 68px;
+				background-size: 68px 63px;
+				padding: 0;
+
+				>* {
+					display: none;
+				}
+			}
+		}
 	}
 
-	&-inactive {}
+	&-inactive {
+		opacity: 0;
+	}
 
-	&-active {}
+	&-active {
+		opacity: 1;
+
+		&.mini-closed {
+			opacity: 1;
+		}
+	}
+}
+
+.mini-open {
+	opacity: 1;
+	transform: translate(-75px, 0px);
+}
+
+.mini-closed {
+	opacity: 0;
+	transform: translate(0px, 0px);
 }
