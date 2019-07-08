@@ -5,6 +5,8 @@
 	border-radius: 50%;
 	background-color: $miniBtnBackgroundColor;
 	transition: all 250ms;
+	display: block;
+	opacity: 1;
 
 	&-display {
 		width: $minibtnSize;

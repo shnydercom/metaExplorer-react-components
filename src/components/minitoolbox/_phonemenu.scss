@@ -1,0 +1,76 @@
+.minitoolbox-phonemenu {
+	position: relative;
+	background-image: url('/static/phone-preview.png');
+	padding: 69px 58px 80px 58px;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	font-family: Roboto, Arial;
+	text-overflow: ellipsis;
+	overflow-y: hidden;
+	margin: auto;
+	display: block;
+
+	transition: all 250ms;
+
+	&.minitoolbox-mini {
+		height: 75px;
+		width: $miniEditorSize;
+		background-size: $miniEditorSize 75px;
+		padding: 0;
+
+		.minitoolbox-minibutton {
+			opacity: 0;
+			visibility: hidden;
+			transition-delay: 0ms;
+			transition-duration: 0ms;
+		}
+	}
+
+	&.minitoolbox-max {
+		width: 420px;
+		height: 746px;
+		background-size: 420px 746px;
+		.minitoolbox-minibutton {
+			transition-duration: 250ms;
+			transition-delay: 250ms;
+		}
+	}
+
+	&-preview {
+		height: 100%;
+		width: 100%;
+		overflow: hidden;
+		visibility: hidden;
+		opacity: 0;
+		transition: all 250ms;
+		transition-delay: 250ms;
+	}
+
+	.minitoolbox-minibutton {
+		position: absolute;
+	}
+
+	&-btn-0 {
+		right: 147px;
+		top: 28px;
+	}
+
+	&-btn-1 {
+		right: 192px;
+		top: 28px;
+	}
+
+	&-btn-2 {
+		right: 236px;
+		top: 28px;
+	}
+}
+
+
+.minitoolbox-max {
+	.minitoolbox-phonemenu-preview {
+		opacity: 1;
+		visibility: visible;
+		display: block;
+	}
+}

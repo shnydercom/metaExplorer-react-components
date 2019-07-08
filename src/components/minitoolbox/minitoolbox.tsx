@@ -15,7 +15,7 @@ export interface MiniToolBoxProps {
 
 type ActiveStates = "phoneEd" | "watchEd";
 
-export const MiniToolBox: React.FC<MiniToolBoxProps> = (props: MiniToolBoxProps) => {
+export const MiniToolBox: React.FC<MiniToolBoxProps> = (props) => {
 
 	const [isMini, setIsMini] = React.useState(false);
 	const [isMiniOpen, setIsMiniOpen] = React.useState(false);
@@ -87,7 +87,9 @@ export const MiniToolBox: React.FC<MiniToolBoxProps> = (props: MiniToolBoxProps)
 			${CSS_CLASSNAME}-watchcontainer-${activeEditor === 'watchEd' ? 'active' : 'inactive'}
 			${isMini ? isMiniOpen && activeEditor !== 'watchEd' ? 'mini-open' : 'mini-closed' : ''}
 			`}>
-				<Watch btnProps={watchBtnProps} watchClass={`${CSS_CLASSNAME}-${isMini ? 'mini' : 'max'}`} />
+				<Watch btnProps={watchBtnProps} watchClass={`${CSS_CLASSNAME}-${isMini ? 'mini' : 'max'}`} >
+					{!isMini && activeEditor === 'watchEd' ? props.children : null}
+				</Watch>
 			</div>
 			<div
 				onClick={isMini ? (e) => {
@@ -100,7 +102,9 @@ export const MiniToolBox: React.FC<MiniToolBoxProps> = (props: MiniToolBoxProps)
 			${CSS_CLASSNAME}-phonecontainer-${activeEditor === 'phoneEd' ? 'active' : 'inactive'}
 			${isMini ? isMiniOpen && activeEditor !== 'phoneEd' ? 'mini-open' : 'mini-closed' : ''}
 			`}>
-				<Phone btnProps={phoneBtnProps} phoneClass={`${CSS_CLASSNAME}-${isMini ? 'mini' : 'max'} `} />
+				<Phone btnProps={phoneBtnProps} phoneClass={`${CSS_CLASSNAME}-${isMini ? 'mini' : 'max'} `}>
+					{!isMini && activeEditor === 'phoneEd' ? props.children : null}
+				</Phone>
 			</div>
 			{isDragLayer
 				? <MiniButton className="minitoolbox-dndhandle" iconSrc="/static/move.svg" onClick={() => { }} />

@@ -1,0 +1,76 @@
+.minitoolbox-watchmenu {
+	position: relative;
+	background-image: url('/static/watch-preview.png');
+	padding: 87px 75px 95px 129px;
+	box-sizing: border-box;
+	font-family: Roboto, Arial;
+	text-overflow: ellipsis;
+	overflow: visible;
+	margin: auto;
+	display: block;
+
+	transition: all 250ms;
+
+	&.minitoolbox-mini {
+		height: 63px;
+		width: 68px;
+		background-size: 68px 63px;
+		padding: 0;
+		
+		.minitoolbox-minibutton {
+			opacity: 0;
+			visibility: hidden;
+			transition-delay: 0ms;
+			transition-duration: 0ms;
+		}
+	}
+
+	&.minitoolbox-max {
+		width: 371px;
+		height: 349px;
+		background-size: 371px 349px;
+		.minitoolbox-minibutton {
+			transition-duration: 250ms;
+			transition-delay: 250ms;
+		}
+	}
+
+	&-preview {
+		height: 100%;
+		width: 100%;
+		border: solid 0px;
+		border-radius: 50%;
+		overflow: hidden;
+		visibility: hidden;
+		opacity: 0;
+		transition: all 250ms;
+		transition-delay: 250ms;
+	}
+
+	.minitoolbox-minibutton {
+		position: absolute;
+	}
+
+	&-btn-0 {
+		right: 93px;
+		top: 43px;
+	}
+
+	&-btn-1 {
+		right: 140px;
+		top: 33px;
+	}
+
+	&-btn-2 {
+		right: 189px;
+		top: 45px;
+	}
+}
+
+.minitoolbox-max {
+	.minitoolbox-watchmenu-preview {
+		opacity: 1;
+		visibility: visible;
+		display: block;
+	}
+}

@@ -1,121 +1,8 @@
 @import "colors";
 @import "sizes";
 @import "minibutton";
-
-.minitoolbox-watchmenu {
-	position: relative;
-	background-image: url('/static/watch-preview.png');
-	padding: 87px 75px 95px 129px;
-	box-sizing: border-box;
-	font-family: Roboto, Arial;
-	text-overflow: ellipsis;
-	overflow: visible;
-	margin: auto;
-	display: block;
-
-	transition: all 250ms;
-
-	&.minitoolbox-mini {
-		height: 63px;
-		width: 68px;
-		background-size: 68px 63px;
-		padding: 0;
-
-		>* {
-			display: none;
-		}
-	}
-
-	&.minitoolbox-max {
-		width: 371px;
-		height: 349px;
-		background-size: 371px 349px;
-	}
-
-	&-preview {
-		height: 100%;
-		width: 100%;
-		border: solid 0px;
-		border-radius: 50%;
-		overflow: hidden;
-	}
-
-	.minitoolbox-minibutton {
-		position: absolute;
-	}
-
-	&-btn-0 {
-		right: 93px;
-		top: 43px;
-	}
-
-	&-btn-1 {
-		right: 140px;
-		top: 33px;
-	}
-
-	&-btn-2 {
-		right: 189px;
-		top: 45px;
-	}
-}
-
-.minitoolbox-phonemenu {
-	position: relative;
-	background-image: url('/static/phone-preview.png');
-	padding: 69px 58px 80px 58px;
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
-	font-family: Roboto, Arial;
-	text-overflow: ellipsis;
-	overflow-y: hidden;
-	margin: auto;
-	display: block;
-
-	transition: all 250ms;
-
-	&.minitoolbox-mini {
-		height: 75px;
-		width: $miniEditorSize;
-		background-size: $miniEditorSize 75px;
-		padding: 0;
-
-		>* {
-			display: none;
-		}
-	}
-
-	&.minitoolbox-max {
-		width: 420px;
-		height: 746px;
-		background-size: 420px 746px;
-	}
-
-	&-preview {
-		height: 100%;
-		width: 100%;
-		overflow: hidden;
-	}
-
-	.minitoolbox-minibutton {
-		position: absolute;
-	}
-
-	&-btn-0 {
-		right: 147px;
-		top: 28px;
-	}
-
-	&-btn-1 {
-		right: 192px;
-		top: 28px;
-	}
-
-	&-btn-2 {
-		right: 236px;
-		top: 28px;
-	}
-}
+@import "watchmenu";
+@import "phonemenu";
 
 .minitoolbox-dndhandle {
 	top: 10px;
@@ -161,8 +48,12 @@
 				background-size: $miniEditorSize 75px;
 				padding: 0;
 
-				>* {
-					display: none;
+				.minitoolbox-minibutton {
+					opacity: 0;
+					visibility: hidden;
+				}
+				.minitoolbox-phonemenu-preview {
+					visibility: hidden;
 				}
 			}
 		}
@@ -213,8 +104,13 @@
 				background-size: 68px 63px;
 				padding: 0;
 
-				>* {
-					display: none;
+				.minitoolbox-minibutton {
+					opacity: 0;
+					visibility: hidden;
+				}
+
+				.minitoolbox-phonemenu-preview {
+					visibility: hidden;
 				}
 			}
 		}
