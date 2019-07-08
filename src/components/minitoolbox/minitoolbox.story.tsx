@@ -7,6 +7,7 @@ import { MiniButtonProps } from './opened-menus/mini-button';
 import { MiniToolBox } from './minitoolbox';
 import { PhoneDND } from './dnd/phone-dnd';
 import { WatchDND } from './dnd/watch-dnd';
+import { DropContainer } from './dnd/dropcontainer';
 import { DndProvider } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend'
 
@@ -43,9 +44,27 @@ stories.add('opened-menus/watch', () => (
 	</div>
 ));
 
-stories.add('minitoolbox', () => (
+stories.add('minitoolbox-drag', () => (
 	<DndProvider backend={HTML5Backend}>
-		<MiniToolBox><div style={areaTestingStyle} /></MiniToolBox>
+		<MiniToolBox
+			id="a"
+			left={0}
+			top={0}
+			type="asdf"
+		><div style={areaTestingStyle} /></MiniToolBox>
+	</DndProvider >
+));
+
+stories.add('minitoolbox-dropcontainer', () => (
+	<DndProvider backend={HTML5Backend}>
+		<DropContainer>
+			<MiniToolBox
+				id="a"
+				left={0}
+				top={0}
+				type="asdf"
+			><div style={areaTestingStyle} /></MiniToolBox>
+		</DropContainer>
 	</DndProvider >
 ));
 

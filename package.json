@@ -21,6 +21,7 @@
   "dependencies": {
     "@material/card": "^3.0.0",
     "babel-loader": "^8.0.6",
+    "immutability-helper": "^3.0.1",
     "lodash": "^4.17.11",
     "lodash.camelcase": "^4.3.0",
     "react": "^16.8.6",

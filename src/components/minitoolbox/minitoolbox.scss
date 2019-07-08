@@ -10,6 +10,12 @@
 	position: absolute;
 }
 
+.minitoolbox-root {
+	position: absolute;
+	height: 0;
+	width: 0;
+}
+
 .minitoolbox-enclosing {
 	position: relative;
 	height: 300px;
@@ -52,6 +58,7 @@
 					opacity: 0;
 					visibility: hidden;
 				}
+
 				.minitoolbox-phonemenu-preview {
 					visibility: hidden;
 				}

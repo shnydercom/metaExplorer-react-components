@@ -3,7 +3,7 @@ import { XYCoord, useDragLayer } from 'react-dnd'
 import ItemTypes from './ItemTypes'
 
 const layerStyles: React.CSSProperties = {
-	position: 'fixed',
+	position: 'absolute',
 	pointerEvents: 'none',
 	zIndex: 100,
 	left: 0,
@@ -22,11 +22,8 @@ function getItemStyles(
 			display: 'none',
 		}
 	}
-	console.log(currentOffset)
-	console.log(initialOffset)
-	console.log(initialClientOffset)
 	let x = currentOffset.x - initialOffset.x; //- initialClientOffset.x;
-	let y = currentOffset.y - initialOffset.y + 46;// - initialClientOffset.y;
+	let y = currentOffset.y - initialOffset.y;// - initialClientOffset.y;
 
 	const transform = `translate(${x}px, ${y}px)`
 	return {

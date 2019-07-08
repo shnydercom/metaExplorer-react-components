@@ -5,10 +5,11 @@ import ItemTypes from './dnd/ItemTypes';
 import { Watch } from './opened-menus/watch';
 import { Phone } from './opened-menus/phone';
 import MiniToolBoxDragLayer from './dnd/minitoolbox-draglayer';
+import { DragItem } from './interfaces';
 
 export const CSS_CLASSNAME = "minitoolbox"
 
-export interface MiniToolBoxProps {
+export interface MiniToolBoxProps extends DragItem {
 	className?: string;
 	style?: React.CSSProperties;
 }
@@ -22,7 +23,7 @@ export const MiniToolBox: React.FC<MiniToolBoxProps> = (props) => {
 	const [activeEditor, setActiveEditor] = React.useState<ActiveStates>("phoneEd");
 
 	const [{ isDragging }, drag, preview] = useDrag({
-		item: { type: ItemTypes.MiniToolBox },
+		item: { id: props.id, left: props.left, top: props.top, type: ItemTypes.MiniToolBox },
 		collect: monitor => ({
 			isDragging: monitor.isDragging()
 		}),
@@ -72,53 +73,54 @@ export const MiniToolBox: React.FC<MiniToolBoxProps> = (props) => {
 		];
 
 	const renderContent = (isDragLayer: boolean) => {
-		return (<div
-			onMouseOver={isMini ? (e) => setIsMiniOpen(true) : (e) => { }}
-			onMouseOut={isMini ? (e) => setIsMiniOpen(false) : (e) => { }}
-			className={`${CSS_CLASSNAME}-enclosing ${className ? className : ''}`}>
+		return (
 			<div
-				onClick={isMini ? (e) => {
-					setActiveEditor("watchEd");
-					toggleMini();
-				} : (e) => { }}
-				className={`
+				onMouseOver={isMini ? (e) => setIsMiniOpen(true) : (e) => { }}
+				onMouseOut={isMini ? (e) => setIsMiniOpen(false) : (e) => { }}
+				className={`${CSS_CLASSNAME}-enclosing ${className ? className : ''}`}>
+				<div
+					onClick={isMini ? (e) => {
+						setActiveEditor("watchEd");
+						toggleMini();
+					} : (e) => { }}
+					className={`
 			${CSS_CLASSNAME}-watchcontainer
 			${CSS_CLASSNAME}-watchcontainer-${isMini ? 'mini' : 'max'}
 			${CSS_CLASSNAME}-watchcontainer-${activeEditor === 'watchEd' ? 'active' : 'inactive'}
 			${isMini ? isMiniOpen && activeEditor !== 'watchEd' ? 'mini-open' : 'mini-closed' : ''}
 			`}>
-				<Watch btnProps={watchBtnProps} watchClass={`${CSS_CLASSNAME}-${isMini ? 'mini' : 'max'}`} >
-					{!isMini && activeEditor === 'watchEd' ? props.children : null}
-				</Watch>
-			</div>
-			<div
-				onClick={isMini ? (e) => {
-					setActiveEditor("phoneEd");
-					toggleMini();
-				} : (e) => { }}
-				className={`
+					<Watch btnProps={watchBtnProps} watchClass={`${CSS_CLASSNAME}-${isMini ? 'mini' : 'max'}`} >
+						{!isMini && activeEditor === 'watchEd' ? props.children : null}
+					</Watch>
+				</div>
+				<div
+					onClick={isMini ? (e) => {
+						setActiveEditor("phoneEd");
+						toggleMini();
+					} : (e) => { }}
+					className={`
 			${CSS_CLASSNAME}-phonecontainer
 			${CSS_CLASSNAME}-phonecontainer-${isMini ? 'mini' : 'max'} 
 			${CSS_CLASSNAME}-phonecontainer-${activeEditor === 'phoneEd' ? 'active' : 'inactive'}
 			${isMini ? isMiniOpen && activeEditor !== 'phoneEd' ? 'mini-open' : 'mini-closed' : ''}
 			`}>
-				<Phone btnProps={phoneBtnProps} phoneClass={`${CSS_CLASSNAME}-${isMini ? 'mini' : 'max'} `}>
-					{!isMini && activeEditor === 'phoneEd' ? props.children : null}
-				</Phone>
-			</div>
-			{isDragLayer
-				? <MiniButton className="minitoolbox-dndhandle" iconSrc="/static/move.svg" onClick={() => { }} />
-				: <MiniButton className="minitoolbox-dndhandle" iconSrc="/static/move.svg" btnRef={drag} onClick={() => { }} />
-			}
-		</div>);
+					<Phone btnProps={phoneBtnProps} phoneClass={`${CSS_CLASSNAME}-${isMini ? 'mini' : 'max'} `}>
+						{!isMini && activeEditor === 'phoneEd' ? props.children : null}
+					</Phone>
+				</div>
+				{isDragLayer
+					? <MiniButton className="minitoolbox-dndhandle" iconSrc="/static/move.svg" onClick={() => { }} />
+					: <MiniButton className="minitoolbox-dndhandle" iconSrc="/static/move.svg" btnRef={drag} onClick={() => { }} />
+				}
+			</div>);
 	}
 
 	const { className } = props;
 	return (
-		<>
-			<MiniToolBoxDragLayer>{renderContent(true)}</MiniToolBoxDragLayer>
+		<div className={`${CSS_CLASSNAME}-root`} style={{ left: props.left, top: props.top }}>
+			<MiniToolBoxDragLayer style={{ left: props.left, top: props.top }}>{renderContent(true)}</MiniToolBoxDragLayer>
 			<div ref={preview} style={{ height: 0, width: 0 }}></div>
 			{isDragging ? null : renderContent(false)}
-		</>
+		</div>
 	);
 }
