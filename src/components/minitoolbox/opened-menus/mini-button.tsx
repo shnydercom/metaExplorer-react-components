@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export const CSS_CLASSNAME = "minitoolbox-minibutton"
+const CSS_CLASSNAME = "minitoolbox-minibutton"
 
 export interface MiniButtonProps {
 	iconSrc: string;

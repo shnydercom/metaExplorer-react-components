@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { MiniButtonProps, MiniButton } from './mini-button';
 
-export const CSS_CLASSNAME = "minitoolbox-phonemenu"
+const CSS_CLASSNAME = "minitoolbox-phonemenu"
 
 export interface PhoneProps {
 	btnProps: MiniButtonProps[];

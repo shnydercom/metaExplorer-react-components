@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { MiniButton, MiniButtonProps } from './mini-button';
 
-export const CSS_CLASSNAME = "minitoolbox-watchmenu"
+const CSS_CLASSNAME = "minitoolbox-watchmenu"
 
 export interface WatchProps {
 	btnProps: MiniButtonProps[];

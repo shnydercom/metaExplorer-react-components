@@ -4,3 +4,7 @@ export interface DragItem {
   top: number
   left: number
 }
+
+export const DND_MINI_TOOLBOX_TYPE = "minitoolbox";
+
+export default DragItem;
