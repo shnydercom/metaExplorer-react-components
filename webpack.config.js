@@ -47,7 +47,7 @@ module.exports = {
         use: [
           // fallback to style-loader in development
           // MiniCssExtractPlugin.loader,
-          process.env.NODE_ENV !== 'production' ? 'style-loader' : MiniCssExtractPlugin.loader,
+          process.env.NODE_ENV !== 'production' ?  MiniCssExtractPlugin.loader: 'style-loader',
           "css-loader",
           "sass-loader"
         ]
