@@ -12,6 +12,7 @@ const styles: React.CSSProperties = {
 }
 
 export interface ContainerProps {
+  isDropZoneClickthrough: boolean;
 }
 
 export interface ContainerState {
@@ -21,6 +22,8 @@ export interface ContainerState {
 const initialPosition = { top: 20, left: 80 }
 
 export const DropContainer: React.FC<ContainerProps> = (props) => {
+  let containerStyles = {...styles};
+  
   const [boxes, setBoxes] = React.useState<{
     [key: string]: {
       top: number
@@ -29,6 +32,7 @@ export const DropContainer: React.FC<ContainerProps> = (props) => {
   }>({
     a: { ...initialPosition }
   })
+  const [isClickThrough, setIsClickThrough] = React.useState<boolean>(!!props.isDropZoneClickthrough);
 
   const [, drop] = useDrop({
     accept: ItemTypes.MiniToolBox,
@@ -51,8 +55,10 @@ export const DropContainer: React.FC<ContainerProps> = (props) => {
     )
   }
 
+  containerStyles.pointerEvents = isClickThrough ? 'none' : 'all';
+
   return (
-    <div ref={drop} style={styles}>
+    <div ref={drop} style={containerStyles}>
       {(Object.keys(boxes).map((key, idx) => {
         const { left, top } = boxes[key];
         const newChildProps = { left, top };
@@ -62,9 +68,10 @@ export const DropContainer: React.FC<ContainerProps> = (props) => {
         const newChild = isArr ? props.children[idx] : props.children;
         if (idx > (props.children as []).length - 1) return null;
         if (!newChild) return null;
+        newChildProps['onOutDragHandle'] = () => setIsClickThrough(true);
+        newChildProps['onOverDragHandle'] = () => setIsClickThrough(false);
         return React.cloneElement(newChild, newChildProps);
       }))
-
       }
     </div>
   )

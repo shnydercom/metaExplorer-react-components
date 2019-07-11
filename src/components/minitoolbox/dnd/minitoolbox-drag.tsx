@@ -9,14 +9,15 @@ import { DragItem } from './interfaces';
 
 export const CSS_CLASSNAME = "minitoolbox"
 
-export interface MiniToolBoxProps extends DragItem {
+export interface StylableDragItemProps extends DragItem {
 	className?: string;
-	style?: React.CSSProperties;
+	onOverDragHandle?: () => void;
+	onOutDragHandle?: () => void;
 }
 
 type ActiveStates = "phoneEd" | "watchEd";
 
-export const MiniToolBox: React.FC<MiniToolBoxProps> = (props) => {
+export const MiniToolBox: React.FC<StylableDragItemProps> = (props) => {
 
 	const [isMini, setIsMini] = React.useState(false);
 	const [isMiniOpen, setIsMiniOpen] = React.useState(false);
@@ -77,7 +78,8 @@ export const MiniToolBox: React.FC<MiniToolBoxProps> = (props) => {
 			<div
 				onMouseOver={isMini ? (e) => setIsMiniOpen(true) : (e) => { }}
 				onMouseOut={isMini ? (e) => setIsMiniOpen(false) : (e) => { }}
-				className={`${CSS_CLASSNAME}-enclosing ${className ? className : ''}`}>
+				className={`${CSS_CLASSNAME}-enclosing ${className ? className : ''}`}
+			>
 				<div
 					onClick={isMini ? (e) => {
 						setActiveEditor("watchEd");
@@ -88,7 +90,8 @@ export const MiniToolBox: React.FC<MiniToolBoxProps> = (props) => {
 			${CSS_CLASSNAME}-watchcontainer-${isMini ? 'mini' : 'max'}
 			${CSS_CLASSNAME}-watchcontainer-${activeEditor === 'watchEd' ? 'active' : 'inactive'}
 			${isMini ? isMiniOpen && activeEditor !== 'watchEd' ? 'mini-open' : 'mini-closed' : ''}
-			`}>
+			`}
+					style={{ pointerEvents: 'all' }}>
 					<Watch btnProps={watchBtnProps} watchClass={`${CSS_CLASSNAME}-${isMini ? 'mini' : 'max'}`} >
 						{!isMini && activeEditor === 'watchEd' ? props.children : null}
 					</Watch>
@@ -103,17 +106,29 @@ export const MiniToolBox: React.FC<MiniToolBoxProps> = (props) => {
 			${CSS_CLASSNAME}-phonecontainer-${isMini ? 'mini' : 'max'} 
 			${CSS_CLASSNAME}-phonecontainer-${activeEditor === 'phoneEd' ? 'active' : 'inactive'}
 			${isMini ? isMiniOpen && activeEditor !== 'phoneEd' ? 'mini-open' : 'mini-closed' : ''}
-			`}>
+			`}
+					style={{ pointerEvents: 'all' }}>
 					<Phone btnProps={phoneBtnProps} phoneClass={`${CSS_CLASSNAME}-${isMini ? 'mini' : 'max'} `}>
 						{!isMini && activeEditor === 'phoneEd' ? props.children : null}
 					</Phone>
 				</div>
 				{isDragLayer
-					? <MiniButton className="minitoolbox-dndhandle" iconSrc="/static/move.svg" onClick={() => { }} />
-					: <MiniButton className="minitoolbox-dndhandle" iconSrc="/static/move.svg" btnRef={drag} onClick={() => { }} />
+					? <MiniButton className="minitoolbox-dndhandle" iconSrc="/static/move.svg" onClick={() => { }}
+						btnStyle={{ pointerEvents: 'all' }}
+						onMouseOut={(e) => { if (props.onOutDragHandle) props.onOutDragHandle() }}
+						onMouseEnter={(e) => { if (props.onOverDragHandle) props.onOverDragHandle() }}
+						 />
+					: <MiniButton className="minitoolbox-dndhandle" iconSrc="/static/move.svg" btnRef={drag}
+						onClick={() => { }}
+						btnStyle={{ pointerEvents: 'all' }}
+						onMouseOut={(e) => { if (props.onOutDragHandle) props.onOutDragHandle() }}
+						onMouseEnter={(e) => { if (props.onOverDragHandle) props.onOverDragHandle() }}
+					/>
 				}
 			</div>);
 	}
+
+	//					
 
 	const { className } = props;
 	return (

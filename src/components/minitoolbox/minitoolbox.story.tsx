@@ -51,13 +51,14 @@ stories.add('minitoolbox-drag', () => (
 			left={0}
 			top={0}
 			type="asdf"
+			onOverDragHandle={() => { return; }}
 		><div style={areaTestingStyle} /></MiniToolBox>
 	</DndProvider >
 ));
 
 stories.add('minitoolbox-dropcontainer', () => (
 	<DndProvider backend={HTML5Backend}>
-		<DropContainer>
+		<DropContainer isDropZoneClickthrough>
 			<MiniToolBox
 				id="a"
 				left={0}
