@@ -7,7 +7,9 @@ import { DragItem } from './interfaces'
 const styles: React.CSSProperties = {
   width: '100%',
   height: '100%',
-  position: 'relative',
+  position: 'absolute',
+  top: 0,
+  left: 0
 }
 
 export interface ContainerProps {
