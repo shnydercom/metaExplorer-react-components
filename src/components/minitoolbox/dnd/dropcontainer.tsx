@@ -23,8 +23,8 @@ export interface ContainerState {
 const initialPosition = { top: 20, left: 80 }
 
 export const DropContainer: React.FC<ContainerProps> = (props) => {
-  let containerStyles = {...styles};
-  
+  let containerStyles = { ...styles };
+
   const [boxes, setBoxes] = React.useState<{
     [key: string]: {
       top: number
@@ -36,12 +36,13 @@ export const DropContainer: React.FC<ContainerProps> = (props) => {
   const [isClickThrough, setIsClickThrough] = React.useState<boolean>(!!props.isDropZoneClickthrough);
 
   const [, drop] = useDrop({
-    accept: ItemTypes.MiniToolBox,
+    accept: [ItemTypes.MiniToolBox, ItemTypes.Block],
     drop(item: DragItem, monitor) {
       const delta = monitor.getDifferenceFromInitialOffset() as XYCoord
       const left = Math.round(item.left + delta.x)
       const top = Math.round(item.top + delta.y)
       moveBox(item.id, left, top)
+      if(!!item.data) return item.data;
       return undefined
     },
   })
