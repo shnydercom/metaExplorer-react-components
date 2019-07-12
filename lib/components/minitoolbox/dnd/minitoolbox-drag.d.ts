@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { DragItem } from './interfaces';
 export declare const CSS_CLASSNAME = "minitoolbox";
-export interface MiniToolBoxProps extends DragItem {
+export interface StylableDragItemProps extends DragItem {
     className?: string;
-    style?: React.CSSProperties;
+    onOverDragHandle?: () => void;
+    onOutDragHandle?: () => void;
 }
-export declare const MiniToolBox: React.FC<MiniToolBoxProps>;
+export declare const MiniToolBox: React.FC<StylableDragItemProps>;

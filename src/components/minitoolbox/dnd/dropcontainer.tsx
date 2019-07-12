@@ -5,9 +5,8 @@ import update from 'immutability-helper'
 import { DragItem } from './interfaces'
 
 const styles: React.CSSProperties = {
-  width: 1000,
-  height: 1000,
-  border: '1px solid black',
+  width: '100%',
+  height: '100%',
   position: 'relative',
 }
 

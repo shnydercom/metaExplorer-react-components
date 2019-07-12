@@ -1,5 +1,6 @@
 import * as React from 'react';
 export interface ContainerProps {
+    isDropZoneClickthrough: boolean;
 }
 export interface ContainerState {
     boxes: {
