@@ -77,7 +77,10 @@ export const MiniToolBox: React.FC<StylableDragItemProps> = (props) => {
 		return (
 			<div
 				onMouseOver={isMini ? (e) => setIsMiniOpen(true) : (e) => { }}
-				onMouseOut={isMini ? (e) => setIsMiniOpen(false) : (e) => { }}
+				onMouseOut={isMini ? (e) => {
+					setIsMiniOpen(false)
+					if (props.onOutDragHandle) props.onOutDragHandle()
+				} : (e) => { }}
 				className={`${CSS_CLASSNAME}-enclosing ${className ? className : ''}`}
 			>
 				<div
@@ -97,6 +100,7 @@ export const MiniToolBox: React.FC<StylableDragItemProps> = (props) => {
 					</Watch>
 				</div>
 				<div
+					onMouseOut={(e) => { if (props.onOutDragHandle) props.onOutDragHandle() }}
 					onClick={isMini ? (e) => {
 						setActiveEditor("phoneEd");
 						toggleMini();
@@ -117,7 +121,7 @@ export const MiniToolBox: React.FC<StylableDragItemProps> = (props) => {
 						btnStyle={{ pointerEvents: 'all' }}
 						onMouseOut={(e) => { if (props.onOutDragHandle) props.onOutDragHandle() }}
 						onMouseEnter={(e) => { if (props.onOverDragHandle) props.onOverDragHandle() }}
-						 />
+					/>
 					: <MiniButton className="minitoolbox-dndhandle" iconSrc="/static/move.svg" btnRef={drag}
 						onClick={() => { }}
 						btnStyle={{ pointerEvents: 'all' }}
