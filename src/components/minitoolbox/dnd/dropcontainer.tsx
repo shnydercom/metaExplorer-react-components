@@ -41,8 +41,8 @@ export const DropContainer: React.FC<ContainerProps> = (props) => {
       const delta = monitor.getDifferenceFromInitialOffset() as XYCoord
       const left = Math.round(item.left + delta.x)
       const top = Math.round(item.top + delta.y)
-      moveBox(item.id, left, top)
-      if(!!item.data) return item.data;
+      if(item.type === ItemTypes.MiniToolBox) moveBox(item.id, left, top)
+      if(!!item.data) return {...item};
       return undefined
     },
   })
