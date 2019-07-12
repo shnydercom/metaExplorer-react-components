@@ -33,8 +33,7 @@ export const DropContainer: React.FC<ContainerProps> = (props) => {
   }>({
     a: { ...initialPosition }
   })
-  const [isClickThrough, setIsClickThrough] = React.useState<boolean>(!!props.isDropZoneClickthrough);
-
+  
   const [, drop] = useDrop({
     accept: [ItemTypes.MiniToolBox, ItemTypes.Block],
     drop(item: DragItem, monitor) {
@@ -57,7 +56,7 @@ export const DropContainer: React.FC<ContainerProps> = (props) => {
     )
   }
 
-  containerStyles.pointerEvents = isClickThrough ? 'none' : 'all';
+  containerStyles.pointerEvents = props.isDropZoneClickthrough ? 'none' : 'all';
 
   return (
     <div ref={drop} style={containerStyles}>
@@ -70,8 +69,6 @@ export const DropContainer: React.FC<ContainerProps> = (props) => {
         const newChild = isArr ? props.children[idx] : props.children;
         if (idx > (props.children as []).length - 1) return null;
         if (!newChild) return null;
-        newChildProps['onOutDragHandle'] = () => setIsClickThrough(true);
-        newChildProps['onOverDragHandle'] = () => setIsClickThrough(false);
         return React.cloneElement(newChild, newChildProps);
       }))
       }

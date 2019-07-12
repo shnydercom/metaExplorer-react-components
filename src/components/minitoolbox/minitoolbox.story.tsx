@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
+import { withKnobs, boolean } from '@storybook/addon-knobs';
 import "./minitoolbox.scss"
 import { Phone } from "./opened-menus/phone";
 import { Watch } from "./opened-menus/watch";
@@ -32,6 +33,7 @@ const btnProps: MiniButtonProps[] =
 
 const stories = storiesOf('minitoolbox', module);
 
+stories.addDecorator(withKnobs);
 stories.add('opened-menus/phone', () => (
 	<div style={{ backgroundColor: "#001e34" }}>
 		<Phone btnProps={btnProps}><div style={areaTestingStyle} /></Phone>
@@ -58,7 +60,7 @@ stories.add('minitoolbox-drag', () => (
 
 stories.add('minitoolbox-dropcontainer', () => (
 	<DndProvider backend={HTML5Backend}>
-		<DropContainer isDropZoneClickthrough>
+		<DropContainer isDropZoneClickthrough={boolean("isDropZoneClickthrough", false)}>
 			<MiniToolBox
 				id="a"
 				left={0}
