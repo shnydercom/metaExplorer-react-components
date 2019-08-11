@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { XYCoord, useDragLayer } from 'react-dnd'
-import ItemTypes from './ItemTypes'
+import { ItemTypes } from './ItemTypes'
 import { Phone } from '../opened-menus/phone';
 import { MiniButtonProps } from '../opened-menus/mini-button';
 

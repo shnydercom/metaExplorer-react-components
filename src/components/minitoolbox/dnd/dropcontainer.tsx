@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useDrop, XYCoord } from 'react-dnd'
-import ItemTypes from './ItemTypes'
+import { ItemTypes } from './ItemTypes'
 import update from 'immutability-helper'
 import { DragItem } from './interfaces'
 

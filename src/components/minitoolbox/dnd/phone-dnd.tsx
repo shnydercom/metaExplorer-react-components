@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useDrag, DragPreviewImage, useDragLayer } from 'react-dnd'
-import ItemTypes from './ItemTypes'
+import { ItemTypes } from './ItemTypes'
 import { MiniButtonProps } from '../opened-menus/mini-button';
 import { Phone } from '../opened-menus/phone';
 import PhoneDragLayer from './phone-draglayer';

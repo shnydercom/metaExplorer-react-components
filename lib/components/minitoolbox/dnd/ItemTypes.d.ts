@@ -1,5 +1,4 @@
-declare const _default: {
+export declare const ItemTypes: {
     MiniToolBox: string;
     Block: string;
 };
-export default _default;

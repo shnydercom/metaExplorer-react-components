@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useDrag } from 'react-dnd'
 import { MiniButton, MiniButtonProps } from '../opened-menus/mini-button';
-import ItemTypes from './ItemTypes';
+import { ItemTypes } from './ItemTypes';
 import { Watch } from '../opened-menus/watch';
 import { Phone } from '../opened-menus/phone';
 import MiniToolBoxDragLayer from './minitoolbox-draglayer';

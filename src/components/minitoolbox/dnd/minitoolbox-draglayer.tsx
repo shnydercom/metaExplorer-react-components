@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { XYCoord, useDragLayer } from 'react-dnd'
-import ItemTypes from './ItemTypes'
+import { ItemTypes } from './ItemTypes'
 
 const layerStyles: React.CSSProperties = {
 	position: 'absolute',
