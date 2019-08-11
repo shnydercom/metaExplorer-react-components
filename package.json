@@ -2,7 +2,8 @@
   "name": "metaexplorer-react-components",
   "version": "0.0.2",
   "description": "components for the metaExplorer project",
-  "main": "main.js",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
   "scripts": {
     "test": "test",
     "start": "start-storybook -s ./assets -p 2018",
