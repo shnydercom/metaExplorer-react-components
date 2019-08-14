@@ -19,8 +19,9 @@
 
 .minitoolbox-enclosing {
 	position: relative;
-	height: 300px;
-	width: 420px;
+	height: 100px;
+	width: 250px;
+	pointer-events: all;
 }
 
 .minitoolbox-phonecontainer {
