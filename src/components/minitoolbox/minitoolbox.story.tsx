@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
-import { withKnobs, boolean } from '@storybook/addon-knobs';
+import { withKnobs, boolean, button } from '@storybook/addon-knobs';
 import "./minitoolbox.scss"
 import { Phone } from "./opened-menus/phone";
 import { Watch } from "./opened-menus/watch";
@@ -10,7 +10,13 @@ import { PhoneDND } from './dnd/phone-dnd';
 import { WatchDND } from './dnd/watch-dnd';
 import { DropContainer } from './dnd/dropcontainer';
 import { DndProvider } from 'react-dnd';
-import HTML5Backend from 'react-dnd-html5-backend'
+import HTML5Backend from 'react-dnd-html5-backend';
+import TouchBackend from 'react-dnd-touch-backend';
+
+let backendName = "html5"
+let DNDBackend = TouchBackend;
+//TODO: implement automatic switching https://www.npmjs.com/package/react-dnd-multi-backend
+//once the semver/breaking changes issue with react-dnd have been resolved, implement a proper switch
 
 
 const areaTestingStyle = { backgroundColor: "#FF0000aa", height: "100%", width: "100%", flex: 1 }
@@ -47,7 +53,7 @@ stories.add('opened-menus/watch', () => (
 ));
 
 stories.add('minitoolbox-drag', () => (
-	<DndProvider backend={HTML5Backend}>
+	<DndProvider backend={DNDBackend}>
 		<MiniToolBox
 			id="a"
 			left={0}
@@ -58,21 +64,32 @@ stories.add('minitoolbox-drag', () => (
 	</DndProvider >
 ));
 
-stories.add('minitoolbox-dropcontainer', () => (
-	<DndProvider backend={HTML5Backend}>
-		<DropContainer isDropZoneClickthrough={boolean("isDropZoneClickthrough", false)}>
-			<MiniToolBox
-				id="a"
-				left={0}
-				top={0}
-				type="asdf"
-			><div style={areaTestingStyle} /></MiniToolBox>
-		</DropContainer>
-	</DndProvider >
-));
+stories.add('minitoolbox-dropcontainer', () => {
+	button('switchBackend to ' + backendName, () => {
+		if (backendName === "html5") {
+			DNDBackend = HTML5Backend;
+			backendName = "touch"
+		} else {
+			DNDBackend = TouchBackend
+			backendName = "html5"
+		}
+	});
+	return (
+		<DndProvider backend={DNDBackend}>
+			<DropContainer isDropZoneClickthrough={boolean("isDropZoneClickthrough", false)}>
+				<MiniToolBox
+					id="a"
+					left={0}
+					top={0}
+					type="asdf"
+				><div style={areaTestingStyle} /></MiniToolBox>
+			</DropContainer>
+		</DndProvider >
+	)
+});
 
 stories.add('phonednd', () => (
-	<DndProvider backend={HTML5Backend}>
+	<DndProvider backend={DNDBackend}>
 		<div style={{ backgroundColor: "#001e34" }}>
 			<PhoneDND></PhoneDND>
 		</div>
@@ -80,7 +97,7 @@ stories.add('phonednd', () => (
 ));
 
 stories.add('watchdnd', () => (
-	<DndProvider backend={HTML5Backend}>
+	<DndProvider backend={DNDBackend}>
 		<div style={{ backgroundColor: "#001e34" }}>
 			<WatchDND></WatchDND>
 		</div>
