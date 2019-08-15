@@ -14,6 +14,7 @@ const styles: React.CSSProperties = {
 
 export interface ContainerProps {
   isDropZoneClickthrough: boolean;
+  onBlockDropped?: (blockDragItem: DragItem) => void;
 }
 
 export interface ContainerState {
@@ -40,7 +41,14 @@ export const DropContainer: React.FC<ContainerProps> = (props) => {
       const delta = monitor.getDifferenceFromInitialOffset() as XYCoord
       const left = Math.round(item.left + delta.x)
       const top = Math.round(item.top + delta.y)
-      if(item.type === ItemTypes.MiniToolBox) moveBox(item.id, left, top)
+      if(item.type === ItemTypes.MiniToolBox) moveBox(item.id, left, top);
+      if(item.type === ItemTypes.Block) {
+        if(!props.onBlockDropped) {
+          console.warn('dropped a block element but no onBlockDropped-handler was provided');
+          return {...item};
+        }
+        props.onBlockDropped({...item});
+      }
       if(!!item.data) return {...item};
       return undefined
     },
