@@ -4,7 +4,7 @@ import { MiniButton, MiniButtonProps } from '../opened-menus/mini-button';
 import { ItemTypes } from './ItemTypes';
 import { Watch } from '../opened-menus/watch';
 import { Phone } from '../opened-menus/phone';
-import MiniToolBoxDragLayer from './minitoolbox-draglayer';
+import DragLayerWChildren from './draglayer-w-children';
 import { DragItem } from './interfaces';
 
 export const CSS_CLASSNAME = "minitoolbox"
@@ -137,7 +137,10 @@ export const MiniToolBox: React.FC<StylableDragItemProps> = (props) => {
 	const { className } = props;
 	return (
 		<div className={`${CSS_CLASSNAME}-root`} style={{ left: props.left, top: props.top }}>
-			<MiniToolBoxDragLayer style={{ left: props.left, top: props.top }}>{renderContent(true)}</MiniToolBoxDragLayer>
+			<DragLayerWChildren
+				acceptedItemTypes={[ItemTypes.Block, ItemTypes.MiniToolBox]}>
+				{renderContent(true)}
+			</DragLayerWChildren>
 			<div ref={preview} style={{ height: 0, width: 0 }}></div>
 			{isDragging ? null : renderContent(false)}
 		</div>

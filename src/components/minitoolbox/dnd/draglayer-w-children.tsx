@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { XYCoord, useDragLayer } from 'react-dnd'
-import { ItemTypes } from './ItemTypes'
 
 const layerStyles: React.CSSProperties = {
 	position: 'absolute',
@@ -32,10 +31,12 @@ function getItemStyles(
 	}
 }
 
-export interface MiniToolBoxDragLayerProps {
+export interface DragLayerWChildrenProps {
+	acceptedItemTypes: string[];
 }
 
-export const MiniToolBoxDragLayer: React.FC<MiniToolBoxDragLayerProps> = props => {
+export const DragLayerWChildren: React.FC<
+React.PropsWithChildren<DragLayerWChildrenProps>> = props => {
 	const {
 		itemType,
 		isDragging,
@@ -56,12 +57,13 @@ export const MiniToolBoxDragLayer: React.FC<MiniToolBoxDragLayerProps> = props =
 	)
 
 	function renderItem() {
-		switch (itemType) {
-			case ItemTypes.MiniToolBox:
+		for (let i = 0; i < props.acceptedItemTypes.length; i++) {
+			const iInAcceptedItems = props.acceptedItemTypes[i];
+			if(iInAcceptedItems === itemType){
 				if (props.children) return <>{props.children}</>;
-			default:
-				return null
+			}
 		}
+		return null
 	}
 
 	if (!isDragging) {
@@ -77,4 +79,4 @@ export const MiniToolBoxDragLayer: React.FC<MiniToolBoxDragLayerProps> = props =
 		</div>
 	)
 }
-export default MiniToolBoxDragLayer
+export default DragLayerWChildren
