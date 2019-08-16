@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { XYCoord, useDragLayer } from 'react-dnd'
+import DragItem from './interfaces';
 
 const layerStyles: React.CSSProperties = {
 	position: 'absolute',
@@ -33,50 +34,57 @@ function getItemStyles(
 
 export interface DragLayerWChildrenProps {
 	acceptedItemTypes: string[];
+	includedItemId?: string;
 }
 
 export const DragLayerWChildren: React.FC<
-React.PropsWithChildren<DragLayerWChildrenProps>> = props => {
-	const {
-		itemType,
-		isDragging,
-		item,
-		initialOffset,
-		initialClientOffset,
-		currentOffset,
-	} = useDragLayer(monitor => {
-		return {
-			item: monitor.getItem(),
-			itemType: monitor.getItemType(),
-			initialClientOffset: monitor.getInitialClientOffset(),
-			initialOffset: monitor.getInitialSourceClientOffset(),
-			currentOffset: monitor.getSourceClientOffset(),
-			isDragging: monitor.isDragging(),
-		}
-	}
-	)
-
-	function renderItem() {
-		for (let i = 0; i < props.acceptedItemTypes.length; i++) {
-			const iInAcceptedItems = props.acceptedItemTypes[i];
-			if(iInAcceptedItems === itemType){
-				if (props.children) return <>{props.children}</>;
+	React.PropsWithChildren<DragLayerWChildrenProps>> = props => {
+		const {
+			itemType,
+			isDragging,
+			item,
+			initialOffset,
+			initialClientOffset,
+			currentOffset,
+		} = useDragLayer(monitor => {
+			return {
+				item: monitor.getItem(),
+				itemType: monitor.getItemType(),
+				initialClientOffset: monitor.getInitialClientOffset(),
+				initialOffset: monitor.getInitialSourceClientOffset(),
+				currentOffset: monitor.getSourceClientOffset(),
+				isDragging: monitor.isDragging(),
 			}
 		}
-		return null
-	}
+		)
 
-	if (!isDragging) {
-		return null
-	}
-	return (
-		<div style={layerStyles}>
-			<div
-				style={getItemStyles(initialOffset, currentOffset, initialClientOffset)}
-			>
-				{renderItem()}
+		function renderItem() {
+			if (props.includedItemId && item) {
+				if (props.includedItemId === (item as DragItem).id) {
+					if (props.children) return <>{props.children}</>;
+				}
+				return null;
+			}
+			for (let i = 0; i < props.acceptedItemTypes.length; i++) {
+				const iInAcceptedItems = props.acceptedItemTypes[i];
+				if (iInAcceptedItems === itemType) {
+					if (props.children) return <>{props.children}</>;
+				}
+			}
+			return null
+		}
+
+		if (!isDragging) {
+			return null
+		}
+		return (
+			<div style={layerStyles}>
+				<div
+					style={getItemStyles(initialOffset, currentOffset, initialClientOffset)}
+				>
+					{renderItem()}
+				</div>
 			</div>
-		</div>
-	)
-}
+		)
+	}
 export default DragLayerWChildren

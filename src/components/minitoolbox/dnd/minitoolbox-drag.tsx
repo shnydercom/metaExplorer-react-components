@@ -24,7 +24,7 @@ export const MiniToolBox: React.FC<StylableDragItemProps> = (props) => {
 	const [activeEditor, setActiveEditor] = React.useState<ActiveStates>("phoneEd");
 
 	const [{ isDragging }, drag, preview] = useDrag({
-		item: { id: props.id, left: props.left, top: props.top, type: ItemTypes.MiniToolBox },
+		item: { id: props.id, left: props.left, top: props.top, type: props.type },
 		collect: monitor => ({
 			isDragging: monitor.isDragging()
 		}),
@@ -138,7 +138,7 @@ export const MiniToolBox: React.FC<StylableDragItemProps> = (props) => {
 	return (
 		<div className={`${CSS_CLASSNAME}-root`} style={{ left: props.left, top: props.top }}>
 			<DragLayerWChildren
-				acceptedItemTypes={[ItemTypes.Block, ItemTypes.MiniToolBox]}>
+				acceptedItemTypes={[props.type]}>
 				{renderContent(true)}
 			</DragLayerWChildren>
 			<div ref={preview} style={{ height: 0, width: 0 }}></div>
