@@ -3,14 +3,23 @@
 	width: 200px;
 
 	&-drag {
-		opacity: 0.6;
+		opacity: 0.1;
+	}
+
+	&-handle {
+		height: 20px;
+		width: 20px;
+		background-color: yellow;
+		position: absolute;
+		margin-top: 40px;
 	}
 }
 
 .dropcontainer {
 	height: 400px;
 	width: 400px;
+
 	&-active {
-		background-color: grey;
+		color: grey;
 	}
 }

@@ -6,6 +6,8 @@ export interface DragItem<TItemType extends string> {
 	id: string;
 	top: number;
 	left: number;
+	sourceBhv: SourceBehaviour;
+	targetBhv: TargetBehaviour;
 	data?: any;
 }
 
@@ -14,8 +16,7 @@ export interface StylableDragItemProps<TItemType extends string>
 	className: string;
 	onOverDragHandle?: () => void;
 	onOutDragHandle?: () => void;
-	sourceBhv: SourceBehaviour;
-	targetBhv: TargetBehaviour;
+	isWithDragHandle: boolean;
 }
 
 export const dragItemsToPositionMap = (inputs: DragItem<any>[]): IPositionMap => {

@@ -7,6 +7,7 @@ import { DndProvider } from 'react-dnd';
 import { DragContainer } from './drag/dragContainer';
 import { DropContainer, StylableDropContainerProps } from './drop/dropContainer';
 import { DragItem, StylableDragItemProps } from "./interfaces";
+import { MiniToolBox } from './../minitoolbox/dnd/minitoolbox';
 
 const stories = storiesOf('dnd', module);
 
@@ -22,16 +23,17 @@ const ColorSwappingDIV = (props) => {
 
 const testDataDragItem: DragItem<TestItemTypes> = {
 	id: 'a',
-	left: 20,
-	top: 30,
-	type: 'typeA'
+	left: 0,
+	top: 0,
+	type: 'typeA',
+	sourceBhv: 'sCopy',
+	targetBhv: 'tCopy'
 }
 
 const testStylableDragItem: StylableDragItemProps<TestItemTypes> = {
 	...testDataDragItem,
-	className: 'dragcontainer',
-	sourceBhv: 'sCopy',
-	targetBhv: 'tCopy'
+	isWithDragHandle: true,
+	className: 'dragcontainer'
 }
 let DNDBackend = HTML5Backend;
 
@@ -46,7 +48,8 @@ stories.add('dragContainer', () => (
 stories.add('dragContainers', () => (
 	<DndProvider backend={DNDBackend}>
 		<DragContainer
-			{...testStylableDragItem}>
+			{...testStylableDragItem}
+			isWithDragHandle={false}>
 			<ColorSwappingDIV>testing a drag container</ColorSwappingDIV>
 		</DragContainer>
 		<DragContainer
@@ -74,19 +77,38 @@ stories.add('dropContainer', () => (
 
 stories.add('dropContainers', () => (
 	<DndProvider backend={DNDBackend}>
-		<DragContainer
+		<DragContainer<TestItemTypes>
 			{...testStylableDragItem}
 			top={80}
 			left={200}
 		>
-			<ColorSwappingDIV>testing a drag container</ColorSwappingDIV>
+			<ColorSwappingDIV>typeA drag container is accepted</ColorSwappingDIV>
 		</DragContainer>
-		<DragContainer
+		<DragContainer<TestItemTypes>
 			{...testStylableDragItem}
 			id="b"
+			type='typeB'
 			top={50}
+			isWithDragHandle={false}
 			left={300}>
-			<ColorSwappingDIV>testing a drag container</ColorSwappingDIV>
+			<ColorSwappingDIV>typeB drag container is not accepted</ColorSwappingDIV>
+		</DragContainer>
+		<DropContainer {...testDropContainerProps} style={{ height: '100px', width: '100px' }}>
+			<ColorSwappingDIV>a drop container</ColorSwappingDIV>
+		</DropContainer>
+	</DndProvider>
+));
+
+stories.add('minitoolbox', () => (
+	<DndProvider backend={DNDBackend}>
+		<DragContainer<TestItemTypes>
+			{...testStylableDragItem}
+			id="b"
+			type='typeA'
+			top={50}
+			isWithDragHandle={false}
+			left={300}>
+			<MiniToolBox className='minitoolbox' />
 		</DragContainer>
 		<DropContainer {...testDropContainerProps} style={{ height: '100px', width: '100px' }}>
 			<ColorSwappingDIV>a drop container</ColorSwappingDIV>
