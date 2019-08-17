@@ -1,0 +1,16 @@
+.dragcontainer {
+	height: 100px;
+	width: 200px;
+
+	&-drag {
+		opacity: 0.6;
+	}
+}
+
+.dropcontainer {
+	height: 400px;
+	width: 400px;
+	&-active {
+		background-color: grey;
+	}
+}
