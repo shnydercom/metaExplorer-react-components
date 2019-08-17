@@ -1,13 +1,6 @@
 import * as React from 'react'
-import { DragItem, IPositionMap } from "../interfaces";
+import { IPositionMap, StylableTransitComponentProps } from "../interfaces";
 import { XYCoord, useDragLayer } from 'react-dnd'
-
-export interface StylableTransitComponentProps<TItemType extends string> {
-	onItemDropped?: (droppedItem: DragItem<TItemType>) => void;
-	acceptedItemTypes: TItemType[];
-	className: string;
-	style?: React.CSSProperties;
-}
 
 const layerStyles: React.CSSProperties = {
 	position: 'absolute',
@@ -27,17 +20,20 @@ function getItemStyles(
 	initialOffset: XYCoord | null,
 	currentOffset: XYCoord | null,
 	initialClientOffset: XYCoord | null,
-) {
+): React.CSSProperties {
 	if (!initialOffset || !currentOffset) {
 		return {
 			display: 'none',
 		}
 	}
-	let x = currentOffset.x - initialOffset.x; //- initialClientOffset.x;
-	let y = currentOffset.y - initialOffset.y;// - initialClientOffset.y;
+
+	//console.dir({ os: initialOffset, curos: currentOffset, ico: initialClientOffset });
+	let x = /* -*/ currentOffset.x;// - initialOffset.x; //- initialClientOffset.x;
+	let y = /* -*/ currentOffset.y;// - initialOffset.y;// - initialClientOffset.y;
 
 	const transform = `translate(${x}px, ${y}px)`
 	return {
+		width: 'fit-content',
 		transform,
 		WebkitTransform: transform,
 	}
@@ -65,26 +61,18 @@ export function TransitComponent<TItemType extends string>
 	)
 
 	function renderItem() {
-		/*if (props.includedItemId && item) {
-			if (props.includedItemId === (item as DragItem).id) {
-				if (props.children) return <>{props.children}</>;
-			}
-			return null;
+		const transitComp = props.transitComponents.find((val) => val.forType === itemType);
+		if (transitComp) {
+			return transitComp.componentFactory(item)(item);
 		}
-		for (let i = 0; i < props.acceptedItemTypes.length; i++) {
-			const iInAcceptedItems = props.acceptedItemTypes[i];
-			if (iInAcceptedItems === itemType) {
-				if (props.children) return <>{props.children}</>;
-			}
-		}*/
-		return null
+		return null;
 	}
 
 	if (!isDragging) {
 		return null
 	}
 	return (
-		<div style={layerStyles}>
+		<div style={layerStyles} className={props.className}>
 			<div
 				style={getItemStyles(initialOffset, currentOffset, initialClientOffset)}
 			>

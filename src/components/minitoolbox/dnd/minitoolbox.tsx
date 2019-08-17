@@ -83,8 +83,7 @@ export const MiniToolBox: React.FC<MiniToolBoxProps> = (props) => {
 			${CSS_CLASSNAME}-watchcontainer-${isMini ? 'mini' : 'max'}
 			${CSS_CLASSNAME}-watchcontainer-${activeEditor === 'watchEd' ? 'active' : 'inactive'}
 			${isMini ? isMiniOpen && activeEditor !== 'watchEd' ? 'mini-open' : 'mini-closed' : ''}
-			`}
-					style={{ pointerEvents: 'all' }}>
+			`}>
 					<Watch btnProps={watchBtnProps} watchClass={`${CSS_CLASSNAME}-${isMini ? 'mini' : 'max'}`} >
 						{!isMini && activeEditor === 'watchEd' ? props.children : null}
 					</Watch>
@@ -99,8 +98,7 @@ export const MiniToolBox: React.FC<MiniToolBoxProps> = (props) => {
 			${CSS_CLASSNAME}-phonecontainer-${isMini ? 'mini' : 'max'} 
 			${CSS_CLASSNAME}-phonecontainer-${activeEditor === 'phoneEd' ? 'active' : 'inactive'}
 			${isMini ? isMiniOpen && activeEditor !== 'phoneEd' ? 'mini-open' : 'mini-closed' : ''}
-			`}
-					style={{ pointerEvents: 'all' }}>
+			`}>
 					<Phone btnProps={phoneBtnProps} phoneClass={`${CSS_CLASSNAME}-${isMini ? 'mini' : 'max'} `}>
 						{!isMini && activeEditor === 'phoneEd' ? props.children : null}
 					</Phone>

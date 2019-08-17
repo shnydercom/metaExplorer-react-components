@@ -11,12 +11,29 @@ export interface DragItem<TItemType extends string> {
 	data?: any;
 }
 
+export interface DragItemInternal<TItemType extends string> extends DragItem<TItemType> {
+	id: string;
+	top: number;
+	left: number;
+}
+
 export interface StylableDragItemProps<TItemType extends string>
 	extends DragItem<TItemType> {
 	className: string;
 	onOverDragHandle?: () => void;
 	onOutDragHandle?: () => void;
 	isWithDragHandle: boolean;
+}
+
+export interface ITransitComp<TItemType extends string> {
+	forType: TItemType,
+	componentFactory: IComponentFactory<TItemType>
+}
+
+export interface StylableTransitComponentProps<TItemType extends string> {
+	transitComponents: ITransitComp<TItemType>[];
+	className: string;
+	style?: React.CSSProperties;
 }
 
 export const dragItemsToPositionMap = (inputs: DragItem<any>[]): IPositionMap => {
@@ -26,6 +43,8 @@ export const dragItemsToPositionMap = (inputs: DragItem<any>[]): IPositionMap =>
 	})
 	return rv;
 }
+
+export type IComponentFactory<TItemType extends string> = (dragItem: DragItem<TItemType>) => React.FC<DragItem<TItemType>>;
 
 export type IPosition = { top: number; left: number; };
 export type IPositionMap = { [key: string]: IPosition };

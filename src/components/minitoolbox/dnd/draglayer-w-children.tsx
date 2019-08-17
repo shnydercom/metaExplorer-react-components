@@ -81,7 +81,7 @@ export const DragLayerWChildren: React.FC<
 			<div style={layerStyles}>
 				<div
 					style={getItemStyles(initialOffset, currentOffset, initialClientOffset)}
-				>
+				>asdf
 					{renderItem()}
 				</div>
 			</div>

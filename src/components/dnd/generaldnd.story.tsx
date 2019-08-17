@@ -6,10 +6,13 @@ import HTML5Backend from 'react-dnd-html5-backend';
 import { DndProvider } from 'react-dnd';
 import { DragContainer } from './drag/dragContainer';
 import { DropContainer, StylableDropContainerProps } from './drop/dropContainer';
-import { DragItem, StylableDragItemProps } from "./interfaces";
+import { TransitComponent } from './transit/transitComponent';
+import { DragItem, StylableDragItemProps, StylableTransitComponentProps } from "./interfaces";
 import { MiniToolBox } from './../minitoolbox/dnd/minitoolbox';
+import { withKnobs, boolean, select} from '@storybook/addon-knobs';
 
 const stories = storiesOf('dnd', module);
+stories.addDecorator(withKnobs);
 
 type TestItemTypes = "typeA" | "typeB";
 
@@ -63,6 +66,7 @@ stories.add('dragContainers', () => (
 ));
 
 const testDropContainerProps: StylableDropContainerProps<TestItemTypes> = {
+	onlyAppearOnDrag: false,
 	acceptedItemTypes: ['typeA'],
 	className: 'dropcontainer'
 }
@@ -79,19 +83,41 @@ stories.add('dropContainers', () => (
 	<DndProvider backend={DNDBackend}>
 		<DragContainer<TestItemTypes>
 			{...testStylableDragItem}
+			isWithDragHandle={boolean('isWithDragHandle', true)}
 			top={80}
 			left={200}
+			sourceBhv={'sGone'}
 		>
-			<ColorSwappingDIV>typeA drag container is accepted</ColorSwappingDIV>
+			<ColorSwappingDIV>typeA drag container is accepted, sBhv sGone</ColorSwappingDIV>
+		</DragContainer>
+		<DragContainer<TestItemTypes>
+			{...testStylableDragItem}
+			isWithDragHandle={boolean('isWithDragHandle', true)}
+			top={80}
+			left={200}
+			sourceBhv={'sCopy'}
+		>
+			<ColorSwappingDIV>typeA drag container is accepted, sBhv sCopy</ColorSwappingDIV>
 		</DragContainer>
 		<DragContainer<TestItemTypes>
 			{...testStylableDragItem}
 			id="b"
-			type='typeB'
+			type={'typeB'}
 			top={50}
-			isWithDragHandle={false}
+			isWithDragHandle={boolean('isWithDragHandle', true)}
+			sourceBhv='sGone'
 			left={300}>
-			<ColorSwappingDIV>typeB drag container is not accepted</ColorSwappingDIV>
+			<ColorSwappingDIV>typeB drag container is not accepted, sourceBhv sGone</ColorSwappingDIV>
+		</DragContainer>
+		<DragContainer<TestItemTypes>
+			{...testStylableDragItem}
+			id="b"
+			type={'typeB'}
+			top={50}
+			isWithDragHandle={boolean('isWithDragHandle', true)}
+			sourceBhv='sCopy'
+			left={300}>
+			<ColorSwappingDIV>typeB drag container is not accepted, sourceBhv sCopy</ColorSwappingDIV>
 		</DragContainer>
 		<DropContainer {...testDropContainerProps} style={{ height: '100px', width: '100px' }}>
 			<ColorSwappingDIV>a drop container</ColorSwappingDIV>
@@ -113,5 +139,59 @@ stories.add('minitoolbox', () => (
 		<DropContainer {...testDropContainerProps} style={{ height: '100px', width: '100px' }}>
 			<ColorSwappingDIV>a drop container</ColorSwappingDIV>
 		</DropContainer>
+	</DndProvider>
+));
+
+const testTransitCompProps: StylableTransitComponentProps<TestItemTypes> = {
+	className: 'transit',
+	transitComponents: [
+		{
+			forType: 'typeA',
+			componentFactory: (dragItem) => (props) => (<div>id: {dragItem.id}</div>)
+		},
+		{
+			forType: 'typeB',
+			componentFactory: (dragItem) => (props) => (<div>type: {dragItem.type}</div>)
+		}
+	]
+}
+
+stories.add('transit', () => (
+	<DndProvider backend={DNDBackend}>
+		<TransitComponent {...testTransitCompProps}/>
+		
+		<DragContainer<TestItemTypes>
+			{...testStylableDragItem}
+			id="b"
+			type='typeB'
+			top={50}
+			isWithDragHandle={true}
+			left={300}>
+			<ColorSwappingDIV>a drag container typeB</ColorSwappingDIV>
+		</DragContainer>
+		<DragContainer<TestItemTypes>
+			{...testStylableDragItem}
+			id="b"
+			type='typeA'
+			top={50}
+			isWithDragHandle={false}
+			left={300}>
+			<ColorSwappingDIV>a drag container typeA</ColorSwappingDIV>
+		</DragContainer>
+		<DropContainer {...testDropContainerProps} style={{ height: '100px', width: '100px' }}>
+			<ColorSwappingDIV>a drop container</ColorSwappingDIV>
+		</DropContainer>
+		<DropContainer {...testDropContainerProps} onlyAppearOnDrag={true} acceptedItemTypes={['typeB']}>
+			<ColorSwappingDIV>a drop container</ColorSwappingDIV>
+		</DropContainer>
+		<DragContainer<TestItemTypes>
+			{...testStylableDragItem}
+			id="b"
+			type='typeA'
+			top={200}
+			isWithDragHandle={false}
+			left={100}>
+			<MiniToolBox className='minitoolbox' />
+		</DragContainer>
 	</DndProvider>
 ));
