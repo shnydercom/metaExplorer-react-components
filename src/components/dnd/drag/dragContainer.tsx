@@ -19,8 +19,6 @@ export function DragContainer<TItemType extends string>
 	const [{ isDragging }, drag, /*preview*/] = useDrag<DragItem<TItemType>, DragItem<TItemType>, CollectedProps>({
 		item: {
 			id: props.id,
-			top: props.top,
-			left: props.left,
 			type: props.type,
 			sourceBhv: props.sourceBhv,
 			targetBhv: props.targetBhv
@@ -58,12 +56,7 @@ export function DragContainer<TItemType extends string>
 	}
 	if (props.isWithDragHandle) {
 		return <div ref={preview}
-			className={`${props.className} ${isDragging ? props.className + '-drag' : ''}`}
-			style={{
-				left: props.left,
-				top: props.top
-				//position: 'absolute'
-			}}>
+			className={`${props.className} ${isDragging ? props.className + '-drag' : ''}`}>
 			<div className={`${props.className + '-handle'}`}>
 				<div ref={drag} style={dragOpacityDummy}></div>
 			</div>
@@ -71,12 +64,7 @@ export function DragContainer<TItemType extends string>
 		</div>
 	} else {
 		return <div
-			className={`${props.className} ${isDragging ? props.className + '-drag' : ''}`}
-			style={{
-				left: props.left,
-				top: props.top
-				//position: 'absolute'
-			}}>
+			className={`${props.className} ${isDragging ? props.className + '-drag' : ''}`}>
 			<div style={{ position: 'relative' }}>
 				<div ref={drag} style={dragOpacityDummy}>{returnSourceBehaviour()}</div>
 				{returnSourceBehaviour()}

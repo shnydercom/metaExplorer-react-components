@@ -1,17 +1,13 @@
 import * as React from 'react'
-import { DragItem, IPositionMap } from "../interfaces";
-import { useDrop } from "react-dnd";
+import { DragItem, IPosition } from "../interfaces";
+import { useDrop, XYCoord } from "react-dnd";
 
 export interface StylableDropContainerProps<TItemType extends string> {
-  onItemDropped?: (droppedItem: DragItem<TItemType>) => void;
+  onItemDropped?: (droppedItem: DragItem<TItemType>, position: IPosition) => void;
   acceptedItemTypes: TItemType[] | TItemType;
   onlyAppearOnDrag: boolean;
-  className: string;
-  style?: React.CSSProperties;
-}
-
-export interface ContainerState {
-  positionMap: IPositionMap;
+	className: string;
+	style?: React.CSSProperties;
 }
 
 const draggingCSSProperties: React.CSSProperties = {
@@ -32,13 +28,18 @@ export function DropContainer<TItemType extends string>
       return*/ ({
         isActive: monitor.canDrop() && monitor.isOver(),
         isDragging: monitor.getItem()
-      })
-    /*},
-    drop(item, monitor) {
-      console.log(monitor.getDifferenceFromInitialOffset())
-      return item
-    }*/
+      }),
+    drop(item: DragItem<TItemType>, monitor) {
+      const delta = monitor.getDifferenceFromInitialOffset() as XYCoord
+      const left = Math.round(delta.x)
+      const top = Math.round(delta.y)
+      if (props.onItemDropped) {
+        props.onItemDropped({ ...item }, { top, left });
+      }
+      return { ...item }
+    }
   })
+
   return (
     <div ref={drop} style={props.onlyAppearOnDrag && !isDragging ? { ...props.style, ...draggingCSSProperties } : { ...props.style }}
       className={`${props.className} ${isActive ? props.className + '-active' : ''}`}

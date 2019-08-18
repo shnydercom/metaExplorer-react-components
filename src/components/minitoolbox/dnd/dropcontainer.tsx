@@ -62,7 +62,6 @@ export const DropContainer: React.FC<ContainerProps> = (props) => {
       left: number
     }
   }>({
-    a: { ...initialPosition }
   })
 
   const [, drop] = useDrop({

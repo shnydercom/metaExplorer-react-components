@@ -9,7 +9,7 @@ import { DropContainer, StylableDropContainerProps } from './drop/dropContainer'
 import { TransitComponent } from './transit/transitComponent';
 import { DragItem, StylableDragItemProps, StylableTransitComponentProps } from "./interfaces";
 import { MiniToolBox } from './../minitoolbox/dnd/minitoolbox';
-import { withKnobs, boolean, select} from '@storybook/addon-knobs';
+import { withKnobs, boolean, select } from '@storybook/addon-knobs';
 
 const stories = storiesOf('dnd', module);
 stories.addDecorator(withKnobs);
@@ -158,8 +158,8 @@ const testTransitCompProps: StylableTransitComponentProps<TestItemTypes> = {
 
 stories.add('transit', () => (
 	<DndProvider backend={DNDBackend}>
-		<TransitComponent {...testTransitCompProps}/>
-		
+		<TransitComponent {...testTransitCompProps} />
+
 		<DragContainer<TestItemTypes>
 			{...testStylableDragItem}
 			id="b"

@@ -1,6 +1,7 @@
 import { withKnobs, text } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import * as React from 'react';
+import update from 'immutability-helper'
 
 import './../treeview/treeview.scss';
 import './editor-dnd.scss'
@@ -11,6 +12,8 @@ import { DndProvider } from "react-dnd";
 import HTML5Backend from 'react-dnd-html5-backend';
 import { DropContainer, StylableDropContainerProps } from "./drop/dropContainer";
 import { DragContainer } from "./drag/dragContainer";
+import { MoveContainer } from "./move/moveContainer"
+import { MiniToolBox } from "../minitoolbox/dnd/minitoolbox";
 
 const stories = storiesOf('dnd-itpt-editor', module);
 stories.addDecorator(withKnobs);
@@ -34,8 +37,6 @@ const itptItmStyles = {
 
 const editorDragItem: DragItem<EditorItemTypes> = {
 	id: 'a',
-	left: 0,
-	top: 0,
 	type: 'block',
 	sourceBhv: 'sCopy',
 	targetBhv: 'tGone'
@@ -71,7 +72,7 @@ const itptEditorTransitComponent: StylableTransitComponentProps<EditorItemTypes>
 	transitComponents: [
 		{
 			forType: 'block',
-			componentFactory: (dragItem) => (props) => (<TreeItemDragContainer>{dragItem.left}</TreeItemDragContainer>)
+			componentFactory: (dragItem) => (props) => (<TreeItemDragContainer>{dragItem.id}</TreeItemDragContainer>)
 		},
 		{
 			forType: 'previewWindow',
@@ -81,8 +82,8 @@ const itptEditorTransitComponent: StylableTransitComponentProps<EditorItemTypes>
 }
 
 const itptEditorDropContainerProps: StylableDropContainerProps<EditorItemTypes> = {
-	onlyAppearOnDrag: true,
-	acceptedItemTypes: 'block',
+	onlyAppearOnDrag: false,
+	acceptedItemTypes: ['block', "previewWindow"],
 	className: 'editor-dropcontainer'
 }
 
@@ -91,7 +92,7 @@ const backStyle: React.CSSProperties = {
 	zIndex: 0, pointerEvents: "none"
 }
 
-stories.add('integration', () => (
+stories.add('integration-simple', () => (
 	<DndProvider backend={DNDBackend}>
 		<div style={{ width: "100%", height: "300px", position: 'relative' }}>
 			<div style={backStyle} onMouseOver={(event) => event.currentTarget.style.setProperty('background-color', 'grey')}
@@ -99,7 +100,8 @@ stories.add('integration', () => (
 				something in the back
 		</div>
 			<TransitComponent {...itptEditorTransitComponent} />
-			<DropContainer {...itptEditorDropContainerProps} style={{ height: '100%', width: '100%', backgroundColor: 'red', pointerEvents: "all", visibility: 'visible', opacity: 1, zIndex: 999 }}>
+			<DropContainer {...itptEditorDropContainerProps}
+				style={{ height: '100%', width: '100%', backgroundColor: 'red', pointerEvents: "all", visibility: 'visible', opacity: 1, zIndex: 999 }}>
 				a drop container
 			</DropContainer>
 			<div style={{ height: '100%', width: '200px', position: "absolute", left: 0, top: 0 }}>
@@ -109,4 +111,84 @@ stories.add('integration', () => (
 			</div>
 		</div>
 	</DndProvider>
+));
+
+
+const mtbDragItem: DragItem<EditorItemTypes> = {
+	id: 'mtb',
+	type: 'previewWindow',
+	sourceBhv: 'sCopy',
+	targetBhv: 'tGone'
+}
+
+const mtbStylableDragItem: StylableDragItemProps<EditorItemTypes> = {
+	...mtbDragItem,
+	isWithDragHandle: false,
+	className: 'mtb-dragcontainer'
+}
+
+const MTBItemDragContainer = (props) => {
+	return <DragContainer<EditorItemTypes>
+		{...mtbStylableDragItem}
+	>
+		<div style={{ ...itptItmStyles }}>{props.children}</div>
+	</DragContainer >
+}
+
+const IntegTest = (props) => {
+	const [internalPositions, setInternalPositions] = React.useState<{
+		[key: string]: {
+			top: number
+			left: number
+		}
+	}>({
+		mtb: { top: 20, left: 50 }
+	})
+
+	const moveInternalPositions = (id: string, left: number, top: number) => {
+		setInternalPositions(
+			update(internalPositions, {
+				[id]: {
+					$merge: { top, left },
+				},
+			}),
+		)
+	}
+
+	return (
+		<DndProvider backend={DNDBackend}>
+			<div style={{ width: "100%", height: "300px", position: 'relative' }}>
+				<div style={backStyle} onMouseOver={(event) => event.currentTarget.style.setProperty('background-color', 'grey')}
+					onMouseOut={(event) => event.currentTarget.style.setProperty('background-color', 'blue')}>
+					something in the back
+		</div>
+				<TransitComponent {...itptEditorTransitComponent} />
+				<DropContainer {...itptEditorDropContainerProps}
+					onItemDropped={(item, pos) => moveInternalPositions(item.id, pos.left, pos.top)}
+					style={{ height: '100%', width: '100%', backgroundColor: 'red', pointerEvents: "all", visibility: 'visible', opacity: 1, zIndex: 999 }}>
+					a drop container
+			</DropContainer>
+				<MoveContainer
+					className=''
+					positionMap={{
+						mtb: {
+							pos: internalPositions['mtb'],
+							child: <MTBItemDragContainer>
+								<MiniToolBox className='minitoolbox'></MiniToolBox>
+							</MTBItemDragContainer>
+						}
+					}}
+				/>
+				<div style={{ height: '100%', width: '200px', position: "absolute", left: 0, top: 0 }}>
+					<TreeView entry={itptDesignerTreeItem1} >{
+						text("description Special", "when hovering over field on the right, should become grey. When dragging, should'nt")
+					}</TreeView>
+				</div>
+			</div>
+		</DndProvider>
+	)
+}
+
+stories.add('integration-minitoolbox', () => (
+	<IntegTest />
 ));
