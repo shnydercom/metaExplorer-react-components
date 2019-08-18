@@ -10,7 +10,8 @@ const dragOpacityDummy: React.CSSProperties = {
 	width: '100%',
 	height: '100%',
 	opacity: 0,
-	position: 'absolute'
+	position: 'absolute',
+	pointerEvents: "all"
 }
 
 export function DragContainer<TItemType extends string>

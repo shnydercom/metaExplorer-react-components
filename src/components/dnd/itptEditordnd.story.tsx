@@ -76,7 +76,7 @@ const itptEditorTransitComponent: StylableTransitComponentProps<EditorItemTypes>
 		},
 		{
 			forType: 'previewWindow',
-			componentFactory: (dragItem) => (props) => (<div>type: {dragItem.type}</div>)
+			componentFactory: (dragItem) => (props) => (<MiniToolBox className='minitoolbox'></MiniToolBox>)
 		}
 	]
 }
@@ -117,13 +117,13 @@ stories.add('integration-simple', () => (
 const mtbDragItem: DragItem<EditorItemTypes> = {
 	id: 'mtb',
 	type: 'previewWindow',
-	sourceBhv: 'sCopy',
-	targetBhv: 'tGone'
+	sourceBhv: 'sGone',
+	targetBhv: 'tCopy'
 }
 
 const mtbStylableDragItem: StylableDragItemProps<EditorItemTypes> = {
 	...mtbDragItem,
-	isWithDragHandle: false,
+	isWithDragHandle: true,
 	className: 'mtb-dragcontainer'
 }
 
@@ -131,7 +131,7 @@ const MTBItemDragContainer = (props) => {
 	return <DragContainer<EditorItemTypes>
 		{...mtbStylableDragItem}
 	>
-		<div style={{ ...itptItmStyles }}>{props.children}</div>
+		<div>{props.children}</div>
 	</DragContainer >
 }
 
@@ -142,7 +142,7 @@ const IntegTest = (props) => {
 			left: number
 		}
 	}>({
-		mtb: { top: 20, left: 50 }
+		mtb: { top: 20, left: 200 }
 	})
 
 	const moveInternalPositions = (id: string, left: number, top: number) => {
@@ -166,10 +166,9 @@ const IntegTest = (props) => {
 				<DropContainer {...itptEditorDropContainerProps}
 					onItemDropped={(item, pos) => moveInternalPositions(item.id, pos.left, pos.top)}
 					style={{ height: '100%', width: '100%', backgroundColor: 'red', pointerEvents: "all", visibility: 'visible', opacity: 1, zIndex: 999 }}>
-					a drop container
 			</DropContainer>
 				<MoveContainer
-					className=''
+					className='editor-movecontainer'
 					positionMap={{
 						mtb: {
 							pos: internalPositions['mtb'],

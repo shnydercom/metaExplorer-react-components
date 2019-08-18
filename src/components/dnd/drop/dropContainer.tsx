@@ -21,18 +21,15 @@ export function DropContainer<TItemType extends string>
   const [{ isActive, isDragging }, drop] = useDrop({
     hover: (itm) => { console.log(itm) },
     accept: props.acceptedItemTypes,
-    collect: monitor => /*{
-      console.log(monitor.canDrop());
-      console.log(monitor.getItem())
-      console.log(props.acceptedItemTypes)
-      return*/ ({
+    collect: monitor => ({
         isActive: monitor.canDrop() && monitor.isOver(),
         isDragging: monitor.getItem()
       }),
     drop(item: DragItem<TItemType>, monitor) {
-      const delta = monitor.getDifferenceFromInitialOffset() as XYCoord
-      const left = Math.round(delta.x)
-      const top = Math.round(delta.y)
+      const initial = monitor.getInitialSourceClientOffset() as XYCoord;
+      const delta = monitor.getDifferenceFromInitialOffset() as XYCoord;
+      const left = Math.round(delta.x+ initial.x)
+      const top = Math.round(delta.y + initial.y)
       if (props.onItemDropped) {
         props.onItemDropped({ ...item }, { top, left });
       }

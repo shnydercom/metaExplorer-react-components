@@ -2,6 +2,7 @@ import { IPositionMap } from "../interfaces";
 import * as React from 'react'
 import update from 'immutability-helper'
 import { MoveWrapper } from './moveWrapper';
+import { useDragLayer } from "react-dnd";
 
 export interface MoveContainerProps {
 	className: string;
@@ -10,12 +11,31 @@ export interface MoveContainerProps {
 }
 
 const childrenContainerCSS: React.CSSProperties = {
-  position: "relative",
-  height: '100%',
-  width: '100%'
+	position: "relative",
+	height: '100%',
+	width: '100%'
 }
 
 export function MoveContainer(props: MoveContainerProps) {
+
+	const {
+		itemType,
+		isDragging,
+		item,
+		initialOffset,
+		initialClientOffset,
+		currentOffset,
+	} = useDragLayer(monitor => {
+		return {
+			item: monitor.getItem(),
+			itemType: monitor.getItemType(),
+			initialClientOffset: monitor.getInitialClientOffset(),
+			initialOffset: monitor.getInitialSourceClientOffset(),
+			currentOffset: monitor.getSourceClientOffset(),
+			isDragging: monitor.isDragging(),
+		}
+	}
+	)
 
 	React.useEffect(() => {
 		const posMap = props.positionMap;
@@ -51,20 +71,22 @@ export function MoveContainer(props: MoveContainerProps) {
 	}
 
 	return (
-		<div style={childrenContainerCSS}>
-			{(Object.keys(internalPositions).map((key, idx) => {
-				const { left, top } = internalPositions[key];
-				const newChildProps = { left, top };
-				const newChild = props.positionMap[key].child;
-				if (!newChild) return null;
-				return (
-					<MoveWrapper
-						{...newChildProps}>
-						{newChild}
-					</MoveWrapper>
-				);
-			}))
-			}
+		<div className={`${props.className}`} style={{pointerEvents: isDragging ? 'none' : 'all' }}>
+			<div style={childrenContainerCSS}>
+				{(Object.keys(internalPositions).map((key, idx) => {
+					const { left, top } = internalPositions[key];
+					const newChildProps = { left, top };
+					const newChild = props.positionMap[key].child;
+					if (!newChild) return null;
+					return (
+						<MoveWrapper
+							{...newChildProps}>
+							{newChild}
+						</MoveWrapper>
+					);
+				}))
+				}
+			</div>
 		</div>
 	)
 }

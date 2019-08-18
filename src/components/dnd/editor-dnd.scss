@@ -15,6 +15,46 @@
 		background-color: yellow;
 		border-radius: 50%;
 		position: absolute;
+
+		&-dragging {
+			opacity: 0;
+		}
+	}
+}
+
+.mtb-dragcontainer {
+
+	&-drag {
+		opacity: 0;
+	}
+
+	&-handle {
+		top: 10px;
+		left: 163px;
+		position: absolute;
+		z-index: 999;
+		width: 36px;
+		height: 36px;
+		border: solid 0px;
+		border-radius: 50%;
+		background-color: #00375fc8;
+		transition: all 250ms;
+		display: block;
+		opacity: 1;
+
+		&::before {
+			position: absolute;
+			content: '';
+			width: 24px;
+			height: 24px;
+			margin: auto;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			background-image: url("/static/move.svg");
+		}
+
 		&-dragging {
 			opacity: 0;
 		}
@@ -30,6 +70,12 @@
 	}
 }
 
-.editor-transit {
-	
+.editor-transit {}
+
+.editor-movecontainer {
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
 }
