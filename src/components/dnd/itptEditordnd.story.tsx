@@ -19,6 +19,7 @@ const stories = storiesOf('dnd-itpt-editor', module);
 stories.addDecorator(withKnobs);
 let DNDBackend = HTML5Backend;
 
+type TestDataType = string;
 export const ItemTypes: { [s: string]: EditorItemTypes } = {
 	previewWindow: 'previewWindow',
 	Block: 'block'
@@ -35,21 +36,22 @@ const itptItmStyles = {
 	"marginBottom": "3px"
 }
 
-const editorDragItem: DragItem<EditorItemTypes> = {
+const editorDragItem: DragItem<EditorItemTypes, TestDataType> = {
 	id: 'a',
 	type: 'block',
 	sourceBhv: 'sCopy',
-	targetBhv: 'tGone'
+	targetBhv: 'tGone',
+	data: ''
 }
 
-const editorStylableDragItem: StylableDragItemProps<EditorItemTypes> = {
+const editorStylableDragItem: StylableDragItemProps<EditorItemTypes, TestDataType> = {
 	...editorDragItem,
 	isWithDragHandle: false,
 	className: 'block-dragcontainer'
 }
 
 const TreeItemDragContainer = (props) => {
-	return <DragContainer<EditorItemTypes>
+	return <DragContainer<EditorItemTypes, TestDataType>
 		{...editorStylableDragItem}
 	>
 		<div style={{ ...itptItmStyles }}>{props.children}</div>
@@ -67,7 +69,7 @@ const itptDesignerTreeItem1: TreeEntry = {
 	subEntries: []
 }
 
-const itptEditorTransitComponent: StylableTransitComponentProps<EditorItemTypes> = {
+const itptEditorTransitComponent: StylableTransitComponentProps<EditorItemTypes, TestDataType> = {
 	className: 'editor-transit',
 	transitComponents: [
 		{
@@ -81,7 +83,7 @@ const itptEditorTransitComponent: StylableTransitComponentProps<EditorItemTypes>
 	]
 }
 
-const itptEditorDropContainerProps: StylableDropContainerProps<EditorItemTypes> = {
+const itptEditorDropContainerProps: StylableDropContainerProps<EditorItemTypes, TestDataType> = {
 	onlyAppearOnDrag: false,
 	acceptedItemTypes: ['block', "previewWindow"],
 	className: 'editor-dropcontainer'
@@ -114,21 +116,22 @@ stories.add('integration-simple', () => (
 ));
 
 
-const mtbDragItem: DragItem<EditorItemTypes> = {
+const mtbDragItem: DragItem<EditorItemTypes, TestDataType> = {
 	id: 'mtb',
 	type: 'previewWindow',
 	sourceBhv: 'sGone',
-	targetBhv: 'tCopy'
+	targetBhv: 'tCopy',
+	data: ''
 }
 
-const mtbStylableDragItem: StylableDragItemProps<EditorItemTypes> = {
+const mtbStylableDragItem: StylableDragItemProps<EditorItemTypes, TestDataType> = {
 	...mtbDragItem,
 	isWithDragHandle: true,
 	className: 'mtb-dragcontainer'
 }
 
 const MTBItemDragContainer = (props) => {
-	return <DragContainer<EditorItemTypes>
+	return <DragContainer<EditorItemTypes, TestDataType>
 		{...mtbStylableDragItem}
 	>
 		<div>{props.children}</div>

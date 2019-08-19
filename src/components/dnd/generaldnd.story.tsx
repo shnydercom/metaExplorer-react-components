@@ -15,6 +15,7 @@ const stories = storiesOf('dnd', module);
 stories.addDecorator(withKnobs);
 
 type TestItemTypes = "typeA" | "typeB";
+type TestDataType = string;
 
 const ColorSwappingDIV = (props) => {
 	const randomColor = '#' + (Math.random() * 0xFFFFFF << 0).toString(16);
@@ -24,16 +25,15 @@ const ColorSwappingDIV = (props) => {
 	}}>{props.children}</div>);
 }
 
-const testDataDragItem: DragItem<TestItemTypes> = {
+const testDataDragItem: DragItem<TestItemTypes, TestDataType> = {
 	id: 'a',
-	left: 0,
-	top: 0,
 	type: 'typeA',
 	sourceBhv: 'sCopy',
-	targetBhv: 'tCopy'
+	targetBhv: 'tCopy',
+	data: ''
 }
 
-const testStylableDragItem: StylableDragItemProps<TestItemTypes> = {
+const testStylableDragItem: StylableDragItemProps<TestItemTypes, TestDataType> = {
 	...testDataDragItem,
 	isWithDragHandle: true,
 	className: 'dragcontainer'
@@ -57,15 +57,13 @@ stories.add('dragContainers', () => (
 		</DragContainer>
 		<DragContainer
 			{...testStylableDragItem}
-			id="b"
-			top={200}
-			left={300}>
+			id="b">
 			<ColorSwappingDIV>testing a drag container "b"</ColorSwappingDIV>
 		</DragContainer>
 	</DndProvider>
 ));
 
-const testDropContainerProps: StylableDropContainerProps<TestItemTypes> = {
+const testDropContainerProps: StylableDropContainerProps<TestItemTypes, TestDataType> = {
 	onlyAppearOnDrag: false,
 	acceptedItemTypes: ['typeA'],
 	className: 'dropcontainer'
@@ -81,42 +79,34 @@ stories.add('dropContainer', () => (
 
 stories.add('dropContainers', () => (
 	<DndProvider backend={DNDBackend}>
-		<DragContainer<TestItemTypes>
+		<DragContainer<TestItemTypes, TestDataType>
 			{...testStylableDragItem}
 			isWithDragHandle={boolean('isWithDragHandle', true)}
-			top={80}
-			left={200}
 			sourceBhv={'sGone'}
 		>
 			<ColorSwappingDIV>typeA drag container is accepted, sBhv sGone</ColorSwappingDIV>
 		</DragContainer>
-		<DragContainer<TestItemTypes>
+		<DragContainer<TestItemTypes, TestDataType>
 			{...testStylableDragItem}
 			isWithDragHandle={boolean('isWithDragHandle', true)}
-			top={80}
-			left={200}
 			sourceBhv={'sCopy'}
 		>
 			<ColorSwappingDIV>typeA drag container is accepted, sBhv sCopy</ColorSwappingDIV>
 		</DragContainer>
-		<DragContainer<TestItemTypes>
+		<DragContainer<TestItemTypes, TestDataType>
 			{...testStylableDragItem}
 			id="b"
 			type={'typeB'}
-			top={50}
 			isWithDragHandle={boolean('isWithDragHandle', true)}
-			sourceBhv='sGone'
-			left={300}>
+			sourceBhv='sGone'>
 			<ColorSwappingDIV>typeB drag container is not accepted, sourceBhv sGone</ColorSwappingDIV>
 		</DragContainer>
-		<DragContainer<TestItemTypes>
+		<DragContainer<TestItemTypes, TestDataType>
 			{...testStylableDragItem}
 			id="b"
 			type={'typeB'}
-			top={50}
 			isWithDragHandle={boolean('isWithDragHandle', true)}
-			sourceBhv='sCopy'
-			left={300}>
+			sourceBhv='sCopy'>
 			<ColorSwappingDIV>typeB drag container is not accepted, sourceBhv sCopy</ColorSwappingDIV>
 		</DragContainer>
 		<DropContainer {...testDropContainerProps} style={{ height: '100px', width: '100px' }}>
@@ -127,13 +117,11 @@ stories.add('dropContainers', () => (
 
 stories.add('minitoolbox', () => (
 	<DndProvider backend={DNDBackend}>
-		<DragContainer<TestItemTypes>
+		<DragContainer<TestItemTypes, TestDataType>
 			{...testStylableDragItem}
 			id="b"
 			type='typeA'
-			top={50}
-			isWithDragHandle={false}
-			left={300}>
+			isWithDragHandle={false}>
 			<MiniToolBox className='minitoolbox' />
 		</DragContainer>
 		<DropContainer {...testDropContainerProps} style={{ height: '100px', width: '100px' }}>
@@ -142,7 +130,7 @@ stories.add('minitoolbox', () => (
 	</DndProvider>
 ));
 
-const testTransitCompProps: StylableTransitComponentProps<TestItemTypes> = {
+const testTransitCompProps: StylableTransitComponentProps<TestItemTypes, TestDataType> = {
 	className: 'transit',
 	transitComponents: [
 		{
@@ -160,22 +148,18 @@ stories.add('transit', () => (
 	<DndProvider backend={DNDBackend}>
 		<TransitComponent {...testTransitCompProps} />
 
-		<DragContainer<TestItemTypes>
+		<DragContainer<TestItemTypes, TestDataType>
 			{...testStylableDragItem}
 			id="b"
 			type='typeB'
-			top={50}
-			isWithDragHandle={true}
-			left={300}>
+			isWithDragHandle={true}>
 			<ColorSwappingDIV>a drag container typeB</ColorSwappingDIV>
 		</DragContainer>
-		<DragContainer<TestItemTypes>
+		<DragContainer<TestItemTypes, TestDataType>
 			{...testStylableDragItem}
 			id="b"
 			type='typeA'
-			top={50}
-			isWithDragHandle={false}
-			left={300}>
+			isWithDragHandle={false}>
 			<ColorSwappingDIV>a drag container typeA</ColorSwappingDIV>
 		</DragContainer>
 		<DropContainer {...testDropContainerProps} style={{ height: '100px', width: '100px' }}>
@@ -184,13 +168,11 @@ stories.add('transit', () => (
 		<DropContainer {...testDropContainerProps} onlyAppearOnDrag={true} acceptedItemTypes={['typeB']}>
 			<ColorSwappingDIV>a drop container</ColorSwappingDIV>
 		</DropContainer>
-		<DragContainer<TestItemTypes>
+		<DragContainer<TestItemTypes, TestDataType>
 			{...testStylableDragItem}
 			id="b"
 			type='typeA'
-			top={200}
-			isWithDragHandle={false}
-			left={100}>
+			isWithDragHandle={false}>
 			<MiniToolBox className='minitoolbox' />
 		</DragContainer>
 	</DndProvider>
