@@ -39,8 +39,8 @@ function getItemStyles(
 	}
 }
 
-export function TransitComponent<TItemType extends string>
-	(props: React.PropsWithChildren<StylableTransitComponentProps<TItemType>>) {
+export function TransitComponent<TItemType extends string, TData>
+	(props: React.PropsWithChildren<StylableTransitComponentProps<TItemType, TData>>) {
 	const {
 		itemType,
 		isDragging,

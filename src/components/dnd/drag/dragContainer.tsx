@@ -14,15 +14,16 @@ const dragOpacityDummy: React.CSSProperties = {
 	pointerEvents: "all"
 }
 
-export function DragContainer<TItemType extends string>
-	(props: React.PropsWithChildren<StylableDragItemProps<TItemType>>) {
+export function DragContainer<TItemType extends string, TData>
+	(props: React.PropsWithChildren<StylableDragItemProps<TItemType, TData>>) {
 	let preview = null;
-	const [{ isDragging }, drag, /*preview*/] = useDrag<DragItem<TItemType>, DragItem<TItemType>, CollectedProps>({
+	const [{ isDragging }, drag, /*preview*/] = useDrag<DragItem<TItemType, TData>, DragItem<TItemType, TData>, CollectedProps>({
 		item: {
 			id: props.id,
 			type: props.type,
 			sourceBhv: props.sourceBhv,
-			targetBhv: props.targetBhv
+			targetBhv: props.targetBhv,
+			data: props.data
 		},
 		collect: monitor => ({
 			isDragging: monitor.isDragging()

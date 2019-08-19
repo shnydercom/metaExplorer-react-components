@@ -2,8 +2,8 @@ import * as React from 'react'
 import { DragItem, IPosition } from "../interfaces";
 import { useDrop, XYCoord } from "react-dnd";
 
-export interface StylableDropContainerProps<TItemType extends string> {
-  onItemDropped?: (droppedItem: DragItem<TItemType>, position: IPosition) => void;
+export interface StylableDropContainerProps<TItemType extends string, TData> {
+  onItemDropped?: (droppedItem: DragItem<TItemType, TData>, position: IPosition) => void;
   acceptedItemTypes: TItemType[] | TItemType;
   onlyAppearOnDrag: boolean;
 	className: string;
@@ -16,8 +16,8 @@ const draggingCSSProperties: React.CSSProperties = {
   visibility: "hidden"
 }
 
-export function DropContainer<TItemType extends string>
-  (props: React.PropsWithChildren<StylableDropContainerProps<TItemType>>) {
+export function DropContainer<TItemType extends string, TData>
+  (props: React.PropsWithChildren<StylableDropContainerProps<TItemType, TData>>) {
   const [{ isActive, isDragging }, drop] = useDrop({
     hover: (itm) => { console.log(itm) },
     accept: props.acceptedItemTypes,
@@ -25,7 +25,7 @@ export function DropContainer<TItemType extends string>
         isActive: monitor.canDrop() && monitor.isOver(),
         isDragging: monitor.getItem()
       }),
-    drop(item: DragItem<TItemType>, monitor) {
+    drop(item: DragItem<TItemType, TData>, monitor) {
       const initial = monitor.getInitialSourceClientOffset() as XYCoord;
       const delta = monitor.getDifferenceFromInitialOffset() as XYCoord;
       const left = Math.round(delta.x+ initial.x)

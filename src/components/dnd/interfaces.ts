@@ -3,35 +3,35 @@ import { ReactNode } from "react";
 export type SourceBehaviour = "sGone" | "sCopy";
 export type TargetBehaviour = "tGone" | "tCopy";
 
-export interface DragItem<TItemType extends string> {
+export interface DragItem<TItemType extends string, TData> {
 	type: TItemType;
 	id: string;
 	sourceBhv: SourceBehaviour;
 	targetBhv: TargetBehaviour;
-	data?: any;
+	data: TData;
 }
 
-export interface DragItemInternal<TItemType extends string> extends DragItem<TItemType> {
+export interface DragItemInternal<TItemType extends string, TData> extends DragItem<TItemType, TData> {
 	id: string;
 	top: number;
 	left: number;
 }
 
-export interface StylableDragItemProps<TItemType extends string>
-	extends DragItem<TItemType> {
+export interface StylableDragItemProps<TItemType extends string, TData>
+	extends DragItem<TItemType, TData> {
 	className: string;
 	onOverDragHandle?: () => void;
 	onOutDragHandle?: () => void;
 	isWithDragHandle: boolean;
 }
 
-export interface ITransitComp<TItemType extends string> {
+export interface ITransitComp<TItemType extends string, TData> {
 	forType: TItemType,
-	componentFactory: IComponentFactory<TItemType>
+	componentFactory: IComponentFactory<TItemType, TData>
 }
 
-export interface StylableTransitComponentProps<TItemType extends string> {
-	transitComponents: ITransitComp<TItemType>[];
+export interface StylableTransitComponentProps<TItemType extends string, TData> {
+	transitComponents: ITransitComp<TItemType, TData>[];
 	className: string;
 	style?: React.CSSProperties;
 }
@@ -44,7 +44,7 @@ export const dragItemsToPositionMap = (inputs: DragItem<any>[]): IPositionMap =>
 	return rv;
 }*/
 
-export type IComponentFactory<TItemType extends string> = (dragItem: DragItem<TItemType>) => React.FC<DragItem<TItemType>>;
+export type IComponentFactory<TItemType extends string, TData> = (dragItem: DragItem<TItemType, TData>) => React.FC<DragItem<TItemType, TData>>;
 
 export type IPosition = { top: number; left: number; };
 export type IPositionMap = {
