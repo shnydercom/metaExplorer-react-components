@@ -10,12 +10,6 @@ export interface MoveContainerProps {
 	style?: React.CSSProperties;
 }
 
-const childrenContainerCSS: React.CSSProperties = {
-	position: "relative",
-	height: '100%',
-	width: '100%'
-}
-
 export function MoveContainer(props: MoveContainerProps) {
 
 	const {
@@ -70,8 +64,16 @@ export function MoveContainer(props: MoveContainerProps) {
 		)
 	}
 
+	const childrenContainerCSS: React.CSSProperties = {
+		position: "relative",
+		height: '100%',
+		width: '100%'
+	}
+
 	return (
-		<div className={`${props.className}`} style={{pointerEvents: isDragging ? 'none' : 'all' }}>
+		<div className={`${props.className}`} style={{visibility: isDragging ? 'hidden' : 'inherit',
+		pointerEvents: 'none'
+		}}>
 			<div style={childrenContainerCSS}>
 				{(Object.keys(internalPositions).map((key, idx) => {
 					const { left, top } = internalPositions[key];

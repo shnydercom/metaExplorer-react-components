@@ -84,14 +84,14 @@ const itptEditorTransitComponent: StylableTransitComponentProps<EditorItemTypes,
 }
 
 const itptEditorDropContainerProps: StylableDropContainerProps<EditorItemTypes, TestDataType> = {
-	onlyAppearOnDrag: false,
+	onlyAppearOnDrag: true,
 	acceptedItemTypes: ['block', "previewWindow"],
 	className: 'editor-dropcontainer'
 }
 
 const backStyle: React.CSSProperties = {
 	width: "100%", height: "100%", position: 'absolute', left: 0, top: 0, backgroundColor: 'blue', opacity: .5,
-	zIndex: 0, pointerEvents: "none"
+	zIndex: 0, pointerEvents: "all"
 }
 
 stories.add('integration-simple', () => (
@@ -108,7 +108,7 @@ stories.add('integration-simple', () => (
 			</DropContainer>
 			<div style={{ height: '100%', width: '200px', position: "absolute", left: 0, top: 0 }}>
 				<TreeView entry={itptDesignerTreeItem1} >{
-					text("description Special", "when hovering over field on the right, should become grey. When dragging, should'nt")
+					text("description Special",  "when hovering over field on the right, should become grey. When dragging, should'nt")
 				}</TreeView>
 			</div>
 		</div>
@@ -168,7 +168,7 @@ const IntegTest = (props) => {
 				<TransitComponent {...itptEditorTransitComponent} />
 				<DropContainer {...itptEditorDropContainerProps}
 					onItemDropped={(item, pos) => moveInternalPositions(item.id, pos.left, pos.top)}
-					style={{ height: '100%', width: '100%', backgroundColor: 'red', pointerEvents: "all", visibility: 'visible', opacity: 1, zIndex: 999 }}>
+					style={{ height: '100%', width: '100%', backgroundColor: 'red', opacity: 0.5 }}>
 			</DropContainer>
 				<MoveContainer
 					className='editor-movecontainer'
@@ -183,7 +183,7 @@ const IntegTest = (props) => {
 				/>
 				<div style={{ height: '100%', width: '200px', position: "absolute", left: 0, top: 0 }}>
 					<TreeView entry={itptDesignerTreeItem1} >{
-						text("description Special", "when hovering over field on the right, should become grey. When dragging, should'nt")
+						text("description Special","when hovering over field on the right should turn grey, when hovering over minitoolobx should be blue-ish, when dragging red-ish")
 					}</TreeView>
 				</div>
 			</div>

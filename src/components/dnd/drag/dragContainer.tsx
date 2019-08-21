@@ -32,8 +32,8 @@ export function DragContainer<TItemType extends string, TData>
 			console.log(item)
 			if (monitor.didDrop()) {
 				console.log(monitor.didDrop())
-			}else{
-				
+			} else {
+
 				console.log(monitor.didDrop())
 			}
 		}
@@ -56,8 +56,11 @@ export function DragContainer<TItemType extends string, TData>
 		}
 		return returnContent();
 	}
+
+	const dragStyle: React.CSSProperties = { pointerEvents: isDragging ? 'none' : 'all' };
 	if (props.isWithDragHandle) {
 		return <div ref={preview}
+			style={dragStyle}
 			className={`${props.className} ${isDragging ? props.className + '-drag' : ''}`}>
 			<div className={`${props.className + '-handle'}`}>
 				<div ref={drag} style={dragOpacityDummy}></div>
@@ -66,6 +69,7 @@ export function DragContainer<TItemType extends string, TData>
 		</div>
 	} else {
 		return <div
+			style={dragStyle}
 			className={`${props.className} ${isDragging ? props.className + '-drag' : ''}`}>
 			<div style={{ position: 'relative' }}>
 				<div ref={drag} style={dragOpacityDummy}>{returnSourceBehaviour()}</div>
