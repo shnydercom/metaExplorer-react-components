@@ -71,7 +71,7 @@ export function MoveContainer(props: MoveContainerProps) {
 	}
 
 	return (
-		<div className={`${props.className}`} style={{visibility: isDragging ? 'hidden' : 'inherit',
+		<div className={`${props.className}`} style={{//visibility: isDragging ? 'hidden' : 'inherit',
 		pointerEvents: 'none'
 		}}>
 			<div style={childrenContainerCSS}>

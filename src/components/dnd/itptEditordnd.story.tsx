@@ -33,7 +33,9 @@ const itptItmStyles = {
 	border: "solid 1px",
 	"borderRadius": "5px",
 	"padding": "5px",
-	"marginBottom": "3px"
+	"marginBottom": "3px",
+	height: '200px',
+	width: '300px'
 }
 
 const editorDragItem: DragItem<EditorItemTypes, TestDataType> = {
@@ -103,12 +105,12 @@ stories.add('integration-simple', () => (
 		</div>
 			<TransitComponent {...itptEditorTransitComponent} />
 			<DropContainer {...itptEditorDropContainerProps}
-				style={{ height: '100%', width: '100%', backgroundColor: 'red', pointerEvents: "all", visibility: 'visible', opacity: 1, zIndex: 999 }}>
+				style={{ height: '100%', width: '100%', backgroundColor: 'red', opacity: 0.5 }}>
 				a drop container
 			</DropContainer>
 			<div style={{ height: '100%', width: '200px', position: "absolute", left: 0, top: 0 }}>
 				<TreeView entry={itptDesignerTreeItem1} >{
-					text("description Special",  "when hovering over field on the right, should become grey. When dragging, should'nt")
+					text("description Special", "when hovering over field on the right, should become grey. When dragging, should'nt")
 				}</TreeView>
 			</div>
 		</div>
@@ -119,7 +121,7 @@ stories.add('integration-simple', () => (
 const mtbDragItem: DragItem<EditorItemTypes, TestDataType> = {
 	id: 'mtb',
 	type: 'previewWindow',
-	sourceBhv: 'sGone',
+	sourceBhv: 'sCopy',
 	targetBhv: 'tCopy',
 	data: ''
 }
@@ -169,7 +171,7 @@ const IntegTest = (props) => {
 				<DropContainer {...itptEditorDropContainerProps}
 					onItemDropped={(item, pos) => moveInternalPositions(item.id, pos.left, pos.top)}
 					style={{ height: '100%', width: '100%', backgroundColor: 'red', opacity: 0.5 }}>
-			</DropContainer>
+				</DropContainer>
 				<MoveContainer
 					className='editor-movecontainer'
 					positionMap={{
@@ -183,7 +185,7 @@ const IntegTest = (props) => {
 				/>
 				<div style={{ height: '100%', width: '200px', position: "absolute", left: 0, top: 0 }}>
 					<TreeView entry={itptDesignerTreeItem1} >{
-						text("description Special","when hovering over field on the right should turn grey, when hovering over minitoolobx should be blue-ish, when dragging red-ish")
+						text("description Special", "when hovering over field on the right should turn grey, when hovering over minitoolobx should be blue-ish, when dragging red-ish")
 					}</TreeView>
 				</div>
 			</div>
