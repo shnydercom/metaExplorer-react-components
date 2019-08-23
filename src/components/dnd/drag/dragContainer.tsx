@@ -13,7 +13,9 @@ const dragOpacityDummy: React.CSSProperties = {
 	left: 0,
 	top: 0,
 	position: 'absolute',
-	pointerEvents: "all"
+	pointerEvents: "all",
+	zIndex: 99,
+	backgroundColor: 'blue'
 }
 
 export function DragContainer<TItemType extends string, TData>
