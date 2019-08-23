@@ -10,6 +10,8 @@ const dragOpacityDummy: React.CSSProperties = {
 	width: '100%',
 	height: '100%',
 	opacity: 0,
+	left: 0,
+	top: 0,
 	position: 'absolute',
 	pointerEvents: "all"
 }

@@ -35,7 +35,8 @@ const itptItmStyles = {
 	"padding": "5px",
 	"marginBottom": "3px",
 	height: '200px',
-	width: '300px'
+	width: '300px',
+	backgroundColor: '#00FF00AA'
 }
 
 const editorDragItem: DragItem<EditorItemTypes, TestDataType> = {
