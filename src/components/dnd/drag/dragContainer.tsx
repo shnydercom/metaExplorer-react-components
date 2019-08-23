@@ -72,8 +72,8 @@ export function DragContainer<TItemType extends string, TData>
 			style={dragStyle}
 			className={`${props.className} ${isDragging ? props.className + '-drag' : ''}`}>
 			<div style={{ position: 'relative' }}>
-				<div ref={drag} style={dragOpacityDummy}>{returnSourceBehaviour()}</div>
 				{returnSourceBehaviour()}
+				<div ref={drag} style={dragOpacityDummy}>{returnSourceBehaviour()}</div>
 			</div>
 		</div >
 	}
