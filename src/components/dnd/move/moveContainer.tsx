@@ -72,12 +72,12 @@ export function MoveContainer(props: MoveContainerProps) {
 
 	return (
 		<div className={`${props.className}`} style={{//visibility: isDragging ? 'hidden' : 'inherit',
-		pointerEvents: 'none'
+			pointerEvents: 'none'
 		}}>
 			<div style={childrenContainerCSS}>
 				{(Object.keys(internalPositions).map((key, idx) => {
 					const { left, top } = internalPositions[key];
-					const newChildProps = { left, top };
+					const newChildProps = { key, left, top };
 					const newChild = props.positionMap[key].child;
 					if (!newChild) return null;
 					return (
