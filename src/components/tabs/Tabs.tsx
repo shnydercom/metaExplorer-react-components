@@ -22,15 +22,15 @@ export function Tabs<TData>(props: ITabsProps<TData>) {
 	const updateInternalIdx = (val: number) => {
 		if (val < 0 || val > props.tabs.length - 1) return false;
 		setSelectedIdx(val);
+		if (props.onSelectionChange) {
+			props.onSelectionChange(props.tabs[val], val);
+		}
 		return true;
 	}
 
 	React.useEffect(() => {
 		const selIdx = props.selectedIdx;
-		const isUpdatable = updateInternalIdx(selIdx);
-		if (props.onSelectionChange && isUpdatable) {
-			props.onSelectionChange(props.tabs[selIdx], selIdx);
-		}
+		updateInternalIdx(selIdx);
 	}, [props])
 
 	return <div className={props.className}>
@@ -41,7 +41,7 @@ export function Tabs<TData>(props: ITabsProps<TData>) {
 					index={idx}
 					key={'tab' + idx}
 					isSelected={idx === selectedIdx}
-					onTabClicked={(index) => { setSelectedIdx(index) }}
+					onTabClicked={(index) => { updateInternalIdx(index) }}
 				></Tab>
 			})}
 		</div></div>

@@ -33,5 +33,6 @@ stories.add('few-tabs', () => (
 			{ data: 'Elem1', label: 'first Element' },
 			{ data: 'Elem2', label: 'second Element' }
 		]}
+		onSelectionChange={(data) => console.log(data)}
 	></Tabs>
 ))
