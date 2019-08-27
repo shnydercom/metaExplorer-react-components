@@ -21,6 +21,7 @@ export function Tabs<TData>(props: ITabsProps<TData>) {
 
 	const updateInternalIdx = (val: number) => {
 		if (val < 0 || val > props.tabs.length - 1) return false;
+		if(val === selectedIdx) return false;
 		setSelectedIdx(val);
 		if (props.onSelectionChange) {
 			props.onSelectionChange(props.tabs[val], val);
