@@ -72,7 +72,11 @@ export const MiniToolBox: React.FC<MiniToolBoxProps> = (props) => {
 
 	const toggleMini = () => {
 		setIsMini(!isMini);
-		if (!isMini) setIsMiniOpen(false);
+		if (!isMini) {
+			setIsMiniOpen(false);
+		} else {
+			setIsMiniOpen(true);
+		}
 	}
 
 	const watchBtnProps: MiniButtonProps[] =
