@@ -137,7 +137,7 @@ export const MiniToolBox: React.FC<MiniToolBoxProps> = (props) => {
 						{!isMini && activeEditor === 'phoneEd' ? props.children : null}
 					</Phone>
 				</div>
-				{true ? <div style={hiddenIntangibleChildren}>{props.children}</div>: null}
+				{isMini ? <div style={hiddenIntangibleChildren}>{props.children}</div>: null}
 			</div>);
 	}
 	const { className } = props;
