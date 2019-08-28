@@ -52,7 +52,6 @@ export const MiniToolBox: React.FC<MiniToolBoxProps> = (props) => {
 			{
 				iconSrc: "/static/minimize.svg",
 				onClick: () => {
-					props.onMiniChanged && props.onMiniChanged(isMini);
 					toggleMini();
 				}
 			},
@@ -74,9 +73,8 @@ export const MiniToolBox: React.FC<MiniToolBoxProps> = (props) => {
 		setIsMini(!isMini);
 		if (!isMini) {
 			setIsMiniOpen(false);
-		} else {
-			setIsMiniOpen(true);
 		}
+		props.onMiniChanged && props.onMiniChanged(isMini);
 	}
 
 	const watchBtnProps: MiniButtonProps[] =
@@ -84,7 +82,6 @@ export const MiniToolBox: React.FC<MiniToolBoxProps> = (props) => {
 			{
 				iconSrc: "/static/minimize.svg",
 				onClick: () => {
-					props.onMiniChanged && props.onMiniChanged(isMini);
 					toggleMini();
 				}
 			},
