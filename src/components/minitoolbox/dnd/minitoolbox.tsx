@@ -119,7 +119,7 @@ export const MiniToolBox: React.FC<MiniToolBoxProps> = (props) => {
 			${isMini ? isMiniOpen && activeEditor !== 'watchEd' ? 'mini-open' : 'mini-closed' : ''}
 			`}>
 					<Watch btnProps={watchBtnProps} watchClass={`${CSS_CLASSNAME}-${isMini ? 'mini' : 'max'}`} >
-						{/*!isMini && activeEditor === 'watchEd' ? props.children : null*/}
+						{!isMini && activeEditor === 'watchEd' ? props.children : null}
 					</Watch>
 				</div>
 				<div
@@ -134,10 +134,10 @@ export const MiniToolBox: React.FC<MiniToolBoxProps> = (props) => {
 			${isMini ? isMiniOpen && activeEditor !== 'phoneEd' ? 'mini-open' : 'mini-closed' : ''}
 			`}>
 					<Phone btnProps={phoneBtnProps} phoneClass={`${CSS_CLASSNAME}-${isMini ? 'mini' : 'max'} `}>
-						{/*!isMini && activeEditor === 'phoneEd' ? props.children : null*/}
+						{!isMini && activeEditor === 'phoneEd' ? props.children : null}
 					</Phone>
 				</div>
-				{true ? <div style={{}/*hiddenIntangibleChildren*/}>{props.children}</div>: null}
+				{true ? <div style={hiddenIntangibleChildren}>{props.children}</div>: null}
 			</div>);
 	}
 	const { className } = props;
