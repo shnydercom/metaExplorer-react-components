@@ -15,7 +15,8 @@ const dragOpacityDummy: React.CSSProperties = {
 	position: 'absolute',
 	pointerEvents: "all",
 	zIndex: 99,
-	backgroundColor: 'blue'
+	backgroundColor: 'blue',
+	cursor: 'move'
 }
 
 export function DragContainer<TItemType extends string, TData>
@@ -33,7 +34,6 @@ export function DragContainer<TItemType extends string, TData>
 			isDragging: monitor.isDragging()
 		}),
 		end(item, monitor) {
-			console.log(item)
 			if (monitor.didDrop()) {
 				console.log(monitor.didDrop())
 			} else {
@@ -61,13 +61,23 @@ export function DragContainer<TItemType extends string, TData>
 		return returnContent();
 	}
 
-	const dragStyle: React.CSSProperties = { pointerEvents: isDragging ? 'none' : 'all' };
+	const dragStyle: React.CSSProperties = {
+		pointerEvents: isDragging || props.isTransitDummy
+			? 'none'
+			: 'all',
+		left: props.dragOrigin.left,
+		top: props.dragOrigin.top
+	};
+	const dragOpacityDummyConditional: React.CSSProperties = {
+		...dragOpacityDummy,
+		pointerEvents: isDragging || props.isTransitDummy ? 'none' : 'all'
+	};
 	if (props.isWithDragHandle) {
 		return <div ref={preview}
 			style={dragStyle}
 			className={`${props.className} ${isDragging ? props.className + '-drag' : ''}`}>
 			<div className={`${props.className + '-handle'}`}>
-				<div ref={drag} style={dragOpacityDummy}></div>
+				<div ref={drag} style={dragOpacityDummyConditional}></div>
 			</div>
 			{returnContent()}
 		</div>
@@ -77,7 +87,7 @@ export function DragContainer<TItemType extends string, TData>
 			className={`${props.className} ${isDragging ? props.className + '-drag' : ''}`}>
 			<div style={{ position: 'relative' }}>
 				{returnSourceBehaviour()}
-				<div ref={drag} style={dragOpacityDummy}>{returnSourceBehaviour()}</div>
+				<div ref={drag} style={dragOpacityDummyConditional}>{returnSourceBehaviour()}</div>
 			</div>
 		</div >
 	}

@@ -28,8 +28,8 @@ function getItemStyles(
 	}
 
 	console.dir({ os: initialOffset, curos: currentOffset, ico: initialClientOffset });
-	let x = /* -*/ currentOffset.x;// - initialOffset.x; //- initialClientOffset.x;
-	let y = /* -*/ currentOffset.y;// - initialOffset.y;// - initialClientOffset.y;
+	let x = /* -*/ currentOffset.x; //- initialClientOffset.x + initialOffset.x;
+	let y = /* -*/ currentOffset.y; //- initialClientOffset.y + initialOffset.y;
 
 	const transform = `translate(${x}px, ${y}px)`
 	return {

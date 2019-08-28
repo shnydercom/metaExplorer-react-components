@@ -1,42 +1,61 @@
 import * as React from 'react';
-import { useDrag } from 'react-dnd'
-import { MiniButton, MiniButtonProps } from '../opened-menus/mini-button';
-import { ItemTypes } from './ItemTypes';
+import { MiniButtonProps } from '../opened-menus/mini-button';
 import { Watch } from '../opened-menus/watch';
 import { Phone } from '../opened-menus/phone';
-import DragLayerWChildren from './draglayer-w-children';
-import { DragItem } from './interfaces';
 
 export const CSS_CLASSNAME = "minitoolbox"
 
 export interface MiniToolBoxProps {
 	className: string;
+	onMiniChanged?: (isMini: boolean) => void;
+	onMaxiClick?: () => void;
+	onUpClick?: () => void;
+	onActiveStateChanged?: (activeState: ActiveStates) => void;
+	isMini?: boolean;
+	activeState?: ActiveStates;
 }
 
-type ActiveStates = "phoneEd" | "watchEd";
+export type ActiveStates = "phoneEd" | "watchEd";
 
 export const MiniToolBox: React.FC<MiniToolBoxProps> = (props) => {
 
+	//is it minified or previewing?
 	const [isMini, setIsMini] = React.useState(false);
+	//when hovering, opens up the phone/watch selection
 	const [isMiniOpen, setIsMiniOpen] = React.useState(false);
-	const [activeEditor, setActiveEditor] = React.useState<ActiveStates>("phoneEd");
+	//which preview is shown
+	const [activeEditor, setActiveEditor] = React.useState<ActiveStates>(props.activeState ? props.activeState : "phoneEd");
+
+	React.useEffect(() => {
+		const lIsMiniOpen = props.isMini;
+		if (lIsMiniOpen !== undefined && lIsMiniOpen !== null && lIsMiniOpen !== isMini) {
+			setIsMini(lIsMiniOpen);
+		}
+		if(props.activeState){
+			setActiveEditor(props.activeState);
+		}
+	}, [props]);
 
 	const phoneBtnProps: MiniButtonProps[] =
 		[
 			{
 				iconSrc: "/static/minimize.svg",
 				onClick: () => {
-					console.log(isMini);
+					props.onMiniChanged && props.onMiniChanged(isMini);
 					toggleMini();
 				}
 			},
 			{
 				iconSrc: "/static/maximize.svg",
-				onClick: () => { }
+				onClick: () => {
+					props.onMaxiClick && props.onMaxiClick();
+				}
 			},
 			{
 				iconSrc: "/static/up.svg",
-				onClick: () => { }
+				onClick: () => {
+					props.onUpClick && props.onUpClick();
+				}
 			}
 		];
 
@@ -50,17 +69,21 @@ export const MiniToolBox: React.FC<MiniToolBoxProps> = (props) => {
 			{
 				iconSrc: "/static/minimize.svg",
 				onClick: () => {
+					props.onMiniChanged && props.onMiniChanged(isMini);
 					toggleMini();
-					console.log(isMini);
 				}
 			},
 			{
 				iconSrc: "/static/maximize.svg",
-				onClick: () => { }
+				onClick: () => {
+					props.onMaxiClick && props.onMaxiClick();
+				}
 			},
 			{
 				iconSrc: "/static/up.svg",
-				onClick: () => { }
+				onClick: () => {
+					props.onUpClick && props.onUpClick();
+				}
 			}
 		];
 

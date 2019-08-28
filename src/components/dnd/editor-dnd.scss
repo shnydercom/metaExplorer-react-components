@@ -23,7 +23,7 @@
 }
 
 .mtb-dragcontainer {
-
+	position: relative;
 	&-drag {
 		opacity: 0;
 	}

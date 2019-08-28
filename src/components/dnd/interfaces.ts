@@ -20,9 +20,15 @@ export interface DragItemInternal<TItemType extends string, TData> extends DragI
 export interface StylableDragItemProps<TItemType extends string, TData>
 	extends DragItem<TItemType, TData> {
 	className: string;
-	onOverDragHandle?: () => void;
-	onOutDragHandle?: () => void;
 	isWithDragHandle: boolean;
+	/**
+	 * use the dragorigin if you use a handle, e.g. to position the dragged element correctly
+	 */
+	dragOrigin: IPosition;
+	/**
+	 * switches off any pointer/drag interaction, so that the dragelement can also be used during transition and doesn't capture drop
+	 */
+	isTransitDummy?: boolean;
 }
 
 export interface ITransitComp<TItemType extends string, TData> {

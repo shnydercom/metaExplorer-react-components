@@ -13,7 +13,7 @@ import HTML5Backend from 'react-dnd-html5-backend';
 import { DropContainer, StylableDropContainerProps } from "./drop/dropContainer";
 import { DragContainer } from "./drag/dragContainer";
 import { MoveContainer } from "./move/moveContainer"
-import { MiniToolBox } from "../minitoolbox/dnd/minitoolbox";
+import { MiniToolBox, ActiveStates } from "../minitoolbox/dnd/minitoolbox";
 
 const stories = storiesOf('dnd-itpt-editor', module);
 stories.addDecorator(withKnobs);
@@ -50,7 +50,8 @@ const editorDragItem: DragItem<EditorItemTypes, TestDataType> = {
 const editorStylableDragItem: StylableDragItemProps<EditorItemTypes, TestDataType> = {
 	...editorDragItem,
 	isWithDragHandle: false,
-	className: 'block-dragcontainer'
+	className: 'block-dragcontainer',
+	dragOrigin: { top: 0, left: 0 }
 }
 
 const TreeItemDragContainer = (props) => {
@@ -81,7 +82,11 @@ const itptEditorTransitComponent: StylableTransitComponentProps<EditorItemTypes,
 		},
 		{
 			forType: 'previewWindow',
-			componentFactory: (dragItem) => (props) => (<MiniToolBox className='minitoolbox'></MiniToolBox>)
+			componentFactory: (dragItem) => (props) => (
+				<MTBItemDragContainer {...mtbStylableDragItem}>
+					<MiniToolBox activeState='watchEd' className='minitoolbox'>
+					</MiniToolBox>
+				</MTBItemDragContainer>)
 		}
 	]
 }
@@ -130,25 +135,29 @@ const mtbDragItem: DragItem<EditorItemTypes, TestDataType> = {
 const mtbStylableDragItem: StylableDragItemProps<EditorItemTypes, TestDataType> = {
 	...mtbDragItem,
 	isWithDragHandle: true,
-	className: 'mtb-dragcontainer'
+	className: 'mtb-dragcontainer',
+	dragOrigin: { top: -10 - 36 + 4, left: -163 - 36 - 4 }
 }
 
-const MTBItemDragContainer = (props) => {
+const MTBItemDragContainer = (props: React.PropsWithChildren<StylableDragItemProps<EditorItemTypes, TestDataType>>) => {
 	return <DragContainer<EditorItemTypes, TestDataType>
-		{...mtbStylableDragItem}
+		{...props}
 	>
 		<div>{props.children}</div>
 	</DragContainer >
 }
 
 const IntegTest = (props) => {
+	const [isMini, setIsMini] = React.useState(false);
+	const [activeEditor, setActiveEditor] = React.useState<ActiveStates>(props.activeState ? props.activeState : "phoneEd");
+
 	const [internalPositions, setInternalPositions] = React.useState<{
 		[key: string]: {
 			top: number
 			left: number
 		}
 	}>({
-		mtb: { top: 20, left: 200 }
+		mtb: { top: 40, left: 400 }
 	})
 
 	const moveInternalPositions = (id: string, left: number, top: number) => {
@@ -178,8 +187,14 @@ const IntegTest = (props) => {
 					positionMap={{
 						mtb: {
 							pos: internalPositions['mtb'],
-							child: <MTBItemDragContainer>
-								<MiniToolBox className='minitoolbox'></MiniToolBox>
+							child: <MTBItemDragContainer {...mtbStylableDragItem}>
+								<MiniToolBox
+									className='minitoolbox'
+									isMini={isMini}
+									activeState={activeEditor}
+									onActiveStateChanged={(as) => setActiveEditor(as)}
+									onMiniChanged={(mini) => setIsMini(mini)}
+								></MiniToolBox>
 							</MTBItemDragContainer>
 						}
 					}}

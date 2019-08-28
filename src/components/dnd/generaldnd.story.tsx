@@ -36,7 +36,8 @@ const testDataDragItem: DragItem<TestItemTypes, TestDataType> = {
 const testStylableDragItem: StylableDragItemProps<TestItemTypes, TestDataType> = {
 	...testDataDragItem,
 	isWithDragHandle: true,
-	className: 'dragcontainer'
+	className: 'dragcontainer',
+	dragOrigin: {top: 400, left: 200}
 }
 let DNDBackend = HTML5Backend;
 
