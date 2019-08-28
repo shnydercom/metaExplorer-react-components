@@ -17,6 +17,17 @@ export interface MiniToolBoxProps {
 
 export type ActiveStates = "phoneEd" | "watchEd";
 
+const hiddenIntangibleChildren: React.CSSProperties = {
+	height: "100px",
+	width: "100px",
+	visibility: "hidden",
+	pointerEvents: "none",
+	opacity: 0,
+	position: "fixed",
+	top: "-200px",
+	left: "-200px"
+}
+
 export const MiniToolBox: React.FC<MiniToolBoxProps> = (props) => {
 
 	//is it minified or previewing?
@@ -126,6 +137,7 @@ export const MiniToolBox: React.FC<MiniToolBoxProps> = (props) => {
 						{!isMini && activeEditor === 'phoneEd' ? props.children : null}
 					</Phone>
 				</div>
+				{isMini ? <div style={hiddenIntangibleChildren}>{props.children}</div>: null}
 			</div>);
 	}
 	const { className } = props;

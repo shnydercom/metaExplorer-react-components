@@ -83,7 +83,7 @@ const itptEditorTransitComponent: StylableTransitComponentProps<EditorItemTypes,
 		{
 			forType: 'previewWindow',
 			componentFactory: (dragItem) => (props) => (
-				<MTBItemDragContainer {...mtbStylableDragItem}>
+				<MTBItemDragContainer {...mtbStylableDragItem} isTransitDummy={true}>
 					<MiniToolBox activeState='watchEd' className='minitoolbox'>
 					</MiniToolBox>
 				</MTBItemDragContainer>)
