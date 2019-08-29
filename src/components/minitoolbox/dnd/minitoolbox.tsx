@@ -42,7 +42,7 @@ export const MiniToolBox: React.FC<MiniToolBoxProps> = (props) => {
 		if (lIsMiniOpen !== undefined && lIsMiniOpen !== null && lIsMiniOpen !== isMini) {
 			setIsMini(lIsMiniOpen);
 		}
-		if(props.activeState){
+		if (props.activeState) {
 			setActiveEditor(props.activeState);
 		}
 	}, [props]);
@@ -68,6 +68,12 @@ export const MiniToolBox: React.FC<MiniToolBoxProps> = (props) => {
 				}
 			}
 		];
+
+	const switchActiveState = (pActiveState: ActiveStates) => {
+		if (pActiveState === activeEditor) return;
+		setActiveEditor(pActiveState)
+		props.onActiveStateChanged && props.onActiveStateChanged(pActiveState);
+	}
 
 	const toggleMini = () => {
 		setIsMini(!isMini);
@@ -110,7 +116,7 @@ export const MiniToolBox: React.FC<MiniToolBoxProps> = (props) => {
 			>
 				<div
 					onClick={isMini ? (e) => {
-						setActiveEditor("watchEd");
+						switchActiveState("watchEd");
 						toggleMini();
 					} : (e) => { }}
 					className={`
@@ -125,7 +131,7 @@ export const MiniToolBox: React.FC<MiniToolBoxProps> = (props) => {
 				</div>
 				<div
 					onClick={isMini ? (e) => {
-						setActiveEditor("phoneEd");
+						switchActiveState("phoneEd");
 						toggleMini();
 					} : (e) => { }}
 					className={`
@@ -138,7 +144,7 @@ export const MiniToolBox: React.FC<MiniToolBoxProps> = (props) => {
 						{!isMini && activeEditor === 'phoneEd' ? props.children : null}
 					</Phone>
 				</div>
-				{isMini ? <div style={hiddenIntangibleChildren}>{props.children}</div>: null}
+				{isMini ? <div style={hiddenIntangibleChildren}>{props.children}</div> : null}
 			</div>);
 	}
 	const { className } = props;
