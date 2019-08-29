@@ -70,7 +70,10 @@ export const MiniToolBox: React.FC<MiniToolBoxProps> = (props) => {
 		];
 
 	const switchActiveState = (pActiveState: ActiveStates) => {
-		if (pActiveState === activeEditor) return;
+		if (pActiveState === activeEditor) {
+			toggleMini();
+			return;
+		}
 		setActiveEditor(pActiveState);
 		setIsMini(false);
 		props.onActiveStateChanged && props.onActiveStateChanged(pActiveState);
