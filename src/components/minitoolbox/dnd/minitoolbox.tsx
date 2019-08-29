@@ -71,7 +71,8 @@ export const MiniToolBox: React.FC<MiniToolBoxProps> = (props) => {
 
 	const switchActiveState = (pActiveState: ActiveStates) => {
 		if (pActiveState === activeEditor) return;
-		setActiveEditor(pActiveState)
+		setActiveEditor(pActiveState);
+		setIsMini(false);
 		props.onActiveStateChanged && props.onActiveStateChanged(pActiveState);
 	}
 
@@ -117,7 +118,6 @@ export const MiniToolBox: React.FC<MiniToolBoxProps> = (props) => {
 				<div
 					onClick={isMini ? (e) => {
 						switchActiveState("watchEd");
-						toggleMini();
 					} : (e) => { }}
 					className={`
 			${CSS_CLASSNAME}-watchcontainer
@@ -132,7 +132,6 @@ export const MiniToolBox: React.FC<MiniToolBoxProps> = (props) => {
 				<div
 					onClick={isMini ? (e) => {
 						switchActiveState("phoneEd");
-						toggleMini();
 					} : (e) => { }}
 					className={`
 			${CSS_CLASSNAME}-phonecontainer
