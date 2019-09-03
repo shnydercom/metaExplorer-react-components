@@ -4,6 +4,7 @@
   "description": "components for the metaExplorer project",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
+  "license": "EUPL-1.2",
   "scripts": {
     "test": "test",
     "start": "start-storybook -s ./assets -p 2018",
