@@ -32,15 +32,7 @@ export function DragContainer<TItemType extends string, TData>
 		},
 		collect: monitor => ({
 			isDragging: monitor.isDragging()
-		}),
-		end(item, monitor) {
-			if (monitor.didDrop()) {
-				console.log(monitor.didDrop())
-			} else {
-
-				console.log(monitor.didDrop())
-			}
-		}
+		})
 	})
 	const returnContent = () => (
 		props.children
@@ -50,7 +42,6 @@ export function DragContainer<TItemType extends string, TData>
 		if (isDragging) {
 			switch (props.sourceBhv) {
 				case 'sGone':
-					console.log("gone")
 					return <div ref={preview} style={{ height: 0, width: 0 }}></div>
 				case 'sCopy':
 				//fallthrough on purpose

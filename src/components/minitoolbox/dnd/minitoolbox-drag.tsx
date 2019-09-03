@@ -35,7 +35,6 @@ export const MiniToolBox: React.FC<StylableDragItemProps> = (props) => {
 			{
 				iconSrc: "/static/minimize.svg",
 				onClick: () => {
-					console.log(isMini);
 					toggleMini();
 				}
 			},
@@ -60,7 +59,6 @@ export const MiniToolBox: React.FC<StylableDragItemProps> = (props) => {
 				iconSrc: "/static/minimize.svg",
 				onClick: () => {
 					toggleMini();
-					console.log(isMini);
 				}
 			},
 			{

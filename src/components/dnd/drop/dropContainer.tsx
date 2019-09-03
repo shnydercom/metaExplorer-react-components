@@ -19,9 +19,6 @@ const draggingCSSProperties: React.CSSProperties = {
 export function DropContainer<TItemType extends string, TData>
   (props: React.PropsWithChildren<StylableDropContainerProps<TItemType, TData>>) {
   const [{ isActive, isDragging }, drop] = useDrop({
-    hover: (itm) => {
-      console.log(itm)
-    },
     accept: props.acceptedItemTypes,
     collect: monitor => ({
       isActive: monitor.canDrop() && monitor.isOver(),

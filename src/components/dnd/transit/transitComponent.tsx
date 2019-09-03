@@ -27,7 +27,6 @@ function getItemStyles(
 		}
 	}
 
-	console.dir({ os: initialOffset, curos: currentOffset, ico: initialClientOffset });
 	let x = /* -*/ currentOffset.x; //- initialClientOffset.x + initialOffset.x;
 	let y = /* -*/ currentOffset.y; //- initialClientOffset.y + initialOffset.y;
 
