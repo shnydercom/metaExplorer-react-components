@@ -68,3 +68,4 @@ typings/
 
 lib
 lib-esm
+*.lock
