@@ -2,3 +2,9 @@ node_modules
 .cache
 .awcache
 .vscode
+yarn-error.log
+*.lock
+src
+postcss.config.js
+tsconfig.json
+webpack.config.js
