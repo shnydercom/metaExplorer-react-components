@@ -65,3 +65,6 @@ typings/
 .cache
 
 .awcache
+
+lib
+lib-esm

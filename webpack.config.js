@@ -47,7 +47,8 @@ module.exports = {
         use: [
           // fallback to style-loader in development
           // MiniCssExtractPlugin.loader,
-          process.env.NODE_ENV !== 'production' ?  MiniCssExtractPlugin.loader: 'style-loader',
+          //process.env.NODE_ENV !== 'production' ?  MiniCssExtractPlugin.loader:
+          'style-loader',
           "css-loader",
           "sass-loader"
         ]
@@ -76,8 +77,9 @@ module.exports = {
       "React": "react",
       "Quagga": "quagga"
     }),
-    new MiniCssExtractPlugin({
-      filename: 'metaexplorer-react-style.css',
-    }),
+    /*new MiniCssExtractPlugin({
+      chunks: 1,
+      filename: 'metaexplorer-react-style.css'
+    }),*/
   ]
 }

@@ -8,8 +8,10 @@
   "scripts": {
     "test": "test",
     "start": "start-storybook -s ./assets -p 2018",
-    "lib": "tsc",
-    "build": "webpack"
+    "buildesm": "tsc -m es6 --outDir lib-esm",
+    "buildregular": "tsc",
+    "build": "yarn buildesm && yarn buildregular && yarn compcss",
+    "compcss": "node-sass --output-style compressed ./src/ -o ./lib"
   },
   "repository": {
     "type": "git",
