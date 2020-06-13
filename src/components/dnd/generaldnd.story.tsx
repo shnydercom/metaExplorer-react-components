@@ -2,7 +2,7 @@ import { storiesOf } from "@storybook/react";
 import * as React from 'react';
 import './dnd.scss';
 
-import HTML5Backend from 'react-dnd-html5-backend';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 import { DndProvider } from 'react-dnd';
 import { DragContainer } from './drag/dragContainer';
 import { DropContainer, StylableDropContainerProps } from './drop/dropContainer';
@@ -37,7 +37,7 @@ const testStylableDragItem: StylableDragItemProps<TestItemTypes, TestDataType> =
 	...testDataDragItem,
 	isWithDragHandle: true,
 	className: 'dragcontainer',
-	dragOrigin: {top: 400, left: 200}
+	dragOrigin: { top: 400, left: 200 }
 }
 let DNDBackend = HTML5Backend;
 

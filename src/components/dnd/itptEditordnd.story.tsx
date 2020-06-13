@@ -9,7 +9,7 @@ import TreeView, { TreeEntry } from "../treeview/treeview";
 import { TransitComponent } from "./transit/transitComponent";
 import { StylableTransitComponentProps, StylableDragItemProps, DragItem } from "./interfaces";
 import { DndProvider } from "react-dnd";
-import HTML5Backend from 'react-dnd-html5-backend';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 import { DropContainer, StylableDropContainerProps } from "./drop/dropContainer";
 import { DragContainer } from "./drag/dragContainer";
 import { MoveContainer } from "./move/moveContainer"

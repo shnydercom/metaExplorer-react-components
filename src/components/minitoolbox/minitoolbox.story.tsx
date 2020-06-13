@@ -10,13 +10,17 @@ import { PhoneDND } from './dnd/phone-dnd';
 import { WatchDND } from './dnd/watch-dnd';
 import { DropContainer } from './dnd/dropcontainer';
 import { DndProvider, useDrag } from 'react-dnd';
-import HTML5Backend from 'react-dnd-html5-backend';
-import TouchBackend from 'react-dnd-touch-backend';
+import { HTML5Backend } from 'react-dnd-html5-backend';
+import { TouchBackend } from 'react-dnd-touch-backend';
 import { ItemTypes } from './dnd/ItemTypes';
 import { DragLayerWChildren } from './dnd/draglayer-w-children';
+import MultiBackend from 'react-dnd-multi-backend';
+import HTML5toTouch from 'react-dnd-multi-backend/dist/esm/HTML5toTouch';
 
 let backendName = "html5"
-let DNDBackend = HTML5Backend;
+
+let DNDBackend = MultiBackend;
+let DNDOptions = HTML5toTouch;
 //TODO: implement automatic switching https://www.npmjs.com/package/react-dnd-multi-backend
 //once the semver/breaking changes issue with react-dnd have been resolved, implement a proper switch
 
@@ -55,7 +59,7 @@ stories.add('opened-menus/watch', () => (
 ));*/
 
 stories.add('minitoolbox-drag', () => (
-	<DndProvider backend={DNDBackend}>
+	<DndProvider backend={DNDBackend} options={DNDOptions}>
 		<MiniToolBox
 			id="a"
 			left={0}
@@ -67,17 +71,17 @@ stories.add('minitoolbox-drag', () => (
 ));
 
 stories.add('minitoolbox-dropcontainer', () => {
-	button('switchBackend to ' + backendName, () => {
-		if (backendName === "html5") {
-			DNDBackend = HTML5Backend;
-			backendName = "touch"
-		} else {
-			DNDBackend = TouchBackend
-			backendName = "html5"
-		}
+	button('switchBackend to html5', () => {
+		DNDBackend = HTML5Backend;
+	});
+	button('switchBackend to touch', () => {
+		DNDBackend = TouchBackend
+	});
+	button('switchBackend to mulit', () => {
+		DNDBackend = HTML5toTouch
 	});
 	return (
-		<DndProvider backend={DNDBackend}>
+		<DndProvider backend={DNDBackend} options={DNDOptions}>
 			<DropContainer isDropZoneClickthrough={boolean("isDropZoneClickthrough", false)}>
 				<MiniToolBox
 					id="a"
@@ -108,7 +112,7 @@ export const BlockDragComponent: React.FC<StylableDragItemProps> = (props) => {
 			this is element with id: {props.id}
 		</div>
 	)
-	return <div 
+	return <div
 		style={{ left: props.left, top: props.top, position: "absolute" }}>
 		<DragLayerWChildren
 			includedItemId={props.id}
@@ -131,7 +135,7 @@ stories.add('minitoolbox-block-dnd', () => {
 		}
 	});
 	return (
-		<DndProvider backend={DNDBackend}>
+		<DndProvider backend={DNDBackend} options={DNDOptions}>
 			<DropContainer
 				onBlockDropped={(dragItem) => alert('dropped: ' + JSON.stringify(dragItem))}
 				isDropZoneClickthrough={boolean("isDropZoneClickthrough", false)}>
