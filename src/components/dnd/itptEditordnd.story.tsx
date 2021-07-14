@@ -171,6 +171,9 @@ const IntegTest = (props) => {
 	}
 
 	return (
+		<>
+		
+		<div style={{height: "200px", background: "green"}}></div>
 		<DndProvider backend={DNDBackend}>
 			<div style={{ width: "100%", height: "300px", position: 'relative' }}>
 				<div style={backStyle} onMouseOver={(event) => event.currentTarget.style.setProperty('background-color', 'grey')}
@@ -206,6 +209,7 @@ const IntegTest = (props) => {
 				</div>
 			</div>
 		</DndProvider>
+		</>
 	)
 }
 
